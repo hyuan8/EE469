@@ -5,6 +5,14 @@ vlib work
 #     All Verilog files that are part of this design should have
 #     their own "vlog" line below.
 vlog "./mux2_1.sv"
+vlog "./D_FF.sv"
+vlog "./D_FF_enable.sv"
+vlog "./decoder2x4.sv"
+vlog "./decoder3x8.sv"
+vlog "./decoder5x32.sv"
+vlog "./regfile.sv"
+vlog "./register_file.sv"
+vlog "./regstim.sv"
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
