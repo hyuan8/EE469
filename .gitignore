@@ -1,0 +1,53 @@
+# --- Quartus Database & Temporary Folders ---
+db/
+incremental_db/
+greybox_tmp/
+hc_output/
+/hps_isw_software/
+/software/
+
+# --- Compilation Output ---
+# This folder contains your .sof and .pof files (the actual FPGA bitstreams). 
+# Some people keep them, but they are large and can be regenerated.
+output_files/
+
+# --- Simulation Files (ModelSim / Questa) ---
+simulation/
+*.vho
+*.sft
+*.vo
+
+# --- Quartus User Specific / Temp Files ---
+*.bak
+*.done
+*.qws
+*.rpt
+*.summary
+*.pin
+*.jdi
+*.v.bak
+*.sv.bak
+*.flock
+*.rdr
+
+# --- System Files ---
+.DS_Store
+Thumbs.db
+
+.vscode/
+*.code-workspace
+
+# ModelSim / Altera / Quartus Junk
+work/                # ModelSim compilation library
+transcript           # ModelSim command history
+vsim.wlf             # Waveform log file
+*.vstf               # ModelSim status files
+*.bak                # Backup files
+db/                  # Quartus database
+incremental_db/      # Quartus incremental database
+output_files/        # Compiled FPGA bitstreams (.sof, .pof)
+/work
+*.qdb
+*.qpg
+*.qtl
+wlfts*
