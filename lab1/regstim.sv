@@ -11,7 +11,7 @@ module regstim();
 	logic [63:0]	ReadData1, ReadData2;
 
 	integer i;
-
+s
 	// Your register file MUST be named "regfile".
 	// Also you must make sure that the port declarations
 	// match up with the module instance in this stimulus file.
