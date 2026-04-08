@@ -6,13 +6,13 @@ module decoder5x32 (en, in, out);
 	
 	// 2x4 mux uses in[4:3] to select which 3x8 mux to select from
 	logic [3:0] block;
-	decoder2x4 sel (.en, .in(in[4:3]), .out(block[3:0]);
+	decoder2x4 sel (.en, .in(in[4:3]), .out(block[3:0]));
 	
 	// create four 3x8 muxes to select the output line
 	genvar i;
 	generate
 		for (i = 0; i < 4; i++) begin : decoders3x8
-			decoder3x8 decoder (.en(block[i], .in(in[2:0]), .out(block[(8*i) + 7 : 8 * i];
+			decoder3x8 decoder (.en(block[i]), .in(in[2:0]), .out(block[(8*i) + 7 : 8 * i]));
 		end
 	endgenerate
 	
