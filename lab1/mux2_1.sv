@@ -1,15 +1,15 @@
 module mux2_1(out, i0, i1, sel);
 
-	output out;
-	input i0, i1, sel;
+	output logic out;
+	input logic i0, i1, sel;
 	
 	logic n;
 	not #0.05 not0 (nsel, sel);
 	
 	and #0.05 and0 (a0, i1, sel);
 	and #0.05 and1 (a1, i0, nsel);
-	
-	or #0.05 or0 (o0, a0, a1);
+
+	or #0.05 or0 (out, a0, a1);
 	
 endmodule
 
@@ -28,17 +28,17 @@ module mux2_1_testbench();
 	
 	initial begin
 	
-		sel = 0;				#100;
-		i0 = 0; i1 = 0; 	#100;
-		i0 = 0; i1 = 1; 	#100;
-		i0 = 1; i1 = 0; 	#100;
-		i0 = 1; i1 = 1; 	#100;
+		sel = 0;				#10;
+		i0 = 0; i1 = 0; 	#10;
+		i0 = 0; i1 = 1; 	#10;
+		i0 = 1; i1 = 0; 	#10;
+		i0 = 1; i1 = 1; 	#10;
 		
-		sel = 1;				#100;
-		i0 = 0; i1 = 0; 	#100;
-		i0 = 0; i1 = 1; 	#100;
-		i0 = 1; i1 = 0; 	#100;
-		i0 = 1; i1 = 1; 	#100;
+		sel = 1;				#10;
+		i0 = 0; i1 = 0; 	#10;
+		i0 = 0; i1 = 1; 	#10;
+		i0 = 1; i1 = 0; 	#10;
+		i0 = 1; i1 = 1; 	#10;
 		
 		$stop;
 	end
