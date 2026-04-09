@@ -9,3 +9,4 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
 	// instances here
 	
 endmodule
+
