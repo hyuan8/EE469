@@ -274,6 +274,7 @@ do runlab.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 # Start time: 23:11:04 on Apr 08,2026
 # vlog -reportprogress 300 ./D_FF.sv 
+# ** Warning: (vlog-6) -- Waiting for lock by "unknown". Lockfile is "U:/ee469labs/lab1/work/_lock".
 # -- Compiling module D_FF
 # 
 # Top level modules:
@@ -312,6 +313,7 @@ do runlab.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 # Start time: 23:11:05 on Apr 08,2026
 # vlog -reportprogress 300 ./decoder5x32.sv 
+# ** Warning: (vlog-6) -- Waiting for lock by "unknown". Lockfile is "U:/ee469labs/lab1/work/_lock".
 # -- Compiling module decoder5x32
 # -- Compiling module decoder5x32_testbench
 # 
@@ -322,6 +324,7 @@ do runlab.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 # Start time: 23:11:05 on Apr 08,2026
 # vlog -reportprogress 300 ./regfile.sv 
+# ** Warning: (vlog-6) -- Waiting for lock by "unknown". Lockfile is "U:/ee469labs/lab1/work/_lock".
 # -- Compiling module regfile
 # 
 # Top level modules:

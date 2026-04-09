@@ -100,6 +100,7 @@ r1
 R6
 R11
 R12
+R13
 !i113 1
 R7
 vdecoder3x8
@@ -146,6 +147,8 @@ r1
 R6
 R17
 R18
+R19
+R20
 !i113 1
 R7
 vdecoder5x32
