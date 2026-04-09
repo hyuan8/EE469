@@ -10,7 +10,26 @@ module mux16_1(i, sel, out);
 	logic internal_out1;
 	mux8_1 mux1 (.out(internal_out1), .i(i[15:8]), .sel(sel[2:0]));
 	
-	mux2_1 mux2 (.out(out), .i({internal_out0, internal_out1}), .sel(sel[3]));
+	mux2_1 mux2 (.out(out), .i({internal_out1, internal_out0}), .sel(sel[3]));
 	
 endmodule
 
+module mux16_1_testbench();
+
+	logic out;
+	logic [15:0] i;
+	logic [3:0] sel;
+	
+	mux16_1 dut (.*);
+	
+	initial begin
+	
+		integer j; // use j because i is input
+		for (j = 0; j < 16; j++) begin
+			sel = j[3:0]; #10;
+			i = 16'b1 << j; #10;
+		end
+		$stop;
+	end
+	
+endmodule

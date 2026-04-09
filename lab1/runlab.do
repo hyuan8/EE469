@@ -7,6 +7,8 @@ vlib work
 vlog "./mux2_1.sv"
 vlog "./mux4_1.sv"
 vlog "./mux8_1.sv"
+vlog "./mux16_1.sv"
+vlog "./mux32_1.sv"
 vlog "./D_FF.sv"
 vlog "./D_FF_enable.sv"
 vlog "./decoder2x4.sv"
