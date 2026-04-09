@@ -782,3 +782,5 @@ run -all
 # Break in Module regstim at ./regstim.sv line 69
 add wave -position 8  -autoscale 1 -format Literal -height 17
 # Missing signal name or pattern.
+# End time: 16:03:23 on Apr 09,2026, Elapsed time: 0:09:21
+# Errors: 1, Warnings: 1
