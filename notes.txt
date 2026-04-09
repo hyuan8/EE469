@@ -1,0 +1,6 @@
+having trouble launching modelsim?
+
+run this command in terminal: 
+Start-Process "C:\intelFPGA_lite\17.0\modelsim_ase\win32aloem\modelsim.exe" -WorkingDirectory "U:\EE 469\labs\lab1"
+
+- hailey 04/09
