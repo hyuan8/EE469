@@ -1,7 +1,6 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /mux2_1_testbench/i0
-add wave -noupdate /mux2_1_testbench/i1
+add wave -noupdate -expand /mux2_1_testbench/i
 add wave -noupdate /mux2_1_testbench/sel
 add wave -noupdate /mux2_1_testbench/out
 TreeUpdate [SetDefaultTree]
