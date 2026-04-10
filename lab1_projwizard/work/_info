@@ -10,7 +10,7 @@ cModel Technology
 dU:/EE 469/labs/lab1_projwizard
 vD_FF
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z1 !s110 1775801251
+Z1 !s110 1775807328
 !i10b 1
 !s100 L7e85alTTj03I<2SWKmiU0
 IF^<Q@J7HjflAccmoCjAGW3
@@ -26,7 +26,7 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1775801251.000000
+Z6 !s108 1775807328.000000
 !s107 ./D_FF.sv|
 !s90 -reportprogress|300|./D_FF.sv|
 !i113 1
@@ -34,7 +34,7 @@ Z7 tCvgOpt 0
 n@d_@f@f
 vD_FF_enable
 R0
-Z8 !s110 1775801252
+Z8 !s110 1775807329
 !i10b 1
 !s100 ohX@AV<3GakOlSG`A0oN]3
 IomSl;zzWb:<n`bZ63?eg;2
@@ -74,7 +74,7 @@ R5
 r1
 !s85 0
 31
-Z12 !s108 1775801252.000000
+Z12 !s108 1775807329.000000
 Z13 !s107 ./decoder2x4.sv|
 Z14 !s90 -reportprogress|300|./decoder2x4.sv|
 !i113 1
@@ -242,48 +242,48 @@ R29
 R7
 vmux2_1
 R0
-Z31 !s110 1775801250
+R1
 !i10b 1
 !s100 >D<n6l`KB?fRV^Ze<UMZf0
 IAecCX];Min_i<H95IIkZO3
 R2
-Z32 !s105 mux2_1_sv_unit
+Z31 !s105 mux2_1_sv_unit
 S1
 R3
 R4
-Z33 8./mux2_1.sv
-Z34 F./mux2_1.sv
+Z32 8./mux2_1.sv
+Z33 F./mux2_1.sv
 L0 3
 R5
 r1
 !s85 0
 31
-Z35 !s108 1775801250.000000
-Z36 !s107 ./mux2_1.sv|
-Z37 !s90 -reportprogress|300|./mux2_1.sv|
+R6
+Z34 !s107 ./mux2_1.sv|
+Z35 !s90 -reportprogress|300|./mux2_1.sv|
 !i113 1
 R7
 vmux2_1_testbench
 R0
-R31
+R1
 !i10b 1
 !s100 N8A9hLg1D6>]BSdIbT_@X2
 IdG98GQ7^^FbB2o5d3JQ7D0
 R2
-R32
+R31
 S1
 R3
 R4
+R32
 R33
-R34
 L0 26
 R5
 r1
 !s85 0
 31
+R6
+R34
 R35
-R36
-R37
 !i113 1
 R7
 vmux32_1
@@ -293,20 +293,20 @@ R1
 !s100 kXDAmjObm_WUXI^gLSgIF2
 IWg[mmlF>5fK>MD>H6<zbR1
 R2
-Z38 !s105 mux32_1_sv_unit
+Z36 !s105 mux32_1_sv_unit
 S1
 R3
 R4
-Z39 8./mux32_1.sv
-Z40 F./mux32_1.sv
+Z37 8./mux32_1.sv
+Z38 F./mux32_1.sv
 L0 1
 R5
 r1
 !s85 0
 31
 R6
-Z41 !s107 ./mux32_1.sv|
-Z42 !s90 -reportprogress|300|./mux32_1.sv|
+Z39 !s107 ./mux32_1.sv|
+Z40 !s90 -reportprogress|300|./mux32_1.sv|
 !i113 1
 R7
 vmux32_1_testbench
@@ -316,20 +316,20 @@ R1
 !s100 =JLMQQKGTDKMJPe3]PK0G3
 IJ:cS]O;Rf9;G`[IVfDaz`1
 R2
-R38
+R36
 S1
 R3
 R4
-R39
-R40
+R37
+R38
 R30
 R5
 r1
 !s85 0
 31
 R6
-R41
-R42
+R39
+R40
 !i113 1
 R7
 vmux4_1
@@ -339,20 +339,20 @@ R1
 !s100 7jn9;SzVClRKJ?9IK@_cc3
 IV9[MLhEF?iC1E2o[_C0_;1
 R2
-Z43 !s105 mux4_1_sv_unit
+Z41 !s105 mux4_1_sv_unit
 S1
 R3
-Z44 w1775776055
-Z45 8./mux4_1.sv
-Z46 F./mux4_1.sv
+Z42 w1775776055
+Z43 8./mux4_1.sv
+Z44 F./mux4_1.sv
 L0 1
 R5
 r1
 !s85 0
 31
-R35
-Z47 !s107 ./mux4_1.sv|
-Z48 !s90 -reportprogress|300|./mux4_1.sv|
+R6
+Z45 !s107 ./mux4_1.sv|
+Z46 !s90 -reportprogress|300|./mux4_1.sv|
 !i113 1
 R7
 vmux4_1_testbench
@@ -362,20 +362,20 @@ R1
 !s100 A8KN4fn4NOUU_^To^XX0o2
 IQ6OUY>?[YG?ImaCknZ[lD2
 R2
-R43
+R41
 S1
 R3
+R42
+R43
 R44
-R45
-R46
 R30
 R5
 r1
 !s85 0
 31
-R35
-R47
-R48
+R6
+R45
+R46
 !i113 1
 R7
 vmux8_1
@@ -385,20 +385,20 @@ R1
 !s100 0lbn7`aW<kjDkMchGn8Rh0
 I[NhQPg4FNXJ9kocdEEN7S2
 R2
-Z49 !s105 mux8_1_sv_unit
+Z47 !s105 mux8_1_sv_unit
 S1
 R3
-R44
-Z50 8./mux8_1.sv
-Z51 F./mux8_1.sv
+R42
+Z48 8./mux8_1.sv
+Z49 F./mux8_1.sv
 L0 1
 R5
 r1
 !s85 0
 31
 R6
-Z52 !s107 ./mux8_1.sv|
-Z53 !s90 -reportprogress|300|./mux8_1.sv|
+Z50 !s107 ./mux8_1.sv|
+Z51 !s90 -reportprogress|300|./mux8_1.sv|
 !i113 1
 R7
 vmux8_1_testbench
@@ -408,33 +408,33 @@ R1
 !s100 3E[Z@F2XB0O`EXIN@kV[31
 I9Omh[JoH91:A5<M8_;AY31
 R2
-R49
+R47
 S1
 R3
-R44
-R50
-R51
+R42
+R48
+R49
 R30
 R5
 r1
 !s85 0
 31
 R6
-R52
-R53
+R50
+R51
 !i113 1
 R7
 vregfile
 R0
 R8
 !i10b 1
-!s100 iR5zJgkWfPn^Goa00=nkR0
-ImfoW6YZ8Gf^0`98UR3<DB2
+!s100 6cG8IV_?KVMcad<f74JQ43
+IEWl@QeUhKV?;Ckc8VXc3Z1
 R2
 !s105 regfile_sv_unit
 S1
 R3
-R44
+w1775807324
 8./regfile.sv
 F./regfile.sv
 L0 1
@@ -457,7 +457,7 @@ R2
 !s105 register_file_sv_unit
 S1
 R3
-R44
+R42
 8./register_file.sv
 F./register_file.sv
 L0 1
@@ -480,7 +480,7 @@ R2
 !s105 regstim_sv_unit
 S1
 R3
-R44
+R42
 8./regstim.sv
 F./regstim.sv
 L0 4

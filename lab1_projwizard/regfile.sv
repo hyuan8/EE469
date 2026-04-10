@@ -14,12 +14,22 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
 	logic [63:0] q [31:0];
 	genvar i;
 	genvar j;
+	genvar z;
+	
 	generate
-		for(i = 0; i < 32; i++) begin : registers
+		for(i = 0; i < 31; i++) begin : registers
 			for (j = 0; j < 64; j++)  begin : bitnumbers
 				D_FF_enable dff (.q(q[i][j]), .d(WriteData[j]), .reset(1'b0), .clk(clk), .enable(address[i]));
+				
 			end
 		end
+		
+		
+		for (z = 0; z < 64; z++) begin : register_zero
+			 assign q[31][z] = 1'b0;
+		end
+		
+		
 	endgenerate
 	
 	// Muxes
