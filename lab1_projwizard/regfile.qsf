@@ -44,7 +44,6 @@ set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:02:50  APRIL 09, 2026"
 set_global_assignment -name LAST_QUARTUS_VERSION "17.0.0 Lite Edition"
 set_global_assignment -name SYSTEMVERILOG_FILE regstim.sv
-set_global_assignment -name SYSTEMVERILOG_FILE register_file.sv
 set_global_assignment -name SYSTEMVERILOG_FILE regfile.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux32_1.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux16_1.sv

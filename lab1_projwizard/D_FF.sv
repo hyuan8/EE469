@@ -1,3 +1,4 @@
+// THis is the provided DFF module
 module D_FF (q, d, reset, clk);
 	output reg q;
 	input d, reset, clk;
