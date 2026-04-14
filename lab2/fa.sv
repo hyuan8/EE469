@@ -5,13 +5,13 @@ module fa(A, B, Cin, Cout, S);
 	output logic Cout, S;
 	
 	// Sum logic
-	xor xor0 (S, A, B, Cin);
+	xor #0.05 xor0 (S, A, B, Cin);
 	
 	// Carry logic
-	and and0 (a0, A, B);
-	and and1 (a1, B, Cin);
-	and and2 (a2, A, Cin);
-	or or0 (Cout, a0, a1, a2);
+	and #0.05 and0 (a0, A, B);
+	and #0.05 and1 (a1, B, Cin);
+	and #0.05 and2 (a2, A, Cin);
+	or #0.05 or0 (Cout, a0, a1, a2);
 	
 endmodule
 
