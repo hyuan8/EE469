@@ -15,7 +15,6 @@ vlog "./decoder2x4.sv"
 vlog "./decoder3x8.sv"
 vlog "./decoder5x32.sv"
 vlog "./regfile.sv"
-vlog "./register_file.sv"
 vlog "./regstim.sv"
 
 # Call vsim to invoke simulator

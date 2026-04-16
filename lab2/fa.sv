@@ -4,6 +4,8 @@ module fa(A, B, Cin, Cout, S);
 	input logic A, B, Cin;
 	output logic Cout, S;
 	
+	logic a0, a1, a2;
+	
 	// Sum logic
 	xor #0.05 xor0 (S, A, B, Cin);
 	
