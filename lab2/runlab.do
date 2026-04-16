@@ -9,6 +9,8 @@ vlog "./mux2_1.sv"
 vlog "./mux4_1.sv"
 vlog "./mux8_1.sv"
 vlog "./bit_slice.sv"
+vlog "./alu.sv"
+vlog "./alustim.sv"
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the

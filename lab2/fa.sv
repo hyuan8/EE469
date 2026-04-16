@@ -1,3 +1,5 @@
+`timescale 1ns/10ps
+
 // This module builds a full adder.
 module fa(A, B, Cin, Cout, S);
 
