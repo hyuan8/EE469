@@ -2,219 +2,516 @@
 do runlab.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:06:15 on Apr 15,2026
+# Start time: 01:49:07 on Apr 16,2026
 # vlog -reportprogress 300 ./fa.sv 
 # -- Compiling module fa
 # -- Compiling module fa_testbench
 # 
 # Top level modules:
 # 	fa_testbench
-# End time: 21:06:16 on Apr 15,2026, Elapsed time: 0:00:01
+# End time: 01:49:07 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:06:16 on Apr 15,2026
+# Start time: 01:49:07 on Apr 16,2026
 # vlog -reportprogress 300 ./mux2_1.sv 
 # -- Compiling module mux2_1
 # -- Compiling module mux2_1_testbench
 # 
 # Top level modules:
 # 	mux2_1_testbench
-# End time: 21:06:16 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 01:49:07 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:06:16 on Apr 15,2026
+# Start time: 01:49:07 on Apr 16,2026
+# vlog -reportprogress 300 ./mux4_1.sv 
+# -- Compiling module mux4_1
+# -- Compiling module mux4_1_testbench
+# 
+# Top level modules:
+# 	mux4_1_testbench
+# End time: 01:49:07 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:49:07 on Apr 16,2026
+# vlog -reportprogress 300 ./mux8_1.sv 
+# -- Compiling module mux8_1
+# -- Compiling module mux8_1_testbench
+# 
+# Top level modules:
+# 	mux8_1_testbench
+# End time: 01:49:07 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:49:07 on Apr 16,2026
 # vlog -reportprogress 300 ./bit_slice.sv 
 # -- Compiling module bit_slice
 # -- Compiling module bit_slice_testbench
-# ** Error: (vlog-13069) ./bit_slice.sv(55): near ".": syntax error, unexpected '.', expecting IDENTIFIER or TYPE_IDENTIFIER or NETTYPE_IDENTIFIER.
-# End time: 21:06:16 on Apr 15,2026, Elapsed time: 0:00:00
+# 
+# Top level modules:
+# 	bit_slice_testbench
+# End time: 01:49:07 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:49:07 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# 
+# Top level modules:
+# 	alu
+# End time: 01:49:07 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:49:07 on Apr 16,2026
+# vlog -reportprogress 300 ./alustim.sv 
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# End time: 01:49:08 on Apr 16,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
+# Start time: 01:49:08 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.bit_slice_testbench
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlftfk76bc".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftfk76bc
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Note: $stop    : ./bit_slice.sv(70)
+#    Time: 640 ps  Iteration: 0  Instance: /bit_slice_testbench
+# Break in Module bit_slice_testbench at ./bit_slice.sv line 70
+vsim work.alustim
+# End time: 01:49:47 on Apr 16,2026, Elapsed time: 0:00:39
+# Errors: 0, Warnings: 2
+# vsim work.alustim 
+# Start time: 01:49:47 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alustim
+# Loading work.alu
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'alu' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut File: ./alu.sv
+# Loading work.bit_slice
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'bit_slice' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut/first_slice File: ./bit_slice.sv
+# Loading work.mux2_1
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'mux2_1' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut/first_slice/mux2 File: ./mux2_1.sv
+# Loading work.fa
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'fa' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut/first_slice/fulladder File: ./fa.sv
+# Loading work.mux8_1
+# Loading work.mux4_1
+# Error loading design
+# End time: 01:49:47 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 4, Warnings: 0
+vsim work.alustim
+# vsim work.alustim 
+# Start time: 01:51:40 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alustim
+# Loading work.alu
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'alu' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut File: ./alu.sv
+# Loading work.bit_slice
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'bit_slice' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut/first_slice File: ./bit_slice.sv
+# Loading work.mux2_1
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'mux2_1' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut/first_slice/mux2 File: ./mux2_1.sv
+# Loading work.fa
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'fa' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut/first_slice/fulladder File: ./fa.sv
+# Loading work.mux8_1
+# Loading work.mux4_1
+# Error loading design
+# End time: 01:51:41 on Apr 16,2026, Elapsed time: 0:00:01
+# Errors: 4, Warnings: 0
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:51:48 on Apr 16,2026
+# vlog -reportprogress 300 ./fa.sv 
+# -- Compiling module fa
+# -- Compiling module fa_testbench
+# 
+# Top level modules:
+# 	fa_testbench
+# End time: 01:51:48 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:51:48 on Apr 16,2026
+# vlog -reportprogress 300 ./mux2_1.sv 
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# End time: 01:51:48 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:51:48 on Apr 16,2026
+# vlog -reportprogress 300 ./mux4_1.sv 
+# -- Compiling module mux4_1
+# -- Compiling module mux4_1_testbench
+# 
+# Top level modules:
+# 	mux4_1_testbench
+# End time: 01:51:48 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:51:48 on Apr 16,2026
+# vlog -reportprogress 300 ./mux8_1.sv 
+# -- Compiling module mux8_1
+# -- Compiling module mux8_1_testbench
+# 
+# Top level modules:
+# 	mux8_1_testbench
+# End time: 01:51:48 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:51:48 on Apr 16,2026
+# vlog -reportprogress 300 ./bit_slice.sv 
+# -- Compiling module bit_slice
+# -- Compiling module bit_slice_testbench
+# 
+# Top level modules:
+# 	bit_slice_testbench
+# End time: 01:51:48 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:51:48 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# 
+# Top level modules:
+# 	alu
+# End time: 01:51:49 on Apr 16,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:51:49 on Apr 16,2026
+# vlog -reportprogress 300 ./alustim.sv 
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# End time: 01:51:49 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
+# Start time: 01:51:49 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.bit_slice_testbench
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlfta5z2zt".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlfta5z2zt
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Note: $stop    : ./bit_slice.sv(72)
+#    Time: 640 ns  Iteration: 0  Instance: /bit_slice_testbench
+# Break in Module bit_slice_testbench at ./bit_slice.sv line 72
+vsim work.alustim
+# End time: 01:51:56 on Apr 16,2026, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 2
+# vsim work.alustim 
+# Start time: 01:51:56 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alustim
+# Loading work.alu
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'alu' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /alustim/dut File: ./alu.sv
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+# Error loading design
+# End time: 01:51:56 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:52:15 on Apr 16,2026
+# vlog -reportprogress 300 ./fa.sv 
+# -- Compiling module fa
+# -- Compiling module fa_testbench
+# 
+# Top level modules:
+# 	fa_testbench
+# End time: 01:52:15 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:52:15 on Apr 16,2026
+# vlog -reportprogress 300 ./mux2_1.sv 
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# End time: 01:52:15 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:52:15 on Apr 16,2026
+# vlog -reportprogress 300 ./mux4_1.sv 
+# -- Compiling module mux4_1
+# -- Compiling module mux4_1_testbench
+# 
+# Top level modules:
+# 	mux4_1_testbench
+# End time: 01:52:16 on Apr 16,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:52:16 on Apr 16,2026
+# vlog -reportprogress 300 ./mux8_1.sv 
+# -- Compiling module mux8_1
+# -- Compiling module mux8_1_testbench
+# 
+# Top level modules:
+# 	mux8_1_testbench
+# End time: 01:52:16 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:52:16 on Apr 16,2026
+# vlog -reportprogress 300 ./bit_slice.sv 
+# -- Compiling module bit_slice
+# -- Compiling module bit_slice_testbench
+# 
+# Top level modules:
+# 	bit_slice_testbench
+# End time: 01:52:16 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:52:16 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# 
+# Top level modules:
+# 	alu
+# End time: 01:52:16 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:52:16 on Apr 16,2026
+# vlog -reportprogress 300 ./alustim.sv 
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# End time: 01:52:16 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
+# Start time: 01:52:16 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.bit_slice_testbench
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlft34f3gr".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft34f3gr
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Note: $stop    : ./bit_slice.sv(72)
+#    Time: 640 ns  Iteration: 0  Instance: /bit_slice_testbench
+# Break in Module bit_slice_testbench at ./bit_slice.sv line 72
+vsim work.alustim
+# End time: 01:52:24 on Apr 16,2026, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 2
+# vsim work.alustim 
+# Start time: 01:52:24 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alustim
+# Loading work.alu
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+add wave -position insertpoint  \
+sim:/alustim/delay \
+sim:/alustim/ALU_PASS_B \
+sim:/alustim/ALU_ADD \
+sim:/alustim/ALU_SUBTRACT \
+sim:/alustim/ALU_AND \
+sim:/alustim/ALU_OR \
+sim:/alustim/ALU_XOR \
+sim:/alustim/A \
+sim:/alustim/B \
+sim:/alustim/cntrl \
+sim:/alustim/result \
+sim:/alustim/negative \
+sim:/alustim/zero \
+sim:/alustim/overflow \
+sim:/alustim/carry_out \
+sim:/alustim/i \
+sim:/alustim/test_val
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlft6ta3if".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft6ta3if
+run -all
+#    0.00 ns testing PASS_A operations
+# 10000000.00 ns testing addition
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:00:42 on Apr 16,2026
+# vlog -reportprogress 300 ./fa.sv 
+# -- Compiling module fa
+# -- Compiling module fa_testbench
+# 
+# Top level modules:
+# 	fa_testbench
+# End time: 02:00:42 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:00:42 on Apr 16,2026
+# vlog -reportprogress 300 ./mux2_1.sv 
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# End time: 02:00:42 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:00:42 on Apr 16,2026
+# vlog -reportprogress 300 ./mux4_1.sv 
+# -- Compiling module mux4_1
+# -- Compiling module mux4_1_testbench
+# 
+# Top level modules:
+# 	mux4_1_testbench
+# End time: 02:00:42 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:00:43 on Apr 16,2026
+# vlog -reportprogress 300 ./mux8_1.sv 
+# -- Compiling module mux8_1
+# -- Compiling module mux8_1_testbench
+# 
+# Top level modules:
+# 	mux8_1_testbench
+# End time: 02:00:43 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:00:43 on Apr 16,2026
+# vlog -reportprogress 300 ./bit_slice.sv 
+# -- Compiling module bit_slice
+# -- Compiling module bit_slice_testbench
+# 
+# Top level modules:
+# 	bit_slice_testbench
+# End time: 02:00:43 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:00:43 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# -- Compiling module alu_testbench
+# ** Error: ./alu.sv(72): (vlog-2730) Undefined variable: 'control'.
+# End time: 02:00:43 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 1, Warnings: 0
 # ** Error: C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
-# Error in macro ./runlab.do line 9
+# Error in macro ./runlab.do line 12
 # C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
 #     while executing
-# "vlog "./bit_slice.sv""
+# "vlog "./alu.sv""
 do runlab.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:06:49 on Apr 15,2026
+# Start time: 02:01:50 on Apr 16,2026
 # vlog -reportprogress 300 ./fa.sv 
 # -- Compiling module fa
 # -- Compiling module fa_testbench
 # 
 # Top level modules:
 # 	fa_testbench
-# End time: 21:06:49 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:01:50 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:06:49 on Apr 15,2026
+# Start time: 02:01:50 on Apr 16,2026
 # vlog -reportprogress 300 ./mux2_1.sv 
 # -- Compiling module mux2_1
 # -- Compiling module mux2_1_testbench
 # 
 # Top level modules:
 # 	mux2_1_testbench
-# End time: 21:06:49 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:01:50 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:06:49 on Apr 15,2026
-# vlog -reportprogress 300 ./bit_slice.sv 
-# -- Compiling module bit_slice
-# -- Compiling module bit_slice_testbench
-# 
-# Top level modules:
-# 	bit_slice_testbench
-# End time: 21:06:49 on Apr 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
-# Start time: 21:06:50 on Apr 15,2026
-# Loading sv_std.std
-# Loading work.bit_slice_testbench
-# Loading work.bit_slice
-# Loading work.mux2_1
-# Loading work.fa
-# ** Error: (vsim-3033) ./bit_slice.sv(45): Instantiation of 'mux8_1' failed. The design unit was not found.
-#    Time: 0 ps  Iteration: 0  Instance: /bit_slice_testbench/dut File: ./bit_slice.sv
-#         Searched libraries:
-#             U:/ee469labs/lab2/work
-# Error loading design
-# Error: Error loading design
-#        Pausing macro execution
-# MACRO ./runlab.do PAUSED at line 14
-do runlab.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:16 on Apr 15,2026
-# vlog -reportprogress 300 ./fa.sv 
-# -- Compiling module fa
-# -- Compiling module fa_testbench
-# 
-# Top level modules:
-# 	fa_testbench
-# End time: 21:07:16 on Apr 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:16 on Apr 15,2026
-# vlog -reportprogress 300 ./mux2_1.sv 
-# -- Compiling module mux2_1
-# -- Compiling module mux2_1_testbench
-# 
-# Top level modules:
-# 	mux2_1_testbench
-# End time: 21:07:16 on Apr 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:16 on Apr 15,2026
+# Start time: 02:01:50 on Apr 16,2026
 # vlog -reportprogress 300 ./mux4_1.sv 
 # -- Compiling module mux4_1
 # -- Compiling module mux4_1_testbench
 # 
 # Top level modules:
 # 	mux4_1_testbench
-# End time: 21:07:16 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:01:50 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:16 on Apr 15,2026
+# Start time: 02:01:50 on Apr 16,2026
 # vlog -reportprogress 300 ./mux8_1.sv 
 # -- Compiling module mux8_1
 # -- Compiling module mux8_1_testbench
 # 
 # Top level modules:
 # 	mux8_1_testbench
-# End time: 21:07:16 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:01:50 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:16 on Apr 15,2026
+# Start time: 02:01:50 on Apr 16,2026
 # vlog -reportprogress 300 ./bit_slice.sv 
 # -- Compiling module bit_slice
 # -- Compiling module bit_slice_testbench
 # 
 # Top level modules:
 # 	bit_slice_testbench
-# End time: 21:07:16 on Apr 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
-# Start time: 21:06:50 on Apr 15,2026
-# Loading sv_std.std
-# Loading work.bit_slice_testbench
-# Loading work.bit_slice
-# Loading work.mux2_1
-# Loading work.fa
-# Loading work.mux8_1
-# Loading work.mux4_1
-# ** Error: Cannot open macro file: bit_slice_wave.do
-# Error in macro ./runlab.do line 21
-# Cannot open macro file: bit_slice_wave.do
-#     while executing
-# "do bit_slice_wave.do"
-add wave -position end  sim:/bit_slice_testbench/A
-add wave -position end  sim:/bit_slice_testbench/B
-add wave -position end  sim:/bit_slice_testbench/control
-add wave -position end  sim:/bit_slice_testbench/R
-add wave -position end  sim:/bit_slice_testbench/Cin
-add wave -position end  sim:/bit_slice_testbench/Cout
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
-#           Attempting to use alternate WLF file "./wlftdvgr6v".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftdvgr6v
-write format wave -window .main_pane.wave.interior.cs.body.pw.wf U:/ee469labs/lab2/bit_slice_wave.do
-do runlab.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:52 on Apr 15,2026
-# vlog -reportprogress 300 ./fa.sv 
-# -- Compiling module fa
-# -- Compiling module fa_testbench
-# 
-# Top level modules:
-# 	fa_testbench
-# End time: 21:07:52 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:01:51 on Apr 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:52 on Apr 15,2026
-# vlog -reportprogress 300 ./mux2_1.sv 
-# -- Compiling module mux2_1
-# -- Compiling module mux2_1_testbench
+# Start time: 02:01:51 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# -- Compiling module alu_testbench
 # 
 # Top level modules:
-# 	mux2_1_testbench
-# End time: 21:07:52 on Apr 15,2026, Elapsed time: 0:00:00
+# 	alu_testbench
+# End time: 02:01:51 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:52 on Apr 15,2026
-# vlog -reportprogress 300 ./mux4_1.sv 
-# -- Compiling module mux4_1
-# -- Compiling module mux4_1_testbench
+# Start time: 02:01:51 on Apr 16,2026
+# vlog -reportprogress 300 ./alustim.sv 
+# -- Compiling module alustim
 # 
 # Top level modules:
-# 	mux4_1_testbench
-# End time: 21:07:53 on Apr 15,2026, Elapsed time: 0:00:01
+# 	alustim
+# End time: 02:01:51 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:53 on Apr 15,2026
-# vlog -reportprogress 300 ./mux8_1.sv 
-# -- Compiling module mux8_1
-# -- Compiling module mux8_1_testbench
-# 
-# Top level modules:
-# 	mux8_1_testbench
-# End time: 21:07:53 on Apr 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:07:53 on Apr 15,2026
-# vlog -reportprogress 300 ./bit_slice.sv 
-# -- Compiling module bit_slice
-# -- Compiling module bit_slice_testbench
-# 
-# Top level modules:
-# 	bit_slice_testbench
-# End time: 21:07:53 on Apr 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# End time: 21:07:54 on Apr 15,2026, Elapsed time: 0:01:04
+# End time: 02:01:52 on Apr 16,2026, Elapsed time: 0:09:28
 # Errors: 4, Warnings: 2
 # vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
-# Start time: 21:07:54 on Apr 15,2026
+# Start time: 02:01:52 on Apr 16,2026
 # Loading sv_std.std
 # Loading work.bit_slice_testbench
 # Loading work.bit_slice
@@ -224,71 +521,123 @@ do runlab.do
 # Loading work.mux4_1
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
-#           Attempting to use alternate WLF file "./wlftt5gvaj".
+#           Attempting to use alternate WLF file "./wlftv989w9".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftt5gvaj
+#           Using alternate file: ./wlftv989w9
+# ** Error: (vish-4014) No objects found matching '/bit_slice_testbench/control'.
+# Executing ONERROR command at macro ./bit_slice_wave.do line 5
 # .main_pane.wave.interior.cs.body.pw.wf
 # .main_pane.structure.interior.cs.body.struct
 # .main_pane.objects.interior.cs.body.tree
-# ** Note: $stop    : ./bit_slice.sv(67)
-#    Time: 0 ps  Iteration: 0  Instance: /bit_slice_testbench
-# Break in Module bit_slice_testbench at ./bit_slice.sv line 67
+# ** Note: $stop    : ./bit_slice.sv(74)
+#    Time: 640 ns  Iteration: 0  Instance: /bit_slice_testbench
+# Break in Module bit_slice_testbench at ./bit_slice.sv line 74
+vsim work.alu_testbench
+# End time: 02:02:03 on Apr 16,2026, Elapsed time: 0:00:11
+# Errors: 3, Warnings: 2
+# vsim work.alu_testbench 
+# Start time: 02:02:03 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alu_testbench
+# Loading work.alu
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+add wave -position insertpoint  \
+sim:/alu_testbench/A \
+sim:/alu_testbench/B \
+sim:/alu_testbench/cntrl \
+sim:/alu_testbench/negative \
+sim:/alu_testbench/zero \
+sim:/alu_testbench/overflow \
+sim:/alu_testbench/carry_out \
+sim:/alu_testbench/result
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlft63b7wj".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft63b7wj
+run -all
+# ** Note: $stop    : ./alu.sv(80)
+#    Time: 327680 ns  Iteration: 0  Instance: /alu_testbench
+# Break in Module alu_testbench at ./alu.sv line 80
 do runlab.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:09:57 on Apr 15,2026
+# Start time: 02:07:03 on Apr 16,2026
 # vlog -reportprogress 300 ./fa.sv 
 # -- Compiling module fa
 # -- Compiling module fa_testbench
 # 
 # Top level modules:
 # 	fa_testbench
-# End time: 21:09:57 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:07:03 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:09:57 on Apr 15,2026
+# Start time: 02:07:03 on Apr 16,2026
 # vlog -reportprogress 300 ./mux2_1.sv 
 # -- Compiling module mux2_1
 # -- Compiling module mux2_1_testbench
 # 
 # Top level modules:
 # 	mux2_1_testbench
-# End time: 21:09:57 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:07:03 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:09:57 on Apr 15,2026
+# Start time: 02:07:03 on Apr 16,2026
 # vlog -reportprogress 300 ./mux4_1.sv 
 # -- Compiling module mux4_1
 # -- Compiling module mux4_1_testbench
 # 
 # Top level modules:
 # 	mux4_1_testbench
-# End time: 21:09:58 on Apr 15,2026, Elapsed time: 0:00:01
+# End time: 02:07:03 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:09:58 on Apr 15,2026
+# Start time: 02:07:04 on Apr 16,2026
 # vlog -reportprogress 300 ./mux8_1.sv 
 # -- Compiling module mux8_1
 # -- Compiling module mux8_1_testbench
 # 
 # Top level modules:
 # 	mux8_1_testbench
-# End time: 21:09:58 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:07:04 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:09:58 on Apr 15,2026
+# Start time: 02:07:04 on Apr 16,2026
 # vlog -reportprogress 300 ./bit_slice.sv 
 # -- Compiling module bit_slice
 # -- Compiling module bit_slice_testbench
 # 
 # Top level modules:
 # 	bit_slice_testbench
-# End time: 21:09:58 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:07:04 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# End time: 21:10:01 on Apr 15,2026, Elapsed time: 0:02:07
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:07:04 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# -- Compiling module alu_testbench
+# 
+# Top level modules:
+# 	alu_testbench
+# End time: 02:07:04 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:07:04 on Apr 16,2026
+# vlog -reportprogress 300 ./alustim.sv 
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# End time: 02:07:04 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 02:07:05 on Apr 16,2026, Elapsed time: 0:05:02
 # Errors: 0, Warnings: 2
 # vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
-# Start time: 21:10:01 on Apr 15,2026
+# Start time: 02:07:05 on Apr 16,2026
 # Loading sv_std.std
 # Loading work.bit_slice_testbench
 # Loading work.bit_slice
@@ -298,145 +647,188 @@ do runlab.do
 # Loading work.mux4_1
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
-#           Attempting to use alternate WLF file "./wlftrn9c0m".
+#           Attempting to use alternate WLF file "./wlftyav3b0".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftrn9c0m
+#           Using alternate file: ./wlftyav3b0
+# ** Error: (vish-4014) No objects found matching '/bit_slice_testbench/control'.
+# Executing ONERROR command at macro ./bit_slice_wave.do line 5
 # .main_pane.wave.interior.cs.body.pw.wf
 # .main_pane.structure.interior.cs.body.struct
 # .main_pane.objects.interior.cs.body.tree
-# ** Note: $stop    : ./bit_slice.sv(67)
-#    Time: 0 ps  Iteration: 0  Instance: /bit_slice_testbench
-# Break in Module bit_slice_testbench at ./bit_slice.sv line 67
+# ** Note: $stop    : ./bit_slice.sv(74)
+#    Time: 640 ns  Iteration: 0  Instance: /bit_slice_testbench
+# Break in Module bit_slice_testbench at ./bit_slice.sv line 74
+vsim work.alu_testbench
+# End time: 02:07:53 on Apr 16,2026, Elapsed time: 0:00:48
+# Errors: 3, Warnings: 2
+# vsim work.alu_testbench 
+# Start time: 02:07:53 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alu_testbench
+# Loading work.alu
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+add wave -position insertpoint  \
+sim:/alu_testbench/A \
+sim:/alu_testbench/B \
+sim:/alu_testbench/cntrl \
+sim:/alu_testbench/negative \
+sim:/alu_testbench/zero \
+sim:/alu_testbench/overflow \
+sim:/alu_testbench/carry_out \
+sim:/alu_testbench/result
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlftb6m15y".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftb6m15y
+run -all
+# ** Note: $stop    : ./alu.sv(80)
+#    Time: 327680 ns  Iteration: 0  Instance: /alu_testbench
+# Break in Module alu_testbench at ./alu.sv line 80
 do runlab.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:10:17 on Apr 15,2026
+# Start time: 02:12:24 on Apr 16,2026
 # vlog -reportprogress 300 ./fa.sv 
 # -- Compiling module fa
 # -- Compiling module fa_testbench
 # 
 # Top level modules:
 # 	fa_testbench
-# End time: 21:10:17 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:25 on Apr 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:10:17 on Apr 15,2026
+# Start time: 02:12:25 on Apr 16,2026
 # vlog -reportprogress 300 ./mux2_1.sv 
 # -- Compiling module mux2_1
 # -- Compiling module mux2_1_testbench
 # 
 # Top level modules:
 # 	mux2_1_testbench
-# End time: 21:10:17 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:25 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:10:17 on Apr 15,2026
+# Start time: 02:12:25 on Apr 16,2026
 # vlog -reportprogress 300 ./mux4_1.sv 
 # -- Compiling module mux4_1
 # -- Compiling module mux4_1_testbench
 # 
 # Top level modules:
 # 	mux4_1_testbench
-# End time: 21:10:17 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:25 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:10:17 on Apr 15,2026
+# Start time: 02:12:25 on Apr 16,2026
 # vlog -reportprogress 300 ./mux8_1.sv 
 # -- Compiling module mux8_1
 # -- Compiling module mux8_1_testbench
 # 
 # Top level modules:
 # 	mux8_1_testbench
-# End time: 21:10:17 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:25 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:10:17 on Apr 15,2026
+# Start time: 02:12:25 on Apr 16,2026
 # vlog -reportprogress 300 ./bit_slice.sv 
 # -- Compiling module bit_slice
 # -- Compiling module bit_slice_testbench
 # 
 # Top level modules:
 # 	bit_slice_testbench
-# End time: 21:10:17 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:25 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# End time: 21:10:23 on Apr 15,2026, Elapsed time: 0:00:22
-# Errors: 0, Warnings: 2
-# vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
-# Start time: 21:10:23 on Apr 15,2026
-# Loading sv_std.std
-# Loading work.bit_slice_testbench
-# Loading work.bit_slice
-# Loading work.mux2_1
-# Loading work.fa
-# Loading work.mux8_1
-# Loading work.mux4_1
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
-#           Attempting to use alternate WLF file "./wlftak8kde".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftak8kde
-# .main_pane.wave.interior.cs.body.pw.wf
-# .main_pane.structure.interior.cs.body.struct
-# .main_pane.objects.interior.cs.body.tree
-# ** Note: $stop    : ./bit_slice.sv(68)
-#    Time: 1280 ps  Iteration: 0  Instance: /bit_slice_testbench
-# Break in Module bit_slice_testbench at ./bit_slice.sv line 68
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:12:25 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# -- Compiling module alu_testbench
+# ** Error: (vlog-13051) ./alu.sv(78): near "1": Illegal digit for specified base in numeric constant.
+# End time: 02:12:25 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./runlab.do line 12
+# C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog "./alu.sv""
 do runlab.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:13:14 on Apr 15,2026
+# Start time: 02:12:47 on Apr 16,2026
 # vlog -reportprogress 300 ./fa.sv 
 # -- Compiling module fa
 # -- Compiling module fa_testbench
 # 
 # Top level modules:
 # 	fa_testbench
-# End time: 21:13:14 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:47 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:13:15 on Apr 15,2026
+# Start time: 02:12:47 on Apr 16,2026
 # vlog -reportprogress 300 ./mux2_1.sv 
 # -- Compiling module mux2_1
 # -- Compiling module mux2_1_testbench
 # 
 # Top level modules:
 # 	mux2_1_testbench
-# End time: 21:13:15 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:47 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:13:15 on Apr 15,2026
+# Start time: 02:12:47 on Apr 16,2026
 # vlog -reportprogress 300 ./mux4_1.sv 
 # -- Compiling module mux4_1
 # -- Compiling module mux4_1_testbench
 # 
 # Top level modules:
 # 	mux4_1_testbench
-# End time: 21:13:15 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:47 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:13:15 on Apr 15,2026
+# Start time: 02:12:47 on Apr 16,2026
 # vlog -reportprogress 300 ./mux8_1.sv 
 # -- Compiling module mux8_1
 # -- Compiling module mux8_1_testbench
 # 
 # Top level modules:
 # 	mux8_1_testbench
-# End time: 21:13:15 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:47 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:13:15 on Apr 15,2026
+# Start time: 02:12:47 on Apr 16,2026
 # vlog -reportprogress 300 ./bit_slice.sv 
 # -- Compiling module bit_slice
 # -- Compiling module bit_slice_testbench
 # 
 # Top level modules:
 # 	bit_slice_testbench
-# End time: 21:13:15 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:12:47 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# End time: 21:13:20 on Apr 15,2026, Elapsed time: 0:02:57
-# Errors: 0, Warnings: 2
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:12:47 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# -- Compiling module alu_testbench
+# 
+# Top level modules:
+# 	alu_testbench
+# End time: 02:12:48 on Apr 16,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:12:48 on Apr 16,2026
+# vlog -reportprogress 300 ./alustim.sv 
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# End time: 02:12:48 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 02:12:48 on Apr 16,2026, Elapsed time: 0:04:55
+# Errors: 4, Warnings: 2
 # vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
-# Start time: 21:13:20 on Apr 15,2026
+# Start time: 02:12:49 on Apr 16,2026
 # Loading sv_std.std
 # Loading work.bit_slice_testbench
 # Loading work.bit_slice
@@ -446,72 +838,123 @@ do runlab.do
 # Loading work.mux4_1
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
-#           Attempting to use alternate WLF file "./wlft75fsyq".
+#           Attempting to use alternate WLF file "./wlftrhk9y8".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlft75fsyq
+#           Using alternate file: ./wlftrhk9y8
+# ** Error: (vish-4014) No objects found matching '/bit_slice_testbench/control'.
+# Executing ONERROR command at macro ./bit_slice_wave.do line 5
 # .main_pane.wave.interior.cs.body.pw.wf
 # .main_pane.structure.interior.cs.body.struct
 # .main_pane.objects.interior.cs.body.tree
-# ** Note: $stop    : ./bit_slice.sv(68)
-#    Time: 640 ps  Iteration: 0  Instance: /bit_slice_testbench
-# Break in Module bit_slice_testbench at ./bit_slice.sv line 68
-
+# ** Note: $stop    : ./bit_slice.sv(74)
+#    Time: 640 ns  Iteration: 0  Instance: /bit_slice_testbench
+# Break in Module bit_slice_testbench at ./bit_slice.sv line 74
+vsim work.alu_testbench
+# End time: 02:12:57 on Apr 16,2026, Elapsed time: 0:00:08
+# Errors: 3, Warnings: 2
+# vsim work.alu_testbench 
+# Start time: 02:12:57 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alu_testbench
+# Loading work.alu
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+add wave -position insertpoint  \
+sim:/alu_testbench/A \
+sim:/alu_testbench/B \
+sim:/alu_testbench/cntrl \
+sim:/alu_testbench/negative \
+sim:/alu_testbench/zero \
+sim:/alu_testbench/overflow \
+sim:/alu_testbench/carry_out \
+sim:/alu_testbench/result
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlft8qdh61".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft8qdh61
+run -all
+# ** Note: $stop    : ./alu.sv(83)
+#    Time: 20480 ns  Iteration: 0  Instance: /alu_testbench
+# Break in Module alu_testbench at ./alu.sv line 83
 do runlab.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:20:23 on Apr 15,2026
+# Start time: 02:22:57 on Apr 16,2026
 # vlog -reportprogress 300 ./fa.sv 
 # -- Compiling module fa
 # -- Compiling module fa_testbench
 # 
 # Top level modules:
 # 	fa_testbench
-# End time: 21:20:23 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:22:58 on Apr 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:20:23 on Apr 15,2026
+# Start time: 02:22:58 on Apr 16,2026
 # vlog -reportprogress 300 ./mux2_1.sv 
 # -- Compiling module mux2_1
 # -- Compiling module mux2_1_testbench
 # 
 # Top level modules:
 # 	mux2_1_testbench
-# End time: 21:20:24 on Apr 15,2026, Elapsed time: 0:00:01
+# End time: 02:22:58 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:20:24 on Apr 15,2026
+# Start time: 02:22:58 on Apr 16,2026
 # vlog -reportprogress 300 ./mux4_1.sv 
 # -- Compiling module mux4_1
 # -- Compiling module mux4_1_testbench
 # 
 # Top level modules:
 # 	mux4_1_testbench
-# End time: 21:20:24 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:22:58 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:20:24 on Apr 15,2026
+# Start time: 02:22:58 on Apr 16,2026
 # vlog -reportprogress 300 ./mux8_1.sv 
 # -- Compiling module mux8_1
 # -- Compiling module mux8_1_testbench
 # 
 # Top level modules:
 # 	mux8_1_testbench
-# End time: 21:20:24 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:22:58 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:20:24 on Apr 15,2026
+# Start time: 02:22:58 on Apr 16,2026
 # vlog -reportprogress 300 ./bit_slice.sv 
 # -- Compiling module bit_slice
 # -- Compiling module bit_slice_testbench
 # 
 # Top level modules:
 # 	bit_slice_testbench
-# End time: 21:20:24 on Apr 15,2026, Elapsed time: 0:00:00
+# End time: 02:22:58 on Apr 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# End time: 21:20:28 on Apr 15,2026, Elapsed time: 0:07:08
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:22:58 on Apr 16,2026
+# vlog -reportprogress 300 ./alu.sv 
+# -- Compiling module alu
+# -- Compiling module alu_testbench
+# 
+# Top level modules:
+# 	alu_testbench
+# End time: 02:22:58 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 02:22:58 on Apr 16,2026
+# vlog -reportprogress 300 ./alustim.sv 
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# End time: 02:22:58 on Apr 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 02:22:59 on Apr 16,2026, Elapsed time: 0:10:02
 # Errors: 0, Warnings: 2
 # vsim -voptargs=""+acc"" -t 1ps -lib work bit_slice_testbench 
-# Start time: 21:20:28 on Apr 15,2026
+# Start time: 02:22:59 on Apr 16,2026
 # Loading sv_std.std
 # Loading work.bit_slice_testbench
 # Loading work.bit_slice
@@ -521,12 +964,47 @@ do runlab.do
 # Loading work.mux4_1
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
-#           Attempting to use alternate WLF file "./wlftnjx6ac".
+#           Attempting to use alternate WLF file "./wlftam2gbe".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftnjx6ac
+#           Using alternate file: ./wlftam2gbe
+# ** Error: (vish-4014) No objects found matching '/bit_slice_testbench/control'.
+# Executing ONERROR command at macro ./bit_slice_wave.do line 5
 # .main_pane.wave.interior.cs.body.pw.wf
 # .main_pane.structure.interior.cs.body.struct
 # .main_pane.objects.interior.cs.body.tree
-# ** Note: $stop    : ./bit_slice.sv(68)
-#    Time: 640 ps  Iteration: 0  Instance: /bit_slice_testbench
-# Break in Module bit_slice_testbench at ./bit_slice.sv line 68
+# ** Note: $stop    : ./bit_slice.sv(74)
+#    Time: 640 ns  Iteration: 0  Instance: /bit_slice_testbench
+# Break in Module bit_slice_testbench at ./bit_slice.sv line 74
+vsim work.alu_testbench
+# End time: 02:23:21 on Apr 16,2026, Elapsed time: 0:00:22
+# Errors: 3, Warnings: 2
+# vsim work.alu_testbench 
+# Start time: 02:23:22 on Apr 16,2026
+# Loading sv_std.std
+# Loading work.alu_testbench
+# Loading work.alu
+# Loading work.bit_slice
+# Loading work.mux2_1
+# Loading work.fa
+# Loading work.mux8_1
+# Loading work.mux4_1
+add wave -position insertpoint  \
+sim:/alu_testbench/A \
+sim:/alu_testbench/B \
+sim:/alu_testbench/cntrl \
+sim:/alu_testbench/negative \
+sim:/alu_testbench/zero \
+sim:/alu_testbench/overflow \
+sim:/alu_testbench/carry_out \
+sim:/alu_testbench/result
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: hyuan8  Hostname: ENGR-COEGPU-07  ProcessID: 6120
+#           Attempting to use alternate WLF file "./wlftxdfr3y".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftxdfr3y
+run -all
+# ** Note: $stop    : ./alu.sv(91)
+#    Time: 6480 ns  Iteration: 0  Instance: /alu_testbench
+# Break in Module alu_testbench at ./alu.sv line 91
+# End time: 02:27:20 on Apr 16,2026, Elapsed time: 0:03:58
+# Errors: 0, Warnings: 2
