@@ -15,12 +15,13 @@
 // 111 not wired
 
 // This module builds a bit slicer.
-module bit_slice(A, B, S, R, Cin, Cout);
+module bit_slice(A, B, control, R, Cin, Cout);
 
 	input logic A, B;
-	input logic [2:0] S;
-	output logic [2:0] R;
+	input logic [2:0] control;
+	output logic R;
 	
+	logic four, five, six;
 	// 100: result = bitwise A & B -- value of overflow and carry_out unimportant
 	and #0.05 and0 (four, A, B);
 	
@@ -31,15 +32,40 @@ module bit_slice(A, B, S, R, Cin, Cout);
 	xor #0.05 xor0 (six, A, B);
 	
 	// 2x1 mux for full adder
-	logic mux2out;
+	logic mux2out, nB;
 	not #0.05 not0 (nB, B);
-	mux2_1 mux2 (.out(mux2out), .i({nB, B}), .sel(S[1]); // not sure if sel is correct
+	mux2_1 mux2 (.out(mux2out), .i({nB, B}), .sel(control[0])); // not sure if sel is correct
 	
 	// full adder
-	logic Cin, Cout, S;
-	fa fulladder (.A(A), .B(B), .Cin(Cin), .Cout(Cout), .S(S));
+	input logic Cin;
+	output logic Cout;
+	logic S;
+	fa fulladder (.A(A), .B(mux2out), .Cin(Cin), .Cout(Cout), .S(S));
 	
-	mux8_1 mux8 (.out(R), .i({B, 1'b0, S, S, , four, five, six, 1'b0}), .sel(S));
+	mux8_1 mux8 (.out(R), .i({1'b0, six, five, four, S, S, 1'b0, B}), .sel(control));
 	
+endmodule
+
+module bit_slice_testbench();
+	logic A, B;
+	logic [2:0] control;
+	logic R;
+	logic Cin, Cout;
+	
+	bit_slice dut (.A(A), .B(B), .control(control), .R(R), .Cin(Cin), .Cout(Cout)); 
+	
+	initial begin
+	
+		for (int i = 0; i<8; i++) begin
+			control = i;
+			
+			for (int j = 0; j<8; j++) begin 
+				{A, B, Cin} = j;
+				#10;
+				
+			end
+		end
+	$stop;
+end
 endmodule
 	
