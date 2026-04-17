@@ -84,9 +84,26 @@ module alu_testbench();
 						B = 64'b0;
 					else
 						B = 64'b1 << (8 * k); 
-					#10;
+					#30;
 				end
 			end
+			
+			//add sub with zero
+			cntrl = 3'b010; A = 64'h0; B = 64'h0; #30;
+			cntrl = 3'b011; A = 64'h0; B = 64'h0; #30; 
+			
+			//force carry out
+			cntrl = 3'b010; A = 64'hFFFFFFFFFFFFFFFF; B = 64'h1; #30;
+			
+			//force overflow
+			cntrl = 3'b010; A = 64'h7FFFFFFFFFFFFFFF; B = 64'h1; #30;
+			cntrl = 3'b010; A = 64'h8000000000000000; B = 64'hFFFFFFFFFFFFFFFF; #30;
+	 
+			//check and or xor
+			cntrl = 3'b100; A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30;
+			cntrl = 3'b101; A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30;
+			cntrl = 3'b110; A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30;
+			
 		end
 		
 	$stop;
