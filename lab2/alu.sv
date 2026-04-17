@@ -72,40 +72,59 @@ module alu_testbench();
 	
 	initial begin
 	
-		for (int i = 0; i < 8; i++) begin
-			cntrl = i;
-			for (int j = -1; j < 8; j++) begin 
-				if (j == -1) 
-					A = 64'b0;
-				else
-					A = 64'd1 << (8 * j);
-				for (int k = -1; k < 8; k++) begin 
-					if (k == -1)
-						B = 64'b0;
-					else
-						B = 64'b1 << (8 * k); 
-					#30;
-				end
-			end
-			
-			//add sub with zero
-			cntrl = 3'b010; A = 64'h0; B = 64'h0; #30;
-			cntrl = 3'b011; A = 64'h0; B = 64'h0; #30; 
-			
-			//force carry out
-			cntrl = 3'b010; A = 64'hFFFFFFFFFFFFFFFF; B = 64'h1; #30;
-			
-			//force overflow
-			cntrl = 3'b010; A = 64'h7FFFFFFFFFFFFFFF; B = 64'h1; #30;
-			cntrl = 3'b010; A = 64'h8000000000000000; B = 64'hFFFFFFFFFFFFFFFF; #30;
-	 
-			//check and or xor
-			cntrl = 3'b100; A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30;
-			cntrl = 3'b101; A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30;
-			cntrl = 3'b110; A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30;
-			
-		end
+//		for (int i = 0; i < 8; i++) begin
+//			cntrl = i;
+//			for (int j = -1; j < 8; j++) begin 
+//				if (j == -1) 
+//					A = 64'b0;
+//				else
+//					A = 64'd1 << (8 * j);
+//				for (int k = -1; k < 8; k++) begin 
+//					if (k == -1)
+//						B = 64'b0;
+//					else
+//						B = 64'b1 << (8 * k); 
+//					#30;
+//				end
+//			end
+//		end
+
+		// Hold
 		
+		cntrl = 3'b000; 	A = 64'h0; B = 64'h0; #30; // Zero
+								A = 64'h0; B = 64'hFF; #30;
+								A = 64'hFFF; B = 64'hAA; #30;
+		
+		// Addition
+		cntrl = 3'b010; 	A = 64'h0; B = 64'h0; #30; // Zero
+								A = 64'h3; B = 64'h5; #30;
+								A = 64'hFFFFFFFFFFFFFFFF; B = 64'h1; #30; // Carry out, zero
+								A = 64'h7FFFFFFFFFFFFFFF; B = 64'h1; #30; // Overflow, negative
+								A = 64'h8000000000000000; B = 64'hFFFFFFFFFFFFFFFF; #30; // Carry out, overflow
+								
+		// Subtraction
+		cntrl = 3'b011; 	A = 64'h0; B = 64'h0; #30; // Zero, carry out
+								A = 64'h5; B = 64'h3; #30; // Carry out
+								A = 64'h3; B = 64'h5; #30; // Negative
+								A = 64'h0; B = 64'h1; #30; // Negative
+								A = 64'h7FFFFFFFFFFFFFFF; B = 64'hFFFFFFFFFFFFFFFF; #30; // Negative, overflow
+								// CARRY OUT NOT DETECTED
+
+		// Bitwise And
+		cntrl = 3'b100; 	A = 64'h0; B = 64'h0; #30; // Zero
+								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30; // Zero
+								A = 64'h00FF; B = 64'h00FF; #30; 
+		
+		// Bitwise Or
+		cntrl = 3'b101; 	A = 64'h0; B = 64'h0; #30; // Zero
+								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30; // All 1s
+								A = 64'h0F0F; B = 64'hF0F0; #30;
+								
+		// Bitwise Xor
+		cntrl = 3'b110; 	A = 64'h0; B = 64'h0; #30; // Zero
+								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30; // All 1s
+								A = 64'h00FF; B = 64'h00FF; #30; // Zero
+								
 	$stop;
 	end
 	
