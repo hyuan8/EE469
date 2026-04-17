@@ -26,6 +26,7 @@ module alu(A, B, cntrl, result, negative, zero, overflow, carry_out);
 	
 	logic [63:0] carry_chain;
 	
+	// Create bit slices
 	bit_slice first_slice (.A(A[0]), .B(B[0]), .cntrl(cntrl), .Cin(cntrl[0]), .Cout(carry_chain[0]), .R(result[0]));
 	
 	genvar i;
@@ -43,9 +44,6 @@ module alu(A, B, cntrl, result, negative, zero, overflow, carry_out);
 	
 	// Overflow flag
 	xor #0.05 xor0 (overflow, carry_chain[62], carry_chain[63]);
-	
-	// FLAG NOTES:
-	// zero and negative going up for addition
 	
 	// Zero flag
 	logic [63:0] ors;
@@ -89,41 +87,41 @@ module alu_testbench();
 //			end
 //		end
 
+		// Ignore... imported into alustim format in alustim.sv
+
 		// Hold
-		
-		cntrl = 3'b000; 	A = 64'h0; B = 64'h0; #30; // Zero
-								A = 64'h0; B = 64'hFF; #30;
-								A = 64'hFFF; B = 64'hAA; #30;
+		cntrl = 3'b000; 	A = 64'h0; B = 64'h0; #100; // Zero
+								A = 64'h0; B = 64'hFF; #100;
+								A = 64'hFFF; B = 64'hAA; #100;
 		
 		// Addition
-		cntrl = 3'b010; 	A = 64'h0; B = 64'h0; #30; // Zero
-								A = 64'h3; B = 64'h5; #30;
-								A = 64'hFFFFFFFFFFFFFFFF; B = 64'h1; #30; // Carry out, zero
-								A = 64'h7FFFFFFFFFFFFFFF; B = 64'h1; #30; // Overflow, negative
-								A = 64'h8000000000000000; B = 64'hFFFFFFFFFFFFFFFF; #30; // Carry out, overflow
+		cntrl = 3'b010; 	A = 64'h0; B = 64'h0; #100; // Zero
+								A = 64'h3; B = 64'h5; #100;
+								A = 64'hFFFFFFFFFFFFFFFF; B = 64'h1; #100; // Carry out, zero
+								A = 64'h7FFFFFFFFFFFFFFF; B = 64'h1; #100; // Overflow, negative
+								A = 64'h8000000000000000; B = 64'hFFFFFFFFFFFFFFFF; #100; // Carry out, overflow
 								
 		// Subtraction
-		cntrl = 3'b011; 	A = 64'h0; B = 64'h0; #30; // Zero, carry out
-								A = 64'h5; B = 64'h3; #30; // Carry out
-								A = 64'h3; B = 64'h5; #30; // Negative
-								A = 64'h0; B = 64'h1; #30; // Negative
-								A = 64'h7FFFFFFFFFFFFFFF; B = 64'hFFFFFFFFFFFFFFFF; #30; // Negative, overflow
-								// CARRY OUT NOT DETECTED
+		cntrl = 3'b011; 	A = 64'h0; B = 64'h0; #100; // Zero, carry out
+								A = 64'h5; B = 64'h3; #100; // Carry out
+								A = 64'h3; B = 64'h5; #100; // Negative
+								A = 64'h0; B = 64'h1; #100; // Negative
+								A = 64'h7FFFFFFFFFFFFFFF; B = 64'hFFFFFFFFFFFFFFFF; #100; // Negative, overflow
 
 		// Bitwise And
-		cntrl = 3'b100; 	A = 64'h0; B = 64'h0; #30; // Zero
-								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30; // Zero
-								A = 64'h00FF; B = 64'h00FF; #30; 
+		cntrl = 3'b100; 	A = 64'h0; B = 64'h0; #100; // Zero
+								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #100; // Zero
+								A = 64'h00FF; B = 64'h00FF; #100; 
 		
 		// Bitwise Or
-		cntrl = 3'b101; 	A = 64'h0; B = 64'h0; #30; // Zero
-								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30; // All 1s
-								A = 64'h0F0F; B = 64'hF0F0; #30;
+		cntrl = 3'b101; 	A = 64'h0; B = 64'h0; #100; // Zero
+								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #100; // All 1s
+								A = 64'h0F0F; B = 64'hF0F0; #100;
 								
 		// Bitwise Xor
-		cntrl = 3'b110; 	A = 64'h0; B = 64'h0; #30; // Zero
-								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #30; // All 1s
-								A = 64'h00FF; B = 64'h00FF; #30; // Zero
+		cntrl = 3'b110; 	A = 64'h0; B = 64'h0; #100; // Zero
+								A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #100; // All 1s
+								A = 64'h00FF; B = 64'h00FF; #100; // Zero
 								
 	$stop;
 	end

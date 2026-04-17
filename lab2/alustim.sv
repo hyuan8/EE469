@@ -38,19 +38,163 @@ module alustim();
 	logic [63:0] test_val;
 	initial begin
 	
-		$display("%t testing PASS_A operations", $time);
+//		$display("%t testing PASS_A operations", $time);
+//		cntrl = ALU_PASS_B;
+//		for (i=0; i<100; i++) begin
+//			A = $random(); B = $random();
+//			#(delay);
+//			assert(result == B && negative == B[63] && zero == (B == '0));
+//		end
+//		
+//		$display("%t testing addition", $time);
+//		cntrl = ALU_ADD;
+//		A = 64'h0000000000000001; B = 64'h0000000000000001;
+//		#(delay);
+//		assert(result == 64'h0000000000000002 && carry_out == 0 && overflow == 0 && negative == 0 && zero == 0);
+		
+		$display("%t testing PASS_B operations", $time);
 		cntrl = ALU_PASS_B;
-		for (i=0; i<100; i++) begin
+
+		A = 64'h0; B = 64'h0; #delay;
+		assert(result == B && negative == B[63] && zero == (B == '0));
+
+		A = 64'h0; B = 64'hFF; #delay;
+		assert(result == B && negative == B[63] && zero == (B == '0));
+
+		A = 64'hFFF; B = 64'hAA; #delay;
+		assert(result == B && negative == B[63] && zero == (B == '0));
+		
+		// Moved loop from above and shortened
+		for (i = 0; i < 20; i++) begin
 			A = $random(); B = $random();
 			#(delay);
 			assert(result == B && negative == B[63] && zero == (B == '0));
 		end
+
+		
+
+		
+		
+		
+		// Added to mirror ALU testbench in ALU module and cycle through random variables
 		
 		$display("%t testing addition", $time);
 		cntrl = ALU_ADD;
-		A = 64'h0000000000000001; B = 64'h0000000000000001;
-		#(delay);
-		assert(result == 64'h0000000000000002 && carry_out == 0 && overflow == 0 && negative == 0 && zero == 0);
+
+		A = 64'h0; B = 64'h0; #delay;
+		assert(result == 64'h0 && carry_out == 0 && overflow == 0 && negative == 0 && zero == 1);
+
+		A = 64'h3; B = 64'h5; #delay;
+		assert(result == 64'h8 && carry_out == 0 && overflow == 0 && negative == 0 && zero == 0);
+
+		A = 64'hFFFFFFFFFFFFFFFF; B = 64'h1; #delay;
+		assert(result == 64'h0 && carry_out == 1 && overflow == 0 && negative == 0 && zero == 1);
+
+		A = 64'h7FFFFFFFFFFFFFFF; B = 64'h1; #delay;
+		assert(result == 64'h8000000000000000 && carry_out == 0 && overflow == 1 && negative == 1 && zero == 0);
+
+		A = 64'h8000000000000000; B = 64'hFFFFFFFFFFFFFFFF; #delay;
+		assert(result == 64'h7FFFFFFFFFFFFFFF && carry_out == 1 && overflow == 1 && negative == 0 && zero == 0);
+		
+		for (i = 0; i < 20; i++) begin
+			A = $random(); B = $random();
+			#(delay);
+			assert(result == (A + B));
+		end
+
+
+		
+		
+		
+		$display("%t testing subtraction", $time);
+		cntrl = ALU_SUBTRACT;
+
+		A = 64'h0; B = 64'h0; #delay;
+		assert(result == 64'h0 && carry_out == 1 && overflow == 0 && negative == 0 && zero == 1);
+
+		A = 64'h5; B = 64'h3; #delay;
+		assert(result == 64'h2 && carry_out == 1 && overflow == 0 && negative == 0 && zero == 0);
+
+		A = 64'h3; B = 64'h5; #delay;
+		assert(result == 64'hFFFFFFFFFFFFFFFE && carry_out == 0 && overflow == 0 && negative == 1 && zero == 0);
+
+		A = 64'h0; B = 64'h1; #delay;
+		assert(result == 64'hFFFFFFFFFFFFFFFF && carry_out == 0 && overflow == 0 && negative == 1 && zero == 0);
+
+		A = 64'h7FFFFFFFFFFFFFFF; B = 64'hFFFFFFFFFFFFFFFF; #delay;
+		assert(result == 64'h8000000000000000 && carry_out == 0 && overflow == 1 && negative == 1 && zero == 0);
+		
+		for (i = 0; i < 20; i++) begin
+			A = $random(); B = $random();
+			#(delay);
+			assert(result == (A - B));
+		end
+
+
+		
+		
+		
+		$display("%t testing AND", $time);
+		cntrl = ALU_AND;
+
+		A = 64'h0; B = 64'h0; #delay;
+		assert(result == 64'h0 && zero == 1);
+
+		A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #delay;
+		assert(result == 64'h0 && zero == 1);
+
+		A = 64'h00FF; B = 64'h00FF; #delay;
+		assert(result == 64'h00FF);
+		
+		for (i = 0; i < 20; i++) begin
+			A = $random(); B = $random();
+			#(delay);
+			assert(result == (A & B));
+		end
+
+		
+		
+		
+
+		$display("%t testing OR", $time);
+		cntrl = ALU_OR;
+
+		A = 64'h0; B = 64'h0; #delay;
+		assert(result == 64'h0 && zero == 1);
+
+		A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #delay;
+		assert(result == 64'hFFFFFFFFFFFFFFFF);
+
+		A = 64'h0F0F; B = 64'hF0F0; #delay;
+		assert(result == 64'hFFFF);
+		
+		for (i = 0; i < 20; i++) begin
+			A = $random(); B = $random();
+			#(delay);
+			assert(result == (A | B));
+		end
+
+		
+
+		
+		
+		$display("%t testing XOR", $time);
+		cntrl = ALU_XOR;
+
+		A = 64'h0; B = 64'h0; #delay;
+		assert(result == 64'h0 && zero == 1);
+
+		A = 64'hAAAAAAAAAAAAAAAA; B = 64'h5555555555555555; #delay;
+		assert(result == 64'hFFFFFFFFFFFFFFFF);
+
+		A = 64'h00FF; B = 64'h00FF; #delay;
+		assert(result == 64'h0 && zero == 1);
+		
+		for (i = 0; i < 20; i++) begin
+			A = $random(); B = $random();
+			#(delay);
+			assert(result == (A ^ B));
+		end
 		
 	end
 endmodule
