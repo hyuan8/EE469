@@ -1,6 +1,5 @@
 // cntrl			Operation						Notes:
 
-// CNTRL[2:0] = 000 --> result
 // 000:			result = B						value of overflow and carry_out unimportant
 // 001 not wired
 
@@ -44,6 +43,7 @@ module bit_slice(A, B, cntrl, R, Cin, Cout);
 	logic S;
 	fa fulladder (.A(A), .B(mux2out), .Cin(Cin), .Cout(Cout), .S(S));
 	
+	// flipped due to mux logic (i goes from [7:0])
 	mux8_1 mux8 (.out(R), .i({1'b0, six, five, four, S, S, 1'b0, B}), .sel(cntrl));
 	
 endmodule
