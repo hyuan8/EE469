@@ -688,3 +688,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE regstim.sv
 set_global_assignment -name SYSTEMVERILOG_FILE sign_extender.sv
 set_global_assignment -name SYSTEMVERILOG_FILE control.sv
 set_global_assignment -name SYSTEMVERILOG_FILE program_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE full_adder_64bits.sv
+set_global_assignment -name SYSTEMVERILOG_FILE instruction_fetch.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mux2_1_Nbits.sv
