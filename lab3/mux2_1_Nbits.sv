@@ -1,8 +1,8 @@
-mux2_1_Nbits #(parameter length = 1) (out, A, B, sel);
+module mux2_1_Nbits #(parameter length = 1) (out, A, B, sel);
 
-	output logic [length - 1:0] out,
-	input logic [length - 1:0] A, B
-	input logic sel
+	output logic [length - 1:0] out;
+	input logic [length - 1:0] A, B;
+	input logic sel;
 	
 	genvar i;
 	generate

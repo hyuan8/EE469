@@ -1,13 +1,16 @@
 module datapath (
 		input logic [31:0] instruction,
 		input logic [2:0] ALUOp,
-		input logic ALUSrc, Mem2Reg, Reg2Loc, Reg2Write, RegWrite,
+		input logic ALUSrc, Mem2Reg, Reg2Loc, RegWrite,
 		input logic MemWrite, MemRead,
 		input logic clk, reset,
 		input logic [3:0] XferSize, // needed for datamem, not sure what this is
 		output logic [63:0] Db,
+		output logic overflow, negative, zero, carry_out
+
 	);
 	
+	logic [4:0] Rd, Rm, Rn;
 	logic [63:0] Da, Dw;
 	logic [4:0] Aw, Ab;
 	assign Rd = instruction[4:0];
@@ -31,9 +34,8 @@ module datapath (
 	mux2_1_Nbits #(.length(64)) ALUSrcMux (.out(ALUB), .A(Db), .B(offset), .sel(ALUSrc));
 	
 	// ALU
-	logic overflow, negative, zero, cout;
 	logic [63:0] ALUOut;
-	alu ALU (.A(Da), .B(ALUB), .cntrl(ALUOp), .result(ALUout), .negative, .zero, .overflow, .carry_out);
+	alu ALU (.A(Da), .B(ALUB), .cntrl(ALUOp), .result(ALUOut), .negative(negative), .zero(zero), .overflow(overflow), .carry_out(carry_out));
 	
 	// Data Memory
 	logic [63:0] Dout;

@@ -1,9 +1,9 @@
-module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC, ALUSrc, MemToReg, RegWrite, MemWrite, BrTaken, UncondBr, SetFlags);
+module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc, ALUSrc, MemToReg, RegWrite, MemWrite, BrTaken, UncondBr, SetFlags);
 
 	input logic [31:0] instruction;
 	input logic negative, zero, overflow, carry_out;
 	output logic [2:0] ALUOp;
-	output logic Reg2LOC, ALUSrc, MemToReg; // used in muxes
+	output logic Reg2Loc, ALUSrc, MemToReg; // used in muxes
 	output logic RegWrite, MemWrite, BrTaken, UncondBr, SetFlags; // There may be more
 	
 	// ALU Operations
@@ -28,7 +28,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 		CBZ 	= 11'b10110100xxx; // Compare and branch if zero
 	
 	always_comb begin 
-			Reg2LOC = 	1'b0; //defaults all zero
+			Reg2Loc = 	1'b0; //defaults all zero
 			ALUSrc = 	1'b0;
 			MemToReg = 	1'b0;
 			RegWrite = 	1'b0;
@@ -41,7 +41,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 		case (instruction[31:21])
 		
 			ADDI: begin
-				Reg2LOC = 	1'bx;
+				Reg2Loc = 	1'bx;
 				ALUSrc = 	1'b1;
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
@@ -53,7 +53,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			ADDS: begin
-				Reg2LOC = 	1'b1;
+				Reg2Loc = 	1'b1;
 				ALUSrc = 	1'b0;
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
@@ -65,7 +65,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			SUBS: begin
-				Reg2LOC = 	1'b1;
+				Reg2Loc = 	1'b1;
 				ALUSrc = 	1'b0;
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
@@ -74,9 +74,10 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 				UncondBr = 	1'bx;
 				SetFlags = 1'b1;
 				ALUOp = 		3'b011; // subtract
+			end
 				
 			LDUR: begin
-				Reg2LOC = 	1'bx;
+				Reg2Loc = 	1'bx;
 				ALUSrc = 	1'b1;
 				MemToReg = 	1'b1;
 				RegWrite = 	1'b1;
@@ -88,7 +89,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			STUR: begin
-				Reg2LOC = 	1'b0;
+				Reg2Loc = 	1'b0;
 				ALUSrc = 	1'b1;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b1;
@@ -100,7 +101,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			CBZ: begin
-				Reg2LOC = 	1'b0;
+				Reg2Loc = 	1'b0;
 				ALUSrc = 	1'b0;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
@@ -112,7 +113,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			B: begin
-				Reg2LOC = 	1'bx;
+				Reg2Loc = 	1'bx;
 				ALUSrc = 	1'bx;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
@@ -124,7 +125,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			B_LT: begin
-				Reg2LOC = 	1'bx;
+				Reg2Loc = 	1'bx;
 				ALUSrc = 	1'bx;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
@@ -136,7 +137,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			BL: begin
-				Reg2LOC = 	1'bx;
+				Reg2Loc = 	1'bx;
 				ALUSrc = 	1'bx;
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
@@ -148,7 +149,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2LOC,
 			end
 			
 			BR: begin
-				Reg2LOC = 	1'bx;
+				Reg2Loc = 	1'bx;
 				ALUSrc = 	1'bx;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
