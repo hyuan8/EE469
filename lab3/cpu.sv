@@ -1,9 +1,4 @@
-// To change the file that is loaded, edit the filename here:
-`define BENCHMARK "../benchmarks/test01_AddiB.arm"
-//`define BENCHMARK "../benchmarks/test02_AddsSubs.arm"
-//`define BENCHMARK "../benchmarks/test03_CbzB.arm"
-//`define BENCHMARK "../benchmarks/test04_LdurStur.arm"
-//`define BENCHMARK "../benchmarks/test05_Blt.arm"
+`timescale 1ns/10ps
 
 module cpu (
 	input logic clk,
@@ -19,16 +14,52 @@ module cpu (
 	logic negative, zero, overflow, carry_out;
 	logic	UncondBr, BrTaken, SetFlags;
 	
-	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .reset(reset), .clk(clk), 
-		.instruction(instruction), .unbranchedAddr(unbranchedAddr));
+	logic BrLink, BrReg;
+	logic [63:0] BrAddr;
+	logic [63:0] BrRegAddr;
 	
+	logic Imm12;
+	logic [63:0] Db;
+
+
+//	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .reset(reset), .clk(clk), 
+//		.instruction(instruction), .unbranchedAddr(unbranchedAddr));
+		
+	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .BrReg(BrReg), .BrRegAddr(BrRegAddr),
+    .reset(reset), .clk(clk), .instruction(instruction), .unbranchedAddr(unbranchedAddr));
+		
 	control CTL (.instruction(instruction), .negative(negative), .zero(zero), .overflow(overflow),
 		.carry_out(carry_out), .ALUOp(ALUOp), .Reg2Loc(Reg2Loc), .ALUSrc(ALUSrc), .MemToReg(MemToReg),
-		.RegWrite(RegWrite), .MemWrite(MemWrite), .MemRead(MemRead), .BrTaken(BrTaken), .UncondBr(UncondBr), .SetFlags(SetFlags));
+		.RegWrite(RegWrite), .MemWrite(MemWrite), .MemRead(MemRead), .BrTaken(BrTaken), .Imm12(Imm12),
+		.UncondBr(UncondBr), .SetFlags(SetFlags), .BrLink(BrLink), .BrReg(BrReg));
 		
-	datapath DP (.instruction(instruction), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .MemToReg(MemToReg),
+	datapath DP (.instruction(instruction), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .Mem2Reg(MemToReg), .BrLink(BrLink),
+		.unbranchAddr(unbranchedAddr), .BrRegAddr(BrRegAddr), .Imm12(Imm12), .Db(Db),
 		.Reg2Loc(Reg2Loc), .RegWrite(RegWrite), .MemWrite(MemWrite), .MemRead(MemRead), .clk(clk), .reset(reset), 
 		.XferSize(4'd8), .negative(negative), .zero(zero), .overflow(overflow), .carry_out(carry_out)); //xfer size 8 because 64 bits = 8 bytes (double-word)
 	
 endmodule
+
+
+// Testbench for CPU
+module cpu_testbench();
+	logic clk, reset;
 	
+	cpu dut (.*);
+	
+	parameter CLOCK_PERIOD = 10000;
+	initial begin
+		clk <= 0;
+		forever #(CLOCK_PERIOD/2) clk <= ~clk;
+	end
+	
+	int i;
+	initial begin
+		reset = 1; @(posedge clk);
+		reset = 0; @(posedge clk);
+		for (i = 0; i < 50; i++) begin
+			@(posedge clk);
+		end
+		$stop;
+	end	
+endmodule

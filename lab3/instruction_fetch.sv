@@ -1,8 +1,10 @@
 module instruction_fetch(
-	input logic UncondBr, BrTaken, // signals from control
+	input logic UncondBr, BrTaken, BrReg, // signals from control
 	input logic reset, clk,
+	input logic [63:0] BrRegAddr,
 	output logic [31:0] instruction, // 32-bit instruction
-	output logic [63:0] unbranchedAddr); // PC + 4
+	output logic [63:0] unbranchedAddr
+	); // PC + 4
 	
 	// Register for program counter (PC)
 	// puts current PC into instruction memory
@@ -27,13 +29,18 @@ module instruction_fetch(
 	
 	// Adder for branching
 	logic [63:0] branchedAddr;
-	full_adder_64bits branchAddr (.result(branchedAddr), .A(currentPC), .B(shiftedAddr), .Cin(1'b0), .Cout());
+	full_adder_64bits branchAddr (.S(branchedAddr), .A(currentPC), .B(shiftedAddr), .Cin(1'b0), .Cout());
 	
 	// Adder for going down (not branching)
-	full_adder_64bits incAddr (.result(unbranchedAddr), .A(currentPC), .B(64'd4), .Cin(1'b0), .Cout());
+	full_adder_64bits incAddr (.S(unbranchedAddr), .A(currentPC), .B(64'd4), .Cin(1'b0), .Cout());
 	
 	// BrTaken Mux
-	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(newPC), .A(unbranchedAddr), .B(branchedAddr), .sel(BrTaken));
+	logic [63:0] immBranchPC;
+	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .A(unbranchedAddr), .B(branchedAddr), .sel(BrTaken));
+	
+	// A: PC from immediate branch, B: register value for BR
+	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(BrRegAddr), .sel(BrReg));
+
 
 endmodule
 	

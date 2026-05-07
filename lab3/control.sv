@@ -1,13 +1,13 @@
-module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc, ALUSrc, MemToReg, RegWrite, MemWrite, BrTaken, UncondBr, SetFlags);
-
-	input logic [31:0] instruction;
-	input logic negative, zero, overflow, carry_out;
-	output logic [2:0] ALUOp;
-	output logic Reg2Loc, ALUSrc, MemToReg; // used in muxes
-	output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr, SetFlags; // There may be more
-	output logic BrLink; //branch link sets PC+4 to X30? separate from b/br
-	output logic Imm12; //addi doesn't use imm12
-	output logic BrReg; //br requires accessing register, not number of instr. 
+module control(
+	input logic [31:0] instruction,
+	input logic negative, zero, overflow, carry_out,
+	output logic [2:0] ALUOp,
+	output logic Reg2Loc, ALUSrc, MemToReg, // used in muxes
+	output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr, SetFlags, // There may be more
+	output logic BrLink, //branch link sets PC+4 to X30? separate from b/br
+	output logic Imm12, //addi doesn't use imm12
+	output logic BrReg
+	); //br requires accessing register, not number of instr. 
 	
 	// ALU Operations
 	// 000:			result = B						value of overflow and carry_out unimportant
@@ -45,7 +45,7 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 			Imm12 = 1'b0;
 			BrReg = 1'b0;
 		
-		case (instruction[31:21])
+		casex (instruction[31:21])
 		
 			ADDI: begin
 				Reg2Loc 	= 1'bx;

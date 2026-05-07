@@ -1,15 +1,16 @@
-module full_adder_64bits(result, A, B, Cin, Cout);
+module full_adder_64bits(S, A, B, Cin, Cout);
 
-	input  logic [63:0] A, B;
-	input  logic Cin, Cout;
-	output logic [63:0] result;
-	logic [63:0] carry;
+	input logic [63:0] A, B;
+	input logic Cin;
+	output logic Cout;
+	output logic [63:0] S;
+	logic [63:0] carries;
 	
-	fullAdder adderOne (.result(result[0]), .A(A[0]), .B(B[0]), .Cin(cin), .Cout(carry[0]));
+	fa adderOne (.S(S[0]), .A(A[0]), .B(B[0]), .Cin(Cin), .Cout(carries[0]));
 	genvar i;
 	generate 
 		for (i = 1; i < 64; i++) begin: gen_other_adders
-			fullAdder adders (.result(result[i]), .A(A[i]), .B(B[i]), .Cin(carry[i-1]), .Cout(carry[i]));
+			fa adders (.S(S[i]), .A(A[i]), .B(B[i]), .Cin(carries[i-1]), .Cout(carries[i]));
 		end
 	endgenerate
 	
