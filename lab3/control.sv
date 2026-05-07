@@ -48,163 +48,163 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 		case (instruction[31:21])
 		
 			ADDI: begin
-				Reg2Loc = 	1'bx;
-				ALUSrc = 	1'b1;
-				MemToReg = 	1'b0;
-				RegWrite = 	1'b1;
-				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	1'b0;
-				UncondBr = 	1'bx;
+				Reg2Loc 	= 1'bx;
+				ALUSrc 	= 1'b1;
+				MemToReg = 1'b0;
+				RegWrite = 1'b1;
+				MemWrite = 1'b0;
+				MemRead 	= 1'b0;
+				BrTaken 	= 1'b0;
+				UncondBr = 1'bx;
 				SetFlags = 1'b0;
-				ALUOp = 		3'b010; 
-				BrLink = 1'b0;
-				Imm12 = 1'b1;
-				BrReg = 1'b0;// Add
+				ALUOp 	= 3'b010; // Add
+				BrLink 	= 1'b0;
+				Imm12 	= 1'b1;
+				BrReg 	= 1'b0;
 			end
 			
 			ADDS: begin
-				Reg2Loc = 	1'b1;
-				ALUSrc = 	1'b0;
+				Reg2Loc 	= 	1'b1;
+				ALUSrc 	= 	1'b0;
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	1'b0;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	1'b0;
 				UncondBr = 	1'bx;
-				SetFlags = 1'b1;
-				ALUOp = 		3'b010; 
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b0; // Add
+				SetFlags = 	1'b1;
+				ALUOp	 	= 	3'b010; // Add
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0; 
 			end
 			
 			SUBS: begin
-				Reg2Loc = 	1'b1;
-				ALUSrc = 	1'b0;
+				Reg2Loc 	= 	1'b1;
+				ALUSrc 	= 	1'b0;
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	1'b0;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	1'b0;
 				UncondBr = 	1'bx;
-				SetFlags = 1'b1;
-				ALUOp = 		3'b011;
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b0;	// subtract
+				SetFlags = 	1'b1;
+				ALUOp 	= 	3'b011; // subtract
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0;	
 			end
 				
 			LDUR: begin
-				Reg2Loc = 	1'bx;
-				ALUSrc = 	1'b1;
+				Reg2Loc 	= 	1'bx;
+				ALUSrc 	= 	1'b1;
 				MemToReg = 	1'b1;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
-				MemRead = 1'b1;
-				BrTaken = 	1'b0;
+				MemRead 	= 	1'b1;
+				BrTaken 	= 	1'b0;
 				UncondBr = 	1'bx;
-				SetFlags = 1'b0;
-				ALUOp = 		3'b010; 
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b0;
+				SetFlags = 	1'b0;
+				ALUOp 	= 	3'b010; 
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0;
 			end
 			
 			STUR: begin
-				Reg2Loc = 	1'b0;
-				ALUSrc = 	1'b1;
+				Reg2Loc 	= 	1'b0;
+				ALUSrc 	= 	1'b1;
 				MemToReg = 	1'bx;
-				RegWrite = 	1'b1;
+				RegWrite = 	1'b0;
 				MemWrite = 	1'b1;
-				MemRead = 1'b0;
-				BrTaken = 	1'b0;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	1'b0;
 				UncondBr = 	1'bx;
-				SetFlags = 1'b0;
-				ALUOp = 		3'b010; 
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b0;
+				SetFlags = 	1'b0;
+				ALUOp 	= 	3'b010; 
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0;
 			end
 			
 			CBZ: begin
-				Reg2Loc = 	1'b0;
-				ALUSrc = 	1'b0;
+				Reg2Loc 	= 	1'b0;
+				ALUSrc 	= 	1'b0;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	zero;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	zero;
 				UncondBr = 	1'b0;
-				SetFlags = 1'b0;
-				ALUOp = 		3'b000; 
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b0;
+				SetFlags = 	1'b0;
+				ALUOp 	= 	3'b000; 
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0;
 			end
 			
 			B: begin
-				Reg2Loc = 	1'bx;
-				ALUSrc = 	1'bx;
+				Reg2Loc 	= 	1'bx;
+				ALUSrc 	= 	1'bx;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	1'b1;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	1'b1;
 				UncondBr = 	1'b1;
-				SetFlags = 1'b0;
-				ALUOp = 		3'bxxx; 
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b0;
+				SetFlags = 	1'b0;
+				ALUOp 	=	3'bxxx; 
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0;
 			end
 			
 			B_LT: begin
-				Reg2Loc = 	1'bx;
-				ALUSrc = 	1'bx;
+				Reg2Loc 	= 	1'bx;
+				ALUSrc 	= 	1'bx;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	negative != overflow;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	(negative != overflow);
 				UncondBr = 	1'b0;
-				SetFlags = 1'b0;
-				ALUOp = 		3'bxxx; 
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b0;
+				SetFlags = 	1'b0;
+				ALUOp 	= 	3'bxxx; 
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0;
 			end
 			
 			BL: begin
-				Reg2Loc = 	1'bx;
-				ALUSrc = 	1'bx;
+				Reg2Loc 	= 	1'bx;
+				ALUSrc 	= 	1'bx;
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	1'b1;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	1'b1;
 				UncondBr = 	1'b1;
-				SetFlags = 1'b0;
-				ALUOp = 		3'bxxx; 
-				BrLink = 1'b1;
-				Imm12 = 1'b0;
-				BrReg = 1'b0;
+				SetFlags = 	1'b0;
+				ALUOp 	= 	3'bxxx; 
+				BrLink 	= 	1'b1;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b0;
 			end
 			
 			BR: begin
-				Reg2Loc = 	1'bx;
-				ALUSrc = 	1'bx;
+				Reg2Loc 	= 	1'bx;
+				ALUSrc 	= 	1'bx;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
-				MemRead = 1'b0;
-				BrTaken = 	1'b1;
+				MemRead 	= 	1'b0;
+				BrTaken 	= 	1'b1;
 				UncondBr = 	1'b1;
-				SetFlags = 1'b0;
-				ALUOp = 		3'bxxx; 
-				BrLink = 1'b0;
-				Imm12 = 1'b0;
-				BrReg = 1'b1;
+				SetFlags = 	1'b0;
+				ALUOp 	= 	3'bxxx; 
+				BrLink 	= 	1'b0;
+				Imm12 	= 	1'b0;
+				BrReg 	= 	1'b1;
 			end
 			
 		endcase
