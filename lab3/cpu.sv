@@ -24,12 +24,20 @@ module cpu (
 
 //	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .reset(reset), .clk(clk), 
 //		.instruction(instruction), .unbranchedAddr(unbranchedAddr));
+
+	// Registered flags - only update when SetFlags=1
+	logic neg_reg, zero_reg, ov_reg, co_reg;
+
+	D_FF_enable neg_ff  (.q(neg_reg),  .d(negative),  .reset(reset), .clk(clk), .enable(SetFlags));
+	D_FF_enable zero_ff (.q(zero_reg), .d(zero),      .reset(reset), .clk(clk), .enable(SetFlags));
+	D_FF_enable ov_ff   (.q(ov_reg),   .d(overflow),  .reset(reset), .clk(clk), .enable(SetFlags));
+	D_FF_enable co_ff   (.q(co_reg),   .d(carry_out), .reset(reset), .clk(clk), .enable(SetFlags));
 		
 	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .BrReg(BrReg), .BrRegAddr(BrRegAddr),
     .reset(reset), .clk(clk), .instruction(instruction), .unbranchedAddr(unbranchedAddr));
 		
-	control CTL (.instruction(instruction), .negative(negative), .zero(zero), .overflow(overflow),
-		.carry_out(carry_out), .ALUOp(ALUOp), .Reg2Loc(Reg2Loc), .ALUSrc(ALUSrc), .MemToReg(MemToReg),
+	control CTL (.instruction(instruction), .negative(neg_reg), .zero(zero_reg), .overflow(ov_reg),
+		.carry_out(co_reg), .ALUOp(ALUOp), .Reg2Loc(Reg2Loc), .ALUSrc(ALUSrc), .MemToReg(MemToReg),
 		.RegWrite(RegWrite), .MemWrite(MemWrite), .MemRead(MemRead), .BrTaken(BrTaken), .Imm12(Imm12),
 		.UncondBr(UncondBr), .SetFlags(SetFlags), .BrLink(BrLink), .BrReg(BrReg));
 		
@@ -55,7 +63,7 @@ module cpu_testbench();
 	
 	int i;
 	initial begin
-		reset = 1; @(posedge clk);
+		reset = 1; @(posedge clk); @(posedge clk);
 		reset = 0; @(posedge clk);
 		for (i = 0; i < 50; i++) begin
 			@(posedge clk);

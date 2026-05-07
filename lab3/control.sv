@@ -6,8 +6,7 @@ module control(
 	output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr, SetFlags, // There may be more
 	output logic BrLink, //branch link sets PC+4 to X30? separate from b/br
 	output logic Imm12, //addi doesn't use imm12
-	output logic BrReg
-	); //br requires accessing register, not number of instr. 
+	output logic BrReg); //br requires accessing register, not number of instr. 
 	
 	// ALU Operations
 	// 000:			result = B						value of overflow and carry_out unimportant
@@ -18,17 +17,30 @@ module control(
 	// 110:			result = bitwise A XOR B	value of overflow and carry_out unimportant
 	
 	// ADDI, ADDS, B Imm26, B.LT, BL Imm26, BR, CBZ, LDUR, SUR, SUBS
+//	localparam [10:0] 
+//		ADDI 	= 11'b1001000100x, 
+//		ADDS 	= 11'b10101011000, 
+//		B 		= 11'b000101xxxxx, 
+//		B_LT 	= 11'b01010100xxx, 
+//		BL 	= 11'b100101xxxxx, 
+//		BR 	= 11'b11010110000, 
+//		LDUR 	= 11'b11111000010, 
+//		STUR 	= 11'b11111000000, 
+//		SUBS 	= 11'b11101011000, 
+//		CBZ 	= 11'b10110100xxx; 
+		
 	localparam [10:0] 
-		ADDI 	= 11'b1001000100x, // Add immediate
-		ADDS 	= 11'b10101011000, // Add and set flags
-		B 		= 11'b000101xxxxx, // unconditional branch (B Imm26)
-		B_LT 	= 11'b01010100xxx, // Branch if less than
-		BL 	= 11'b100101xxxxx, // Branch with link (BL Imm26)
-		BR 	= 11'b11010110000, // Branch to register
-		LDUR 	= 11'b11111000010, // Load from memory
-		STUR 	= 11'b11111000000, // Store to memory
-		SUBS 	= 11'b11101011000, // Subtract and set flags
-		CBZ 	= 11'b10110100xxx; // Compare and branch if zero
+		ADDI  = 11'b1001000100?,	// Add immediate
+		ADDS  = 11'b10101011000,	// Add and set flags
+		B     = 11'b000101?????,	// unconditional branch (B Imm26)
+		B_LT  = 11'b01010100???,	// Branch if less than
+		BL    = 11'b100101?????,	// Branch with link (BL Imm26)
+		BR    = 11'b11010110000,	// Branch to register
+		LDUR  = 11'b11111000010,	// Load from memory
+		STUR  = 11'b11111000000,	// Store to memory
+		SUBS  = 11'b11101011000,	// Subtract and set flags
+		CBZ   = 11'b10110100???;	// Compare and branch if zero
+
 	
 	always_comb begin 
 			Reg2Loc = 	1'b0; //defaults all zero
@@ -45,7 +57,7 @@ module control(
 			Imm12 = 1'b0;
 			BrReg = 1'b0;
 		
-		casex (instruction[31:21])
+		casez (instruction[31:21])
 		
 			ADDI: begin
 				Reg2Loc 	= 1'bx;
