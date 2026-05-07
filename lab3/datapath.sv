@@ -2,9 +2,11 @@ module datapath (
 		input logic [31:0] instruction,
 		input logic [2:0] ALUOp,
 		input logic ALUSrc, Mem2Reg, Reg2Loc, RegWrite,
-		input logic MemWrite, MemRead,
+		input logic MemWrite, MemRead, Imm12, BrLink,
 		input logic clk, reset,
 		input logic [3:0] XferSize, // needed for datamem, not sure what this is
+		input logic [63:0] unbranchAddr;// use this if not br? 
+		output logic [63:0] BrAddr; //br requires writing to address, doesn't use immediate
 		output logic [63:0] Db,
 		output logic overflow, negative, zero, carry_out
 
@@ -17,6 +19,9 @@ module datapath (
 	assign Rm = instruction[20:16];
 	assign Rn = instruction[9:5];
 	
+	//BR X30 mux
+	mux2_1_Nbits #(.length(5)) Reg2LocMux (.out(Aw), .A(Rd), .B(5'd30), .sel(BrLink)); //write to Rd if no link, but if link, use reg X30
+	
 	// Reg2Loc Mux
 	mux2_1_Nbits #(.length(5)) Reg2LocMux (.out(Ab), .A(Rd), .B(Rm), .sel(Reg2Loc));
 	
@@ -25,13 +30,17 @@ module datapath (
 	regfile register (.ReadData1(Da), .ReadData2(Db), .WriteData(Dw), 
 				.ReadRegister1(Rn), .ReadRegister2(Ab), .WriteRegister(Aw), .RegWrite, .clk);
 
-	// Sign extend DAddr9
-	logic [63:0] offset;
-	sign_extender #(.length(9)) extender9 (.in(instruction[20:12]), .out(offset));
+	// Sign extend DAddr9, zero extend for addi, then choose between inputs based on if doing addi
+	logic [63:0] imm9, imm12, final_imm;
+	sign_extender #(.length(9)) extender9 (.in(instruction[20:12]), .out(imm9));
+	zero_extender #(.length(12)) extender12 (.in(instruction[21:10]), .out(imm12));
+
+	mux2_1_Nbits #(.length(64)) FinalImmMux (.out(final_imm), .A(imm9), .B(imm12), .sel(Imm12));
+
 	
 	// ALUSrc Mux
 	logic [63:0] ALUB;
-	mux2_1_Nbits #(.length(64)) ALUSrcMux (.out(ALUB), .A(Db), .B(offset), .sel(ALUSrc));
+	mux2_1_Nbits #(.length(64)) ALUSrcMux (.out(ALUB), .A(Db), .B(final_imm), .sel(ALUSrc));
 	
 	// ALU
 	logic [63:0] ALUOut;

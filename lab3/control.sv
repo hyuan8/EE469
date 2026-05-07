@@ -4,7 +4,10 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 	input logic negative, zero, overflow, carry_out;
 	output logic [2:0] ALUOp;
 	output logic Reg2Loc, ALUSrc, MemToReg; // used in muxes
-	output logic RegWrite, MemWrite, BrTaken, UncondBr, SetFlags; // There may be more
+	output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr, SetFlags; // There may be more
+	output logic BrLink; //branch link sets PC+4 to X30? separate from b/br
+	output logic Imm12; //addi doesn't use imm12
+	output logic BrReg; //br requires accessing register, not number of instr. 
 	
 	// ALU Operations
 	// 000:			result = B						value of overflow and carry_out unimportant
@@ -33,10 +36,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 			MemToReg = 	1'b0;
 			RegWrite = 	1'b0;
 			MemWrite = 	1'b0;
+			MemRead = 1'b0;
 			BrTaken = 	1'b0;
 			UncondBr = 	1'b0;
 			SetFlags = 	1'b0;
 			ALUOp = 		3'b010;
+			BrLink = 1'b0;
+			Imm12 = 1'b0;
+			BrReg = 1'b0;
 		
 		case (instruction[31:21])
 		
@@ -46,10 +53,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	1'b0;
 				UncondBr = 	1'bx;
 				SetFlags = 1'b0;
-				ALUOp = 		3'b010; // Add
+				ALUOp = 		3'b010; 
+				BrLink = 1'b0;
+				Imm12 = 1'b1;
+				BrReg = 1'b0;// Add
 			end
 			
 			ADDS: begin
@@ -58,10 +69,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	1'b0;
 				UncondBr = 	1'bx;
 				SetFlags = 1'b1;
-				ALUOp = 		3'b010; // Add
+				ALUOp = 		3'b010; 
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b0; // Add
 			end
 			
 			SUBS: begin
@@ -70,10 +85,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	1'b0;
 				UncondBr = 	1'bx;
 				SetFlags = 1'b1;
-				ALUOp = 		3'b011; // subtract
+				ALUOp = 		3'b011;
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b0;	// subtract
 			end
 				
 			LDUR: begin
@@ -82,10 +101,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'b1;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
+				MemRead = 1'b1;
 				BrTaken = 	1'b0;
 				UncondBr = 	1'bx;
 				SetFlags = 1'b0;
 				ALUOp = 		3'b010; 
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b0;
 			end
 			
 			STUR: begin
@@ -93,11 +116,15 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				ALUSrc = 	1'b1;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b1;
-				MemWrite = 	1'b0;
+				MemWrite = 	1'b1;
+				MemRead = 1'b0;
 				BrTaken = 	1'b0;
 				UncondBr = 	1'bx;
 				SetFlags = 1'b0;
 				ALUOp = 		3'b010; 
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b0;
 			end
 			
 			CBZ: begin
@@ -106,10 +133,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	zero;
 				UncondBr = 	1'b0;
 				SetFlags = 1'b0;
 				ALUOp = 		3'b000; 
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b0;
 			end
 			
 			B: begin
@@ -118,10 +149,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	1'b1;
 				UncondBr = 	1'b1;
 				SetFlags = 1'b0;
 				ALUOp = 		3'bxxx; 
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b0;
 			end
 			
 			B_LT: begin
@@ -130,10 +165,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	negative != overflow;
 				UncondBr = 	1'b0;
 				SetFlags = 1'b0;
 				ALUOp = 		3'bxxx; 
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b0;
 			end
 			
 			BL: begin
@@ -142,10 +181,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'b0;
 				RegWrite = 	1'b1;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	1'b1;
 				UncondBr = 	1'b1;
 				SetFlags = 1'b0;
 				ALUOp = 		3'bxxx; 
+				BrLink = 1'b1;
+				Imm12 = 1'b0;
+				BrReg = 1'b0;
 			end
 			
 			BR: begin
@@ -154,10 +197,14 @@ module control(instruction, negative, zero, overflow, carry_out, ALUOp, Reg2Loc,
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
+				MemRead = 1'b0;
 				BrTaken = 	1'b1;
 				UncondBr = 	1'b1;
 				SetFlags = 1'b0;
 				ALUOp = 		3'bxxx; 
+				BrLink = 1'b0;
+				Imm12 = 1'b0;
+				BrReg = 1'b1;
 			end
 			
 		endcase
