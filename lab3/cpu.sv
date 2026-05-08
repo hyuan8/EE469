@@ -29,6 +29,7 @@
 	- BrReg:			signal for BR instruction 
 	- Db:				read data from second register
 	- BrRegAddr:	address of branched register, used in BR instruction 
+	- ALUzero: 		unregistered zero flag for CBZ instruction (BrTaken) 
 */
 
 module cpu (
@@ -66,7 +67,7 @@ module cpu (
 	control CTL (.instruction(instruction), .negative(neg_reg), .zero(zero_reg), .overflow(ov_reg),
 		.carry_out(co_reg), .ALUOp(ALUOp), .Reg2Loc(Reg2Loc), .ALUSrc(ALUSrc), .MemToReg(MemToReg),
 		.RegWrite(RegWrite), .MemWrite(MemWrite), .MemRead(MemRead), .BrTaken(BrTaken), .Imm12(Imm12),
-		.UncondBr(UncondBr), .SetFlags(SetFlags), .BrLink(BrLink), .BrReg(BrReg));
+		.UncondBr(UncondBr), .SetFlags(SetFlags), .BrLink(BrLink), .BrReg(BrReg), .ALUzero(zero)) ;
 		
 	// Instantiates main datapath
 	datapath DP (.instruction(instruction), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .Mem2Reg(MemToReg), .BrLink(BrLink),
@@ -93,7 +94,7 @@ module cpu_testbench();
 	initial begin
 		reset = 1; @(posedge clk); @(posedge clk);
 		reset = 0; @(posedge clk);
-		for (i = 0; i < 100; i++) begin
+		for (i = 0; i < 1000; i++) begin
 			@(posedge clk);
 		end
 		$stop;

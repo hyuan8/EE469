@@ -22,7 +22,7 @@
 
 module control(
 		input logic [31:0] instruction,
-		input logic negative, zero, overflow, carry_out,
+		input logic negative, zero, overflow, carry_out, ALUzero,
 		output logic [2:0] ALUOp,
 		output logic Reg2Loc, ALUSrc, MemToReg,
 		output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr,
@@ -153,7 +153,7 @@ module control(
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
 				MemRead 	= 	1'b0;
-				BrTaken 	= 	zero;
+				BrTaken 	= 	ALUzero;
 				UncondBr = 	1'b0;
 				SetFlags = 	1'b0;
 				ALUOp 	= 	3'b000; 
