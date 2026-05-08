@@ -93,7 +93,7 @@ module cpu_testbench();
 	initial begin
 		reset = 1; @(posedge clk); @(posedge clk);
 		reset = 0; @(posedge clk);
-		for (i = 0; i < 50; i++) begin
+		for (i = 0; i < 100; i++) begin
 			@(posedge clk);
 		end
 		$stop;

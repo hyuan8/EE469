@@ -211,14 +211,14 @@ module control(
 			end
 			
 			BR: begin
-				Reg2Loc 	= 	1'bx;
+				Reg2Loc 	= 	1'b0;
 				ALUSrc 	= 	1'bx;
 				MemToReg = 	1'bx;
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
 				MemRead 	= 	1'b0;
-				BrTaken 	= 	1'b1;
-				UncondBr = 	1'b1;
+				BrTaken 	= 	1'b0;
+				UncondBr = 	1'b0;
 				SetFlags = 	1'b0;
 				ALUOp 	= 	3'bxxx; 
 				BrLink 	= 	1'b0;

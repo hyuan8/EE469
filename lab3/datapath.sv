@@ -54,7 +54,7 @@ module datapath (
 	regfile register (.ReadData1(Da), .ReadData2(Db), .WriteData(Dw), 
 				.ReadRegister1(Rn), .ReadRegister2(Ab), .WriteRegister(Aw), .RegWrite, .clk);
 				
-	assign BrRegAddr = Da; // stores BR address
+	assign BrRegAddr = Db; // stores BR address
 
 	// Sign extends DAddr9, zero extends for ADD.I, then chooses between inputs based on if doing ADD.I
 	logic [63:0] imm9, imm12, final_imm;
