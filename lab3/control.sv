@@ -24,8 +24,8 @@ module control(
 		input logic [31:0] instruction,
 		input logic negative, zero, overflow, carry_out,
 		output logic [2:0] ALUOp,
-		output logic Reg2Loc, ALUSrc, MemToReg
-		output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr
+		output logic Reg2Loc, ALUSrc, MemToReg,
+		output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr,
 		output logic BrLink, BrReg, Imm12, SetFlags
 	);  
 	
