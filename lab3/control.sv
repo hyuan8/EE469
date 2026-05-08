@@ -5,6 +5,7 @@
 	- negative, zero, overflow, carry_out: flags from ALU operations
 
 	OUTPUTS:
+	- ALUOp:			3-bit ALU operation
 	- Reg2Loc: 		selects second register
 	- ALUSrc: 		selects ALUB input
 	- MemToReg:		selects what is written back to the register
