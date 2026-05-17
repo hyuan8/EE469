@@ -9,9 +9,9 @@
 //`define BENCHMARK "benchmarks/test04_LdurStur.arm"
 //`define BENCHMARK "benchmarks/test05_Blt.arm"
 //`define BENCHMARK "benchmarks/test06_BlBr.arm"
-//`define BENCHMARK "benchmarks/test10_forwarding.arm"
+`define BENCHMARK "benchmarks/test10_forwarding.arm"
 //`define BENCHMARK "benchmarks/test11_Sort.arm"
-`define BENCHMARK "benchmarks/test12_Fibonacci.arm"
+//`define BENCHMARK "benchmarks/test12_Fibonacci.arm"
 
 // LIST OF PASSED TESTS: 1
 // LIST OF FAILED TESTS: 2
