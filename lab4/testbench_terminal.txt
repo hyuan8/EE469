@@ -1,0 +1,36 @@
+add wave -noupdate -divider {System}
+add wave -noupdate /cpu_testbench/clk
+add wave -noupdate /cpu_testbench/reset
+
+add wave -noupdate -divider {Instruction Fetch}
+add wave -noupdate -hex /cpu_testbench/dut/IF/currentPC
+add wave -noupdate -hex /cpu_testbench/dut/instruction
+
+add wave -noupdate -divider {Control Signals}
+add wave -noupdate /cpu_testbench/dut/CTL/BrTaken
+add wave -noupdate /cpu_testbench/dut/CTL/UncondBr
+add wave -noupdate /cpu_testbench/dut/CTL/RegWrite
+add wave -noupdate /cpu_testbench/dut/CTL/ALUSrc
+add wave -noupdate /cpu_testbench/dut/CTL/Imm12
+add wave -noupdate /cpu_testbench/dut/CTL/ALUOp
+add wave -noupdate /cpu_testbench/dut/CTL/MemRead
+add wave -noupdate /cpu_testbench/dut/CTL/MemWrite
+add wave -noupdate /cpu_testbench/dut/CTL/Reg2Loc
+add wave -noupdate /cpu_testbench/dut/CTL/SetFlags
+
+add wave -noupdate -divider {Flags}
+add wave -noupdate /cpu_testbench/dut/negative
+add wave -noupdate /cpu_testbench/dut/zero
+add wave -noupdate /cpu_testbench/dut/overflow
+add wave -noupdate /cpu_testbench/dut/carry_out
+
+add wave -noupdate -divider {ALU}
+add wave -noupdate -hex /cpu_testbench/dut/DP/ALU/A
+add wave -noupdate -hex /cpu_testbench/dut/DP/ALU/B
+add wave -noupdate -hex /cpu_testbench/dut/DP/ALU/result
+
+add wave -noupdate -divider {Registers}
+add wave -noupdate -color {Sky Blue} -radix dec /cpu_testbench/dut/DP/register/q
+
+add wave -noupdate -divider {Data Memory}
+add wave -noupdate -hex /cpu_testbench/dut/DP/DataMemory/mem
