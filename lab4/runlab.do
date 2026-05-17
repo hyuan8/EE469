@@ -13,8 +13,7 @@ vlog "./datamem.sv"
 vlog "./instructmem.sv"
 vlog "./math.sv"
 vlog "./decoders.sv"
-vlog "./D_FF.sv"
-vlog "./D_FF_enable.sv"
+vlog "./DFFs.sv"
 vlog "./regfile.sv"
 vlog "./sign_extender.sv"
 vlog "./control.sv"
@@ -22,6 +21,8 @@ vlog "./program_counter.sv"
 vlog "./instruction_fetch.sv"
 vlog "./cpu.sv"
 vlog "./zero_extender.sv"
+vlog "./IF_ID_reg.sv"
+vlog "./ID_EX_reg.sv"
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
