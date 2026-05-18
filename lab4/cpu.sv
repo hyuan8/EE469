@@ -33,8 +33,7 @@
 */
 
 module cpu (
-	input logic clk,
-	input logic reset
+	input logic clk, reset
 );
 
 	logic [31:0] instruction;
@@ -54,14 +53,14 @@ module cpu (
 
 	// Registered flags (using DFF w/ enable) - only update when SetFlags=1
 	logic neg_reg, zero_reg, ov_reg, co_reg;
-	D_FF_enable neg_ff (.q(neg_reg), .d(negative), .reset(reset), .clk(clk), .enable(SetFlags));
-	D_FF_enable zero_ff (.q(zero_reg), .d(zero), .reset(reset), .clk(clk), .enable(SetFlags));
-	D_FF_enable ov_ff (.q(ov_reg), .d(overflow), .reset(reset), .clk(clk), .enable(SetFlags));
-	D_FF_enable co_ff (.q(co_reg), .d(carry_out), .reset(reset), .clk(clk), .enable(SetFlags));
+
+	flag_register FR (.clk(clk), .reset(reset), .enable(SetFlags), 
+		.negative(negative), .zero(zero), .overflow(overflow), .carry_out(carry_out), 
+		.negative_out(neg_reg), .zero_out(zero_reg), .overflow_out(overflow_out), .carry_out_out(co_reg));
 	
 	// Instantiates instruction fetch
 	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .BrReg(BrReg), .BrRegAddr(BrRegAddr),
-    .reset(reset), .clk(clk), .instruction(instruction), .unbranchedAddr(unbranchedAddr));
+		.reset(reset), .clk(clk), .instruction(instruction), .unbranchedAddr(unbranchedAddr));
 		
 	// Instantiates control unit
 	control CTL (.instruction(instruction), .negative(neg_reg), .zero(zero_reg), .overflow(ov_reg),

@@ -23,6 +23,9 @@ vlog "./cpu.sv"
 vlog "./zero_extender.sv"
 vlog "./IF_ID_reg.sv"
 vlog "./ID_EX_reg.sv"
+vlog "./EX_MEM_reg.sv"
+vlog "./MEM_WB_reg.sv"
+vlog "./flag_register.sv"
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
