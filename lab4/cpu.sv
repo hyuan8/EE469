@@ -33,8 +33,7 @@
 */
 
 module cpu (
-	input logic clk,
-	input logic reset
+	input logic clk, reset
 );
 
 	logic [31:0] instruction;
@@ -55,9 +54,9 @@ module cpu (
 	// Registered flags (using DFF w/ enable) - only update when SetFlags=1
 	logic neg_reg, zero_reg, ov_reg, co_reg;
 
-	flag_register FR (.clk(clk), .reset(reset), .enable(SetFlags), .negative(negative), .zero(zero), 
-		.overflow(overflow), .carry_out(carry_out), .negative_out(neg_reg), .zero_out(zero_reg), 
-		.overflow_out(overflow_out), .carry_out_out(co_reg));
+	flag_register FR (.clk(clk), .reset(reset), .enable(SetFlags), 
+		.negative(negative), .zero(zero), .overflow(overflow), .carry_out(carry_out), 
+		.negative_out(neg_reg), .zero_out(zero_reg), .overflow_out(overflow_out), .carry_out_out(co_reg));
 	
 	// Instantiates instruction fetch
 	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .BrReg(BrReg), .BrRegAddr(BrRegAddr),
