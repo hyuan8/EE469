@@ -26,7 +26,7 @@ module ID_EX_reg (
 	D_FF Imm12_DFF 	(.d(Imm12), 	.q(Imm12_out), 	.clk(clk), .reset(reset));
 	D_FF BrReg_DFF 	(.d(BrReg), 	.q(BrReg_out), 	.clk(clk), .reset(reset));
 	
-	DFFs ALUOp_DFF #(.N(3)) (.d(ALUOp), .q(ALUOp_out), .clk(clk), .reset(reset));
+	DFFs #(.N(3))	ALUOp_DFF	(.d(ALUOp), .q(ALUOp_out), .clk(clk), .reset(reset));
 	
 	DFFs #(.N(64)) Da_DFFs 	(.d(Da), .q(Da_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) Db_DFFs 	(.d(Db), .q(Db_out), .clk(clk), .reset(reset));
