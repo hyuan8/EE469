@@ -689,3 +689,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE decoders.sv
 set_global_assignment -name SYSTEMVERILOG_FILE DFFs.sv
 set_global_assignment -name SYSTEMVERILOG_FILE IF_ID_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ID_EX_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE EX_MEM_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE MEM_WB_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE full_adder_64bits.sv

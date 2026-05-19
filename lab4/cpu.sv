@@ -79,21 +79,21 @@
 
 module cpu (input logic clock, reset);
 	logic [31:0] instruction_IF;
-	logic [63:0] currentPC, PC_4_IF, newPC;
+	logic [63:0] currentPC, PC_plus4_IF, newPC;
 	
 	//instruction fetch
 	//only is a register for the pc, does not do the addition, need full adder for this
 	program_counter PC (.in(newPC), .out(currentPC), .clk(clk), .reset(reset));
 	
-	full_adder_64bits PC_4 (.S(PC_4_IF), .A(currentPC), .B(64'd4), .Cin(1'b0), .Cout());
+	full_adder_64bits PC_4 (.S(PC_plus4_IF), .A(currentPC), .B(64'd4), .Cin(1'b0), .Cout());
 	
 	instructmem instruction_memory (.address(currentPC), .instruction(instruction_IF), .clk);
  
 	
 	//if/id reg
 	logic [31:0] instruction_ID;
-	logic [63:0] PC_4_ID;
-	IF_ID_reg IF_ID (.clk(clk), .reset(reset), .instruction(instruction_IF), .PC(PC_4_IF), .instruction_out(instruction_ID), .PC_out(PC_4_ID))
+	logic [63:0] PC_plus4_ID;
+	IF_ID_reg IF_ID (.clk(clk), .reset(reset), .instruction(instruction_IF), .PC(PC_plus4_IF), .instruction_out(instruction_ID), .PC_out(PC_plus4_ID))
 	
 	
 	//instruction decode - moved from datapath
@@ -127,20 +127,72 @@ module cpu (input logic clock, reset);
 
 	mux2_1_Nbits #(.length(5)) Reg2LocMux (.out(Ab_ID), .A(Rd_ID), .B(Rm_ID), .sel(Reg2Loc_ID));
 	
-	sign_extender #(.length(9)) extender9 (.in(instruction[20:12]), .out(imm9_ID));
-	zero_extender #(.length(12)) extender12 (.in(instruction[21:10]), .out(imm12_ID));
+	sign_extender #(.length(9)) extender9 (.in(instruction_ID[20:12]), .out(imm9_ID));
+	zero_extender #(.length(12)) extender12 (.in(instruction_ID[21:10]), .out(imm12_ID));
 	
 	regfile register (.ReadData1(Da_ID), .ReadData2(Db_ID), .WriteData(Dw_WB), 
 				.ReadRegister1(Rn_ID), .ReadRegister2(Ab_ID), .WriteRegister(Aw_WB), .RegWrite(RegWrite_WB), .clk(clk));
 	
 	//id/ex reg
+	ID_EX_reg ID_EX (.clk(clk), .reset(reset), .RegWrite(RegWrite_ID), .MemWrite(MemWrite_ID), 
+	.MemRead(MemRead_ID), .MemToReg(MemToReg_ID), .ALUSrc(ALUSrc_ID), 
+	.SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .Imm12(Imm12_ID), .BrReg(BrReg_ID), 
+	.ALUOp(ALUOp_ID), .Da(Da_ID), .Db(Db_ID), .Rn(Rn_ID), .Rm(Rm_ID), .Rd(Rd_ID), 
+	.imm9(imm9_ID), .imm12(imm12_ID),.PC_plus4(PC_plus4_ID), .RegWrite_out(RegWrite_EX),
+	.MemWrite_out(MemWrite_EX), .MemRead_out(MemRead_EX), .MemToReg_out(MemToReg_EX), 
+	.ALUSrc_out(ALUSrc_EX), .SetFlags_out(SetFlags_EX), .BrLink_out(BrLink_EX), .Imm12_out(Imm12_EX), 
+	.BrReg_out(BrReg_EX), .ALUOp_out(ALUOp_EX), .Da_out(Da_EX), .Db_out(Db_EX),
+	.Rn_out(Rn_EX), .Rm_out(Rm_EX), .Rd_out(Rd_EX),.imm9_out(imm9_EX), .imm12_out(imm12_EX), .PC_plus4_out(PC_plus4_EX));
 	
-	ID_EX_reg ID_EX (
+	//execute stage
+	logic [63:0] final_imm_EX;
+	mux2_1_Nbits #(.length(64)) FinalImmMux (.out(final_imm_EX), .A(imm9_EX), .B(imm12_EX), .sel(Imm12_EX));
+
+	// ALUSrc Mux: selects ALUB input
+	logic [63:0] ALUB_EX; // second ALU input
+	mux2_1_Nbits #(.length(64)) ALUSrcMux (.out(ALUB_EX), .A(Db_EX), .B(final_imm_EX), .sel(ALUSrc_EX));
+	
+	// Instantiates ALU
+	logic [63:0] ALUOut_EX; // ALU output
+	logic negative_EX, zero_EX, overflow_EX, carry_out_EX;
+	alu ALU (.A(Da_EX), .B(ALUB_EX), .cntrl(ALUOp_EX), .result(ALUOut_EX), .negative(negative_EX), .zero(zero_EX), .overflow(overflow_EX), .carry_out(carry_out_EX));
+	
+	//BrLink mux to choose which register to write to if BrLink is true
+	mux2_1_Nbits #(.length(5)) BrLinkRegMux (.out(Da_EX), .A(Rd_EX), .B(5'd30), .sel(BrLink_EX));
 	
 	
+	//ex/mem reg
+	logic RegWrite_MEM, MemWrite_MEM, MemRead_MEM, MemToReg_MEM, BrLink_MEM,
+	logic [63:0] ALUOut_MEM,
+	logic [63:0] Db_MEM,
+	logic [4:0] Rd_MEM,
+	logic SetFlags_MEM,
+	logic negative_MEM, zero_MEM, overflow_MEM, carry_out_MEM,
+	
+	EX_MEM_reg EX_MEM (.clk(clk), .reset(reset), .RegWrite(RegWrite_EX), .MemWrite(MemWrite_EX), .MemRead(MemRead_EX), .MemToReg(MemToReg_EX), .BrLink(BrLink_EX),
+		.ALU_operation(ALUOut_EX), .Db(Db_EX), .Rd(Rd_EX), .setFlags(SetFlags_EX), .negative(negative_EX), .zero(zero_EX), .overflow(overflow_EX), .carry_out(carry_out_EX), .RegWrite_out(RegWrite_MEM), .MemWrite_out(MemWrite_MEM), 
+		.MemRead_out(MemRead_MEM), .MemToReg_out(MemToReg_MEM), .BrLink_out(BrLink_MEM), .ALU_operation_out(ALUOut_MEM), .Db_out(Db_MEM), .Rd_out(Rd_MEM), .setFlags_out(SetFlags_MEM), .negative_out(negative_MEM), 
+		.zero_out(zero_MEM), .overflow_out(overflow_MEM), .carry_out_out(carry_out_MEM));
+	
+	//mem stage
+	logic [63:0] Dout_MEM; // read data value
+	datamem DataMemory (.address(ALUOut_MEM), .write_enable(MemWrite_MEM), .read_enable(MemRead_MEM), 
+				.write_data(Db_MEM), .clk(clk), .xfer_size(XferSize), .read_data(Dout_MEM));
+				
+	//mem/wb reg
+	logic MemToReg_WB, BrLink_WB,
+	logic [63:0] ALUOut_WB, DataMem_WB,
+	MEM_WB_reg MEM_WB (.clk(clk), .reset(reset), .RegWrite(RegWrite_MEM), .MemToReg(MemToReg_MEM), .BrLink(BrLink_MEM), .ALU_operation(ALUOp_MEM), .dataMem(Dout_MEM), .Rd(Rd_MEM),
+	.RegWrite_out(RegWrite_WB), .MemToReg_out(MemToReg_WB), .BrLink_out(BrLink_WB), .ALU_operation_out(ALUOp_WB), .dataMem_out(DataMem_WB), .Rd_out(Rd_WB));
 	
 	
+	//wb stage
+	mux2_1_Nbits #(.length(64)) MemToRegMux (.out(Dw_WB), .A(AluOut_WB), .B(DataMem_WB), .sel(MemToRegWB));
 	
+	//use mem stage flags to create saved flags 
+	flag_register FR (.clk(clk), .reset(reset), .enable(SetFlags_MEM), 
+		.negative(negative_MEM), .zero(zero_MEM), .overflow(overflow_MEM), .carry_out(carry_out_MEM), 
+		.negative_out(neg_reg), .zero_out(zero_reg), .overflow_out(overflow_out), .carry_out_out(co_reg));
 );
 	
 
