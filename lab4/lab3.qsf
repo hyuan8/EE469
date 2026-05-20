@@ -692,3 +692,5 @@ set_global_assignment -name SYSTEMVERILOG_FILE ID_EX_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE EX_MEM_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE MEM_WB_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE full_adder_64bits.sv
+set_global_assignment -name SYSTEMVERILOG_FILE flag_register.sv
+set_global_assignment -name SYSTEMVERILOG_FILE forwarding_unit.sv
