@@ -673,7 +673,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE math.sv
 set_global_assignment -name SYSTEMVERILOG_FILE alu.sv
 set_global_assignment -name SYSTEMVERILOG_FILE bit_slice.sv
 set_global_assignment -name SYSTEMVERILOG_FILE regfile.sv
-set_global_assignment -name SYSTEMVERILOG_FILE regstim.sv
 set_global_assignment -name SYSTEMVERILOG_FILE sign_extender.sv
 set_global_assignment -name SYSTEMVERILOG_FILE control.sv
 set_global_assignment -name SYSTEMVERILOG_FILE program_counter.sv

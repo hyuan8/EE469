@@ -81,6 +81,8 @@ module cpu (input logic clk, reset);
 	logic [31:0] instruction_IF;
 	logic [63:0] currentPC, PC_plus4_IF, newPC;
 	
+	
+	
 	//instruction fetch stage
 	//computes PC+4 and PC+offset (BR instruction) and chooses between them
 	program_counter PC (.in(newPC), .out(currentPC), .clk(clk), .reset(reset));
@@ -94,15 +96,19 @@ module cpu (input logic clk, reset);
 	logic [63:0] branchedAddr_MEM;
 	logic [63:0] BrRegAddr_MEM;
 	logic [63:0] immBranchPC; // PC from immediate branch
-	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .A(branchedAddr_MEM), .B(PC_plus4_IF), .sel(BrTaken_MEM));
+	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .B(branchedAddr_MEM), .A(PC_plus4_IF), .sel(BrTaken_MEM));
 	
 	// BrReg Mux: selects next PC from the immediate branch PC or the register value for BR
 	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(BrRegAddr_MEM), .sel(BrReg_MEM));
 	
+	logic flush;
+	or #0.05 fl (flush, BrTaken_MEM, BrReg_MEM);
+	
 	//if/id reg
 	logic [31:0] instruction_ID;
 	logic [63:0] PC_plus4_ID;
-	IF_ID_reg IF_ID (.clk(clk), .reset(reset), .instruction(instruction_IF), .PC(PC_plus4_IF), .instruction_out(instruction_ID), .PC_out(PC_plus4_ID));
+	logic [63:0] currentPC_ID, currentPC_EX;
+	IF_ID_reg IF_ID (.clk(clk), .reset(reset), .flush(flush), .instruction(instruction_IF), .PC(PC_plus4_IF), .instruction_out(instruction_ID), .PC_out(PC_plus4_ID), .currentPC(currentPC), .currentPC_out(currentPC_ID));
 	
 	logic negative_EX, zero_EX, overflow_EX, carry_out_EX;
 
@@ -132,7 +138,7 @@ module cpu (input logic clk, reset);
 	control CTL (.instruction(instruction_ID), .negative(neg_reg), .zero(zero_reg), .overflow(ov_reg),
 		.carry_out(co_reg), .ALUOp(ALUOp_ID), .Reg2Loc(Reg2Loc_ID), .ALUSrc(ALUSrc_ID), .MemToReg(MemToReg_ID),
 		.RegWrite(RegWrite_ID), .MemWrite(MemWrite_ID), .MemRead(MemRead_ID), .BrTaken(BrTaken_ID), .Imm12(Imm12_ID),
-		.UncondBr(UncondBr_ID), .SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .BrReg(BrReg_ID), .ALUzero(zero_EX)) ; //raw zero for ALU comes from ex stage
+		.UncondBr(UncondBr_ID), .SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .BrReg(BrReg_ID), .ALUzero(zero_EX), .Db(Db_ID)) ; //raw zero for ALU comes from ex stage
 	
 	//mux to choose if second register is from memory or from instruction
 	mux2_1_Nbits #(.length(5)) Reg2LocMux (.out(Ab_ID), .A(Rd_ID), .B(Rm_ID), .sel(Reg2Loc_ID));
@@ -164,7 +170,11 @@ module cpu (input logic clk, reset);
 	logic UncondBr_EX, BrTaken_EX; 
 	logic [63:0] condOffset_EX, brOffset_EX;
 	
+	logic [4:0] Ab_EX;
 	
+	
+	logic [63:0] PC_plus4_MEM;
+	logic [63:0] PC_plus4_WB;
 	ID_EX_reg ID_EX (.clk(clk), .reset(reset), .RegWrite(RegWrite_ID), .MemWrite(MemWrite_ID), 
 	.MemRead(MemRead_ID), .MemToReg(MemToReg_ID), .UncondBr(UncondBr_ID), .BrTaken(BrTaken_ID), .ALUSrc(ALUSrc_ID), 
 	.SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .Imm12(Imm12_ID), .BrReg(BrReg_ID), 
@@ -175,7 +185,7 @@ module cpu (input logic clk, reset);
 	.BrReg_out(BrReg_EX), .ALUOp_out(ALUOp_EX), .Da_out(Da_EX), .Db_out(Db_EX),
 	.Rn_out(Rn_EX), .Rm_out(Rm_EX), .Rd_out(Rd_EX),.imm9_out(imm9_EX), .imm12_out(imm12_EX), 
 	.PC_plus4_out(PC_plus4_EX), .UncondBr_out(UncondBr_EX), .BrTaken_out(BrTaken_EX), .condOffset_out(condOffset_EX), 
-	.brOffset_out(brOffset_EX));
+	.brOffset_out(brOffset_EX), .Ab(Ab_ID), .Ab_out(Ab_EX), .currentPC(currentPC_ID), .currentPC_out(currentPC_EX));
 	
 	//execute stage
 	
@@ -192,7 +202,7 @@ module cpu (input logic clk, reset);
 	
 	logic RegWrite_MEM;
 	logic [1:0] ForwardA, ForwardB;
-	forwarding_unit FU (.Rn_EX(Rn_EX), .Ab_EX(Rm_EX), .Rd_MEM(Rd_MEM), .Rd_WB(Rd_WB), .RegWrite_MEM(RegWrite_MEM),
+	forwarding_unit FU (.Rn_EX(Rn_EX), .Ab_EX(Ab_EX), .Rd_MEM(Rd_MEM), .Rd_WB(Rd_WB), .RegWrite_MEM(RegWrite_MEM),
 		.RegWrite_WB(RegWrite_WB), .ForwardA(ForwardA), .ForwardB(ForwardB));
 	
 	logic [63:0] ForwardA_out, ForwardB_out;
@@ -224,7 +234,8 @@ module cpu (input logic clk, reset);
 	EX_MEM_reg EX_MEM (.clk(clk), .reset(reset), .RegWrite(RegWrite_EX), .MemWrite(MemWrite_EX), .MemRead(MemRead_EX), .MemToReg(MemToReg_EX), .BrLink(BrLink_EX), .BrTaken(BrTaken_EX), .BrReg(BrReg_EX), .branchedAddr(branchedAddr_EX),
 		.ALU_operation(ALUOut_EX), .Db(ForwardB_out), .Rd(WriteReg_EX), .setFlags(SetFlags_EX), .negative(negative_EX), .zero(zero_EX), .overflow(overflow_EX), .carry_out(carry_out_EX), .BrRegAddr(ForwardB_out), .RegWrite_out(RegWrite_MEM), .MemWrite_out(MemWrite_MEM), 
 		.MemRead_out(MemRead_MEM), .MemToReg_out(MemToReg_MEM), .BrLink_out(BrLink_MEM), .BrReg_out(BrReg_MEM), .ALU_operation_out(ALUOut_MEM), .Db_out(Db_MEM), .Rd_out(Rd_MEM), .setFlags_out(SetFlags_MEM), .negative_out(negative_MEM), 
-		.zero_out(zero_MEM), .overflow_out(overflow_MEM), .carry_out_out(carry_out_MEM), .BrTaken_out(BrTaken_MEM), .branchedAddr_out(branchedAddr_MEM), .BrRegAddr_out(BrRegAddr_MEM));
+		.zero_out(zero_MEM), .overflow_out(overflow_MEM), .carry_out_out(carry_out_MEM), .BrTaken_out(BrTaken_MEM), .branchedAddr_out(branchedAddr_MEM), .BrRegAddr_out(BrRegAddr_MEM),
+		.PC_plus4(PC_plus4_EX), .PC_plus4_out(PC_plus4_MEM));
 	
 
 	
@@ -242,14 +253,20 @@ module cpu (input logic clk, reset);
 	logic MemToReg_WB, BrLink_WB;
 	logic [63:0] ALUOut_WB, DataMem_WB; 
 	MEM_WB_reg MEM_WB (.clk(clk), .reset(reset), .RegWrite(RegWrite_MEM), .MemToReg(MemToReg_MEM), .BrLink(BrLink_MEM), .ALU_operation(ALUOut_MEM), .dataMem(Dout_MEM), .Rd(Rd_MEM),
-	.RegWrite_out(RegWrite_WB), .MemToReg_out(MemToReg_WB), .BrLink_out(BrLink_WB), .ALU_operation_out(ALUOut_WB), .dataMem_out(DataMem_WB), .Rd_out(Rd_WB));
+	.RegWrite_out(RegWrite_WB), .MemToReg_out(MemToReg_WB), .BrLink_out(BrLink_WB), .ALU_operation_out(ALUOut_WB), .dataMem_out(DataMem_WB), .Rd_out(Rd_WB),
+	.PC_plus4(PC_plus4_MEM), .PC_plus4_out(PC_plus4_WB));
 	
 	
 	
 	
 	
 	//wb stage
-	mux2_1_Nbits #(.length(64)) MemToRegMux (.out(Dw_WB), .A(ALUOut_WB), .B(DataMem_WB), .sel(MemToReg_WB));
+//	mux2_1_Nbits #(.length(64)) MemToRegMux (.out(Dw_WB), .A(ALUOut_WB), .B(DataMem_WB), .sel(MemToReg_WB));
+	
+	logic [63:0] ALUOrMem_WB;
+	mux2_1_Nbits #(.length(64)) MemToRegMux (.out(ALUOrMem_WB), .A(ALUOut_WB), .B(DataMem_WB), .sel(MemToReg_WB));
+	mux2_1_Nbits #(.length(64)) BrLinkWBMux (.out(Dw_WB), .A(ALUOrMem_WB), .B(PC_plus4_WB), .sel(BrLink_WB));
+	
 	
 	//use mem stage flags to create saved flags 
 	flag_register FR (.clk(clk), .reset(reset), .enable(SetFlags_MEM), 
@@ -273,7 +290,7 @@ module cpu_testbench();
 	
 	int i;
 	initial begin
-		reset = 1; @(posedge clk); repeat(8);
+		reset = 1; repeat(8) @(posedge clk);
 		reset = 0; @(posedge clk);
 		for (i = 0; i < 1000; i++) begin
 			@(posedge clk);

@@ -4,10 +4,13 @@ module MEM_WB_reg (
 	input logic [63:0] ALU_operation,
 	input logic [63:0] dataMem, // data memory output
 	input logic [4:0] Rd,
+	input logic [63:0] PC_plus4,
 	output logic RegWrite_out, MemToReg_out, BrLink_out,
 	output logic [63:0] ALU_operation_out,
 	output logic [63:0] dataMem_out,
-	output logic [4:0] Rd_out
+	output logic [4:0] Rd_out,
+	output logic [63:0] PC_plus4_out
+
 );
 
 	D_FF RegWrite_DFF (.d(RegWrite), .q(RegWrite_out), .clk(clk), .reset(reset));
@@ -17,5 +20,6 @@ module MEM_WB_reg (
 	DFFs #(.N(64)) ALU_Operation_DFFs 	(.d(ALU_operation), .q(ALU_operation_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) DataMem_DFFs (.d(dataMem), .q(dataMem_out), .clk(clk), .reset(reset));
 	DFFs #(.N(5))	Rd_DFFs	(.d(Rd), .q(Rd_out), .clk(clk), .reset(reset));
+	DFFs #(.N(64)) PC_plus4_DFFs 	(.d(PC_plus4), .q(PC_plus4_out), .clk(clk), .reset(reset));
 	
 endmodule
