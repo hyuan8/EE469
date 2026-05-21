@@ -1,10 +1,12 @@
+`timescale 1ns/10ps
+
 module ID_EX_reg (
 	input logic clk, reset,
 	input logic RegWrite, MemWrite, MemRead, MemToReg, UncondBr, BrTaken, 
 	input logic ALUSrc, SetFlags, BrLink, Imm12, BrReg,
 	input logic [2:0] ALUOp,
 	input logic [63:0] Da, Db,
-	input logic [4:0] Rn, Rm, Rd,
+	input logic [4:0] Rn, Rm, Rd, Ab,
 	input logic [63:0] imm9, imm12,
 	input logic [63:0] PC_plus4,
 	input logic [63:0] condOffset, brOffset,
@@ -12,13 +14,17 @@ module ID_EX_reg (
 	output logic ALUSrc_out, SetFlags_out, BrLink_out, Imm12_out, BrReg_out,
 	output logic [2:0] ALUOp_out,
 	output logic [63:0] Da_out, Db_out,
-	output logic [4:0] Rn_out, Rm_out, Rd_out,
+	output logic [4:0] Rn_out, Rm_out, Rd_out, Ab_out,
 	output logic [63:0] imm9_out, imm12_out,
 	output logic [63:0] PC_plus4_out,
-	output logic UncondBr_out, BrTaken_out
-	output logic [63:0] condOffset_out, brOffset_out
+	output logic UncondBr_out, BrTaken_out,
+	output logic [63:0] condOffset_out, brOffset_out,
+	
+	input logic [63:0] currentPC,
+	output logic [63:0] currentPC_out
 	
 );
+
 
 	D_FF RegWrite_DFF (.d(RegWrite), .q(RegWrite_out), .clk(clk), .reset(reset));
 	D_FF MemWrite_DFF (.d(MemWrite), .q(MemWrite_out), .clk(clk), .reset(reset));
@@ -39,6 +45,7 @@ module ID_EX_reg (
 	
 	DFFs #(.N(64)) Da_DFFs 	(.d(Da), .q(Da_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) Db_DFFs 	(.d(Db), .q(Db_out), .clk(clk), .reset(reset));
+	DFFs #(.N(5)) 	Ab_DFFs 	(.d(Ab), .q(Ab_out), .clk(clk), .reset(reset));
 	DFFs #(.N(5)) 	Rn_DFFs	(.d(Rn), .q(Rn_out), .clk(clk), .reset(reset));
 	DFFs #(.N(5))	Rm_DFFs	(.d(Rm), .q(Rm_out), .clk(clk), .reset(reset));
 	DFFs #(.N(5))	Rd_DFFs	(.d(Rd), .q(Rd_out), .clk(clk), .reset(reset));
@@ -49,6 +56,8 @@ module ID_EX_reg (
 	DFFs #(.N(64)) PC_plus4_DFFs		(.d(PC_plus4), .q(PC_plus4_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) cond_offset_DFFs	(.d(condOffset), .q(condOffset_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) brOffset_DFFs		(.d(brOffset), .q(brOffset_out), .clk(clk), .reset(reset));
+	DFFs #(.N(64)) currentPC_DFFs (.d(currentPC), .q(currentPC_out), .clk(clk), .reset(reset));
+
 
 
 	

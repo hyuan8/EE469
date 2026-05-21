@@ -40,6 +40,7 @@ module mux4_1(i, sel, out);
 	
 endmodule
 
+
 // This is a 8x1 multiplexer.
 module mux8_1(i, sel, out);
 
@@ -110,6 +111,21 @@ module mux2_1_Nbits #(parameter length = 1) (out, A, B, sel);
 	generate
 		for (i = 0; i < length; i = i + 1) begin : gen_muxes
 			mux2_1 bitwise_mux (.out(out[i]), .i({B[i], A[i]}), .sel(sel));
+		end
+	endgenerate
+
+endmodule
+
+module mux4_1_Nbits #(parameter length = 1) (out, A, B, C, D, sel);
+
+	output logic [length - 1:0] out;
+	input logic [length - 1:0] A, B, C, D;
+	input logic [1:0] sel;
+	
+	genvar i;
+	generate
+		for (i = 0; i < length; i = i + 1) begin : gen_muxes
+			mux4_1 bitwise_mux (.out(out[i]), .i({D[i], C[i], B[i], A[i]}), .sel(sel));
 		end
 	endgenerate
 

@@ -49,10 +49,10 @@ endmodule
 
 module forwarding_unit_tb();
 
-	input logic [4:0] Rn_EX, Ab_EX;		
-	input logic [4:0] Rd_MEM, Rd_WB;		
-	input logic RegWrite_MEM, RegWrite_WB;
-	output logic [1:0] ForwardA, ForwardB;
+	logic [4:0] Rn_EX, Ab_EX;		
+	logic [4:0] Rd_MEM, Rd_WB;		
+	logic RegWrite_MEM, RegWrite_WB;
+	logic [1:0] ForwardA, ForwardB;
 	
 	forwarding_unit dut (.*);
 	
@@ -74,7 +74,7 @@ module forwarding_unit_tb();
 	#10;
 	
 	// Double hazard on A
-	Rn_EX = 5'61; Ab_EX = 5'd2; Rd_MEM = 5'd6; Rd_WB = 5'd6;
+	Rn_EX = 5'd1; Ab_EX = 5'd2; Rd_MEM = 5'd6; Rd_WB = 5'd6;
 	RegWrite_MEM = 1'b1; RegWrite_WB = 1'b1;
 	#10;
 

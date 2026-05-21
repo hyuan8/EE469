@@ -31,6 +31,7 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
 		end
 	endgenerate
 	
+	logic [63:0] internal_ReadData1, internal_ReadData2;
 	// Instantiate the muxes to manage data being read.
 	genvar k;
 	genvar m;
@@ -43,10 +44,17 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
 			for (m = 0; m < 32; m++) begin : buildColumns
 				assign column[m] = q[m][k];
 			end
-			mux32_1 mux1 (.out(ReadData1[k]), .i(column), .sel(ReadRegister1)); // mux for read1
-			mux32_1 mux2 (.out(ReadData2[k]), .i(column), .sel(ReadRegister2)); // mux for read2
+			mux32_1 mux1 (.out(internal_ReadData1[k]), .i(column), .sel(ReadRegister1)); // mux for read1
+			mux32_1 mux2 (.out(internal_ReadData2[k]), .i(column), .sel(ReadRegister2)); // mux for read2
 		end
 	endgenerate
+
+	logic Forward1, Forward2;
+	assign Forward1 = RegWrite && (WriteRegister == ReadRegister1) && (WriteRegister != 5'd31);
+	assign Forward2 = RegWrite && (WriteRegister == ReadRegister2) && (WriteRegister != 5'd31);
+
+	mux2_1_Nbits #(.length(64)) bypassMux1 (.out(ReadData1), .A(internal_ReadData1), .B(WriteData), .sel(Forward1));
+	mux2_1_Nbits #(.length(64)) bypassMux2 (.out(ReadData2), .A(internal_ReadData2), .B(WriteData), .sel(Forward2));
 		
 endmodule
 

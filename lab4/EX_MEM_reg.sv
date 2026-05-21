@@ -1,6 +1,6 @@
 module EX_MEM_reg (
 	input logic clk, reset,
-	input logic RegWrite, MemWrite, MemRead, MemToReg, BrLink, BrTaken, BrReg
+	input logic RegWrite, MemWrite, MemRead, MemToReg, BrLink, BrTaken, BrReg,
 	input logic [63:0] branchedAddr,
 	input logic [63:0] ALU_operation,
 	input logic [63:0] Db,
@@ -8,15 +8,16 @@ module EX_MEM_reg (
 	input logic setFlags,
 	input logic negative, zero, overflow, carry_out,
 	input logic [63:0] BrRegAddr, //for only BR
+	input logic [63:0] PC_plus4,
 	output logic RegWrite_out, MemWrite_out, MemRead_out, MemToReg_out, BrLink_out, BrTaken_out, BrReg_out,
 	output logic [63:0] ALU_operation_out,
 	output logic [63:0] Db_out,
 	output logic [4:0] Rd_out,
 	output logic setFlags_out,
 	output logic negative_out, zero_out, overflow_out, carry_out_out,
-	output logic [63:0] branchedAddr_out; 
-	output logic [63:0] BrRegAddr_out; //for only BR
-
+	output logic [63:0] branchedAddr_out,
+	output logic [63:0] BrRegAddr_out, //for only BR
+	output logic [63:0] PC_plus4_out
 	
 );
 
@@ -29,9 +30,10 @@ module EX_MEM_reg (
 	D_FF BrReg_DFF 	(.d(BrReg), 	.q(BrReg_out), 	.clk(clk), .reset(reset));
 
 	
-	DFFs #(.N(64)) BrRegAddr_DFFs 	(.d(BrRegAddr), .q(BrRegAddr_out), .clk(clk), .reset(reset));
+	DFFs #(.N(64)) BrRegAddr_DFFs 		(.d(BrRegAddr), .q(BrRegAddr_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) branchedAddr_DFFs 	(.d(branchedAddr), .q(branchedAddr_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) ALU_Operation_DFFs 	(.d(ALU_operation), .q(ALU_operation_out), .clk(clk), .reset(reset));
+	DFFs #(.N(64)) PC_plus4_DFFs 	(.d(PC_plus4), .q(PC_plus4_out), .clk(clk), .reset(reset));
 	DFFs #(.N(64)) Db_DFFs 	(.d(Db), .q(Db_out), .clk(clk), .reset(reset));
 	DFFs #(.N(5))	Rd_DFFs	(.d(Rd), .q(Rd_out), .clk(clk), .reset(reset));
 	
