@@ -103,7 +103,7 @@ module cpu (input logic clk, reset);
 	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .B(branchedAddr_EX), .A(PC_plus4_IF), .sel(BrTaken_EX));
 	
 	// BrReg Mux: selects next PC from the immediate branch PC or the register value for BR
-	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(ForwardB_Out), .sel(BrReg_EX));
+	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(ForwardB_out), .sel(BrReg_EX));
 	
 	logic flush;
 	or #0.05 fl (flush, BrTaken_EX, BrReg_EX);
@@ -139,8 +139,10 @@ module cpu (input logic clk, reset);
 	assign Rm_ID = instruction_ID[20:16];
 	assign Rn_ID = instruction_ID[9:5];
 		
-	control CTL (.instruction(instruction_ID), .negative(neg_reg), .zero(zero_reg), .overflow(ov_reg),
-		.carry_out(co_reg), .ALUOp(ALUOp_ID), .Reg2Loc(Reg2Loc_ID), .ALUSrc(ALUSrc_ID), .MemToReg(MemToReg_ID),
+	logic forward_neg, forward_zero, forward_ov, forward_co;
+
+	control CTL (.instruction(instruction_ID), .negative(forward_neg), .zero(forward_zero), .overflow(forward_ov),
+		.carry_out(forward_co), .ALUOp(ALUOp_ID), .Reg2Loc(Reg2Loc_ID), .ALUSrc(ALUSrc_ID), .MemToReg(MemToReg_ID),
 		.RegWrite(RegWrite_ID), .MemWrite(MemWrite_ID), .MemRead(MemRead_ID), .BrTaken(BrTaken_ID), .Imm12(Imm12_ID),
 		.UncondBr(UncondBr_ID), .SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .BrReg(BrReg_ID), .ALUzero(zero_EX), .Db(Db_ID)) ; //raw zero for ALU comes from ex stage
 	
@@ -277,6 +279,11 @@ module cpu (input logic clk, reset);
 		.negative(negative_MEM), .zero(zero_MEM), .overflow(overflow_MEM), .carry_out(carry_out_MEM), 
 		.negative_out(neg_reg), .zero_out(zero_reg), .overflow_out(ov_reg), .carry_out_out(co_reg));
 		
+	mux2_1 negMux 	(.out(forward_neg), 	.i({negative_EX, neg_reg}), 	.sel(SetFlags_EX));
+	mux2_1 zeroMux (.out(forward_zero), .i({zero_EX, zero_reg}), 		.sel(SetFlags_EX));
+	mux2_1 ovMux 	(.out(forward_ov), 	.i({overflow_EX, ov_reg}), 	.sel(SetFlags_EX));
+	mux2_1 coMux 	(.out(forward_co), 	.i({carry_out_EX, co_reg}), 	.sel(SetFlags_EX));
+		
 endmodule
 	
 
@@ -296,7 +303,7 @@ module cpu_testbench();
 	initial begin
 		reset = 1; repeat(8) @(posedge clk);
 		reset = 0; @(posedge clk);
-		for (i = 0; i < 300; i++) begin
+		for (i = 0; i < 700; i++) begin
 			@(posedge clk);
 		end
 		$stop;
