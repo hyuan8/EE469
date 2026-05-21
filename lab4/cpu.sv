@@ -96,13 +96,17 @@ module cpu (input logic clk, reset);
 	logic [63:0] branchedAddr_MEM;
 	logic [63:0] BrRegAddr_MEM;
 	logic [63:0] immBranchPC; // PC from immediate branch
-	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .B(branchedAddr_MEM), .A(PC_plus4_IF), .sel(BrTaken_MEM));
+	
+	logic [63:0] ForwardA_out, ForwardB_out;
+	logic BrTaken_EX, BrReg_EX;
+	logic [63:0] branchedAddr_EX;
+	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .B(branchedAddr_EX), .A(PC_plus4_IF), .sel(BrTaken_EX));
 	
 	// BrReg Mux: selects next PC from the immediate branch PC or the register value for BR
-	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(BrRegAddr_MEM), .sel(BrReg_MEM));
+	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(ForwardB_Out), .sel(BrReg_EX));
 	
 	logic flush;
-	or #0.05 fl (flush, BrTaken_MEM, BrReg_MEM);
+	or #0.05 fl (flush, BrTaken_EX, BrReg_EX);
 	
 	//if/id reg
 	logic [31:0] instruction_ID;
@@ -159,7 +163,7 @@ module cpu (input logic clk, reset);
 	
 	//id/ex reg
 	logic RegWrite_EX, MemWrite_EX, MemRead_EX, MemToReg_EX;
-	logic ALUSrc_EX, SetFlags_EX, BrLink_EX, Imm12_EX, BrReg_EX;
+	logic ALUSrc_EX, SetFlags_EX, BrLink_EX, Imm12_EX;
 	logic [2:0] ALUOp_EX;
 	logic [63:0] Da_EX, Db_EX;
 	logic [4:0] Rn_EX, Rm_EX, Rd_EX;
@@ -167,7 +171,7 @@ module cpu (input logic clk, reset);
 	
 	logic [4:0] Aw_WB;
 
-	logic UncondBr_EX, BrTaken_EX; 
+	logic UncondBr_EX;
 	logic [63:0] condOffset_EX, brOffset_EX;
 	
 	logic [4:0] Ab_EX;
@@ -189,13 +193,13 @@ module cpu (input logic clk, reset);
 	
 	//execute stage
 	
-	logic [63:0] brAddr_EX, shiftedAddr_EX, branchedAddr_EX;
+	logic [63:0] brAddr_EX, shiftedAddr_EX;
 	logic [4:0] WriteReg_EX;
 
 	//
 	mux2_1_Nbits #(.length(64)) UncondBrMux (.out(brAddr_EX), .A(condOffset_EX), .B(brOffset_EX), .sel(UncondBr_EX));
 	shifter shift2 (.value(brAddr_EX), .direction(1'b0), .distance(6'd2), .result(shiftedAddr_EX));
-	full_adder_64bits branchAddr (.S(branchedAddr_EX), .A(PC_plus4_EX), .B(shiftedAddr_EX), .Cin(1'b0), .Cout());
+	full_adder_64bits branchAddr (.S(branchedAddr_EX), .A(currentPC_EX), .B(shiftedAddr_EX), .Cin(1'b0), .Cout());
 
 	logic [63:0] final_imm_EX;
 	mux2_1_Nbits #(.length(64)) FinalImmMux (.out(final_imm_EX), .A(imm9_EX), .B(imm12_EX), .sel(Imm12_EX));
@@ -205,7 +209,7 @@ module cpu (input logic clk, reset);
 	forwarding_unit FU (.Rn_EX(Rn_EX), .Ab_EX(Ab_EX), .Rd_MEM(Rd_MEM), .Rd_WB(Rd_WB), .RegWrite_MEM(RegWrite_MEM),
 		.RegWrite_WB(RegWrite_WB), .ForwardA(ForwardA), .ForwardB(ForwardB));
 	
-	logic [63:0] ForwardA_out, ForwardB_out;
+	
 	logic [63:0] ALUOut_MEM;
 	mux4_1_Nbits #(.length(64)) ForwardAMux (.out(ForwardA_out), .A(Da_EX), .B(ALUOut_MEM), .C(Dw_WB), .D(64'd0), .sel(ForwardA));
 	mux4_1_Nbits #(.length(64)) ForwardBMux (.out(ForwardB_out), .A(Db_EX), .B(ALUOut_MEM), .C(Dw_WB), .D(64'd0), .sel(ForwardB));
