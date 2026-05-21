@@ -1,6 +1,6 @@
 module EX_MEM_reg (
 	input logic clk, reset,
-	input logic RegWrite, MemWrite, MemRead, MemToReg, BrLink, BrTaken, BrReg
+	input logic RegWrite, MemWrite, MemRead, MemToReg, BrLink, BrTaken, BrReg,
 	input logic [63:0] branchedAddr,
 	input logic [63:0] ALU_operation,
 	input logic [63:0] Db,
@@ -14,8 +14,8 @@ module EX_MEM_reg (
 	output logic [4:0] Rd_out,
 	output logic setFlags_out,
 	output logic negative_out, zero_out, overflow_out, carry_out_out,
-	output logic [63:0] branchedAddr_out; 
-	output logic [63:0] BrRegAddr_out; //for only BR
+	output logic [63:0] branchedAddr_out,
+	output logic [63:0] BrRegAddr_out //for only BR
 
 	
 );

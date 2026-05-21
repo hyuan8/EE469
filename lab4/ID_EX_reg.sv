@@ -15,7 +15,7 @@ module ID_EX_reg (
 	output logic [4:0] Rn_out, Rm_out, Rd_out,
 	output logic [63:0] imm9_out, imm12_out,
 	output logic [63:0] PC_plus4_out,
-	output logic UncondBr_out, BrTaken_out
+	output logic UncondBr_out, BrTaken_out,
 	output logic [63:0] condOffset_out, brOffset_out
 	
 );

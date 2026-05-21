@@ -95,15 +95,10 @@ module cpu (input logic clk, reset);
 	// BrReg Mux: selects next PC from the immediate branch PC or the register value for BR
 	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(BrRegAddr_MEM), .sel(BrReg_MEM));
 	
-	
- 
 	//if/id reg
 	logic [31:0] instruction_ID;
 	logic [63:0] PC_plus4_ID;
 	IF_ID_reg IF_ID (.clk(clk), .reset(reset), .instruction(instruction_IF), .PC(PC_plus4_IF), .instruction_out(instruction_ID), .PC_out(PC_plus4_ID));
-	
-	
-	
 	
 	//instruction decode
 	logic [2:0] ALUOp_ID;
@@ -112,7 +107,6 @@ module cpu (input logic clk, reset);
 	logic BrLink_ID, BrReg_ID, Imm12_ID;
 	logic [63:0] condOffset_ID, brOffset_ID;
 
-	
 	logic [4:0] Rd_ID, Rm_ID, Rn_ID;
 	logic [63:0] Da_ID, Db_ID;
 	logic [4:0] Ab_ID;
@@ -133,7 +127,6 @@ module cpu (input logic clk, reset);
 		.RegWrite(RegWrite_ID), .MemWrite(MemWrite_ID), .MemRead(MemRead_ID), .BrTaken(BrTaken_ID), .Imm12(Imm12_ID),
 		.UncondBr(UncondBr_ID), .SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .BrReg(BrReg_ID), .ALUzero(zero_EX)) ; //raw zero for ALU comes from ex stage
 	
-	
 	//mux to choose if second register is from memory or from instruction
 	mux2_1_Nbits #(.length(5)) Reg2LocMux (.out(Ab_ID), .A(Rd_ID), .B(Rm_ID), .sel(Reg2Loc_ID));
 	
@@ -142,18 +135,13 @@ module cpu (input logic clk, reset);
 	sign_extender #(.length(9)) extender9 (.in(instruction_ID[20:12]), .out(imm9_ID));
 	zero_extender #(.length(12)) extender12 (.in(instruction_ID[21:10]), .out(imm12_ID));
 	
-	
 	// condOffset: 64-bits for CBZ/CBNZ instructions
 	// brOffset: 64-bits for B/BL instructions
 	sign_extender #(.length(19)) extender1 (.in(instruction_ID[23:5]), .out(condOffset_ID));
 	sign_extender #(.length(26)) extender2 (.in(instruction_ID[25:0]), .out(brOffset_ID));
 	
-	
 	regfile register (.ReadData1(Da_ID), .ReadData2(Db_ID), .WriteData(Dw_WB), 
 				.ReadRegister1(Rn_ID), .ReadRegister2(Ab_ID), .WriteRegister(Rd_WB), .RegWrite(RegWrite_WB), .clk(clk));
-	
-	
-	
 	
 	//id/ex reg
 	logic RegWrite_EX, MemWrite_EX, MemRead_EX, MemToReg_EX;
@@ -178,11 +166,6 @@ module cpu (input logic clk, reset);
 	.PC_plus4_out(PC_plus4_EX), .UncondBr_out(UncondBr_EX), .BrTaken_out(BrTaken_EX), .condOffset_out(condOffset_EX), 
 	.brOffset_out(brOffset_EX));
 	
-	
-	
-	
-	
-	
 	//execute stage
 	logic UncondBr_EX, BrTaken_EX; 
 	logic [63:0] condOffset_EX, brOffset_EX;
@@ -194,27 +177,27 @@ module cpu (input logic clk, reset);
 	shifter shift2 (.value(brAddr_EX), .direction(1'b0), .distance(6'd2), .result(shiftedAddr_EX));
 	full_adder_64bits branchAddr (.S(branchedAddr_EX), .A(PC_plus4_EX), .B(shiftedAddr_EX), .Cin(1'b0), .Cout());
 
-	
 	logic [63:0] final_imm_EX;
 	mux2_1_Nbits #(.length(64)) FinalImmMux (.out(final_imm_EX), .A(imm9_EX), .B(imm12_EX), .sel(Imm12_EX));
-
+	
+	logic [1:0] ForwardA, ForwardB;
+	forwarding_unit FU (.Rn_EX(Rn_EX), .Ab_EX(Rm_EX), .Rd_MEM(Rd_MEM), .Rd_WB(Rd_WB), .RegWrite_MEM(RegWrite_MEM),
+		.RegWrite_WB(RegWrite_WB), .ForwardA(ForwardA), .ForwardB(ForwardB));
+	
+	logic [63:0] ForwardA_out, ForwardB_out;
+	mux4_1_Nbits #(.length(64)) ForwardAMux (.out(ForwardA_out), .A(Da_EX), .B(ALUOut_MEM), .C(Dw_WB), .D(64'd0), .sel(ForwardA));
+	mux4_1_Nbits #(.length(64)) ForwardBMux (.out(ForwardB_out), .A(Db_EX), .B(ALUOut_MEM), .C(Dw_WB), .D(64'd0), .sel(ForwardB));
+	
 	// ALUSrc Mux: selects ALUB input
 	logic [63:0] ALUB_EX; // second ALU input
-	mux2_1_Nbits #(.length(64)) ALUSrcMux (.out(ALUB_EX), .A(Db_EX), .B(final_imm_EX), .sel(ALUSrc_EX));
+	mux2_1_Nbits #(.length(64)) ALUSrcMux (.out(ALUB_EX), .A(ForwardB_out), .B(final_imm_EX), .sel(ALUSrc_EX));
 	
-	// Instantiates ALU
-	logic [63:0] ALUOut_EX; // ALU output
+	logic [63:0] ALUOut_EX;
 	logic negative_EX, zero_EX, overflow_EX, carry_out_EX;
-	alu ALU (.A(Da_EX), .B(ALUB_EX), .cntrl(ALUOp_EX), .result(ALUOut_EX), .negative(negative_EX), .zero(zero_EX), .overflow(overflow_EX), .carry_out(carry_out_EX));
+	alu ALU (.A(ForwardA_out), .B(ALUB_EX), .cntrl(ALUOp_EX), .result(ALUOut_EX), .negative(negative_EX), .zero(zero_EX), .overflow(overflow_EX), .carry_out(carry_out_EX));
 	
 	//BrLink mux to choose which register to write to if BrLink is true
 	mux2_1_Nbits #(.length(5)) BrLinkRegMux (.out(WriteReg_EX), .A(Rd_EX), .B(5'd30), .sel(BrLink_EX));
-	
-	
-	
-	
-	
-	
 	
 	//ex/mem reg
 	logic RegWrite_MEM, MemWrite_MEM, MemRead_MEM, MemToReg_MEM, BrLink_MEM, BrTaken_MEM, BrReg_MEM;
@@ -229,8 +212,8 @@ module cpu (input logic clk, reset);
 	
 	
 	EX_MEM_reg EX_MEM (.clk(clk), .reset(reset), .RegWrite(RegWrite_EX), .MemWrite(MemWrite_EX), .MemRead(MemRead_EX), .MemToReg(MemToReg_EX), .BrLink(BrLink_EX), .BrTaken(BrTaken_EX), .BrReg(BrReg_EX), .branchedAddr(branchedAddr_EX),
-		.ALU_operation(ALUOut_EX), .Db(Db_EX), .Rd(WriteReg_EX), .setFlags(SetFlags_EX), .negative(negative_EX), .zero(zero_EX), .overflow(overflow_EX), .carry_out(carry_out_EX), .BrRegAddr(Db_EX), .RegWrite_out(RegWrite_MEM), .MemWrite_out(MemWrite_MEM), 
-		.MemRead_out(MemRead_MEM), .MemToReg_out(MemToReg_MEM), .BrLink_out(BrLink_MEM), .BrReg_out(BrReg_MEM).ALU_operation_out(ALUOut_MEM), .Db_out(Db_MEM), .Rd_out(Rd_MEM), .setFlags_out(SetFlags_MEM), .negative_out(negative_MEM), 
+		.ALU_operation(ALUOut_EX), .Db(ForwardB_out), .Rd(WriteReg_EX), .setFlags(SetFlags_EX), .negative(negative_EX), .zero(zero_EX), .overflow(overflow_EX), .carry_out(carry_out_EX), .BrRegAddr(ForwardB_out), .RegWrite_out(RegWrite_MEM), .MemWrite_out(MemWrite_MEM), 
+		.MemRead_out(MemRead_MEM), .MemToReg_out(MemToReg_MEM), .BrLink_out(BrLink_MEM), .BrReg_out(BrReg_MEM), .ALU_operation_out(ALUOut_MEM), .Db_out(Db_MEM), .Rd_out(Rd_MEM), .setFlags_out(SetFlags_MEM), .negative_out(negative_MEM), 
 		.zero_out(zero_MEM), .overflow_out(overflow_MEM), .carry_out_out(carry_out_MEM), .BrTaken_out(BrTaken_MEM), .branchedAddr_out(branchedAddr_MEM), .BrRegAddr_out(BrRegAddr_MEM));
 	
 
