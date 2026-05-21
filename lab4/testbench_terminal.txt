@@ -65,4 +65,4 @@ add wave -noupdate -divider {Registers}
 add wave -noupdate -color {Sky Blue} -radix dec /cpu_testbench/dut/register/q
 
 add wave -noupdate -divider {Memory}
-add wave -noupdate -hex /cpu_testbench/dut/DP/DataMemory/mem
+add wave -noupdate -hex /cpu_testbench/dut/DataMemory/mem

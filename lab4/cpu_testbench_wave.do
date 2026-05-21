@@ -34,10 +34,12 @@ add wave -noupdate -divider {Writeback (WB)}
 add wave -noupdate /cpu_testbench/dut/RegWrite_WB
 add wave -noupdate -radix unsigned /cpu_testbench/dut/Rd_WB
 add wave -noupdate -color Green -radix hexadecimal /cpu_testbench/dut/Dw_WB
-add wave -noupdate -divider {Register File State}
+add wave -noupdate -divider Registers
 add wave -noupdate -color {Sky Blue} -radix decimal /cpu_testbench/dut/register/q
+add wave -noupdate -divider Memory
+add wave -noupdate -radix hexadecimal /cpu_testbench/dut/DataMemory/mem
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {6717829883 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1576646515 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 385
