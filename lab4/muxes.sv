@@ -101,6 +101,7 @@ module mux32_1(i, sel, out);
 	
 endmodule
 
+// Builds a 2x1 multiplexer that takes in 2 N-bit inputs and returns an N-bit output.
 module mux2_1_Nbits #(parameter length = 1) (out, A, B, sel);
 
 	output logic [length - 1:0] out;
@@ -116,6 +117,7 @@ module mux2_1_Nbits #(parameter length = 1) (out, A, B, sel);
 
 endmodule
 
+// Builds a 4x1 multiplexer that takes in 4 N-bit inputs and returns an N-bit output.
 module mux4_1_Nbits #(parameter length = 1) (out, A, B, C, D, sel);
 
 	output logic [length - 1:0] out;

@@ -1,5 +1,6 @@
 `timescale 1ns/10ps
 
+// IF/ID Pipeline Register holds values from IF and passes them to the ID stage
 module IF_ID_reg (
 	input logic clk, reset, flush,
 	input logic [31:0] instruction,
@@ -11,12 +12,12 @@ module IF_ID_reg (
 	output logic [63:0] currentPC_out
 );
 	
+	// Zeros out pipeline
 	logic flushOrReset;
 	or #0.05 or0 (flushOrReset, reset, flush);
 	
-	DFFs #(.N(32)) instruction_DFFs (.d(instruction), .q(instruction_out), .clk(clk), .reset(flushOrReset));
-	DFFs #(.N(64)) PC_DFFs (.d(PC), .q(PC_out), .clk(clk), .reset(flushOrReset));
-	DFFs #(.N(64)) currentPC_DFFs (.d(currentPC), .q(currentPC_out), .clk(clk), .reset(flushOrReset));
-
+	DFFs #(.N(32)) instruction_DFFs 	(.d(instruction), .q(instruction_out), .clk(clk), .reset(flushOrReset));
+	DFFs #(.N(64)) PC_DFFs 				(.d(PC), 			.q(PC_out), 			.clk(clk), .reset(flushOrReset));
+	DFFs #(.N(64)) currentPC_DFFs 	(.d(currentPC), 	.q(currentPC_out), 	.clk(clk), .reset(flushOrReset));
 	
 endmodule

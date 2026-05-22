@@ -1,3 +1,6 @@
+`timescale 1ns/10ps
+
+// EX/MEM Pipeline Register holds values from EX and passes them to the MEM stage
 module EX_MEM_reg (
 	input logic clk, reset,
 	input logic RegWrite, MemWrite, MemRead, MemToReg, BrLink, BrTaken, BrReg,
@@ -21,6 +24,7 @@ module EX_MEM_reg (
 	
 );
 
+	// Control unit signals
 	D_FF RegWrite_DFF (.d(RegWrite), .q(RegWrite_out), .clk(clk), .reset(reset));
 	D_FF MemWrite_DFF (.d(MemWrite), .q(MemWrite_out), .clk(clk), .reset(reset));
 	D_FF MemRead_DFF 	(.d(MemRead), 	.q(MemRead_out), 	.clk(clk), .reset(reset));
@@ -29,16 +33,22 @@ module EX_MEM_reg (
 	D_FF BrTaken_DFF 	(.d(BrTaken), 	.q(BrTaken_out), 	.clk(clk), .reset(reset));
 	D_FF BrReg_DFF 	(.d(BrReg), 	.q(BrReg_out), 	.clk(clk), .reset(reset));
 
+	// Branch addresses
+	DFFs #(.N(64)) BrRegAddr_DFFs 		(.d(BrRegAddr), 		.q(BrRegAddr_out), 		.clk(clk), .reset(reset));
+	DFFs #(.N(64)) branchedAddr_DFFs 	(.d(branchedAddr), 	.q(branchedAddr_out), 	.clk(clk), .reset(reset));
 	
-	DFFs #(.N(64)) BrRegAddr_DFFs 		(.d(BrRegAddr), .q(BrRegAddr_out), .clk(clk), .reset(reset));
-	DFFs #(.N(64)) branchedAddr_DFFs 	(.d(branchedAddr), .q(branchedAddr_out), .clk(clk), .reset(reset));
-	DFFs #(.N(64)) ALU_Operation_DFFs 	(.d(ALU_operation), .q(ALU_operation_out), .clk(clk), .reset(reset));
+	// ALU
+	DFFs #(.N(64)) ALU_Operation_DFFs 	(.d(ALU_operation), 	.q(ALU_operation_out), 	.clk(clk), .reset(reset));
+	
+	// BL return address
 	DFFs #(.N(64)) PC_plus4_DFFs 	(.d(PC_plus4), .q(PC_plus4_out), .clk(clk), .reset(reset));
+	
+	// Datapath values
 	DFFs #(.N(64)) Db_DFFs 	(.d(Db), .q(Db_out), .clk(clk), .reset(reset));
 	DFFs #(.N(5))	Rd_DFFs	(.d(Rd), .q(Rd_out), .clk(clk), .reset(reset));
 	
+	// Flags
 	D_FF setFlags_DFF 	(.d(setFlags), 	.q(setFlags_out), 	.clk(clk), .reset(reset));
-	
 	D_FF negative_DFF 	(.d(negative), 	.q(negative_out), 	.clk(clk), .reset(reset));
 	D_FF zero_DFF 			(.d(zero), 			.q(zero_out), 			.clk(clk), .reset(reset));
 	D_FF overflow_DFF 	(.d(overflow), 	.q(overflow_out), 	.clk(clk), .reset(reset));
