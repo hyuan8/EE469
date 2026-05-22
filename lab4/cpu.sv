@@ -1,82 +1,5 @@
 `timescale 1ns/10ps
 
-/* OLD CPU
-// This module builds the CPU.
-
-	INPUTS:
-	- clk: 		clock
-	- reset: 	reset signal
-
-	OUTPUTS: N/A
-	
-	Signals are read through the instruction mem, whnich reads the .arm files.
-	
-	INTERNAL SIGNALS:
-	- instruction:			32-bit instruction
-	- unbranchedAddr:		unbranched address
-	
-	- ALUOp:			3-bit ALU operation
-	- Reg2Loc: 		selects second register
-	- ALUSrc: 		selects ALUB input
-	- MemToReg:		selects what is written back to the register
-	- RegWrite:		enables writing to the register file
-	- MemWrite:		enables writing to the data memory
-	- MemRead:		enables reading from the data memory
-	- BrTaken:		selects next PC source
-	- UncondBr:		selects which sign-extended offset feeds to the branch adder
-	- SetFlags:		enables flag outputs to be stored
-	- Imm12:			selects which extension to use
-	- BrLink:		signal for BL instruction
-	- BrReg:			signal for BR instruction 
-	- Db:				read data from second register
-	- BrRegAddr:	address of branched register, used in BR instruction 
-	- ALUzero: 		unregistered zero flag for CBZ instruction (BrTaken) 
-*/
-
-//module cpu (
-//	input logic clk, reset
-//);
-//
-//	logic [31:0] instruction;
-//	logic [63:0] unbranchedAddr;
-//	
-//	logic [2:0] ALUOp;
-//	logic ALUSrc, MemToReg, Reg2Loc, RegWrite, MemWrite, MemRead;
-//	
-//	logic negative, zero, overflow, carry_out;
-//	logic	UncondBr, BrTaken, SetFlags;
-//	
-//	logic BrLink, BrReg;
-//	logic [63:0] BrRegAddr;
-//	
-//	logic Imm12;
-//	logic [63:0] Db;
-//
-//	// Registered flags (using DFF w/ enable) - only update when SetFlags=1
-//	logic neg_reg, zero_reg, ov_reg, co_reg;
-//
-//	flag_register FR (.clk(clk), .reset(reset), .enable(SetFlags), 
-//		.negative(negative), .zero(zero), .overflow(overflow), .carry_out(carry_out), 
-//		.negative_out(neg_reg), .zero_out(zero_reg), .overflow_out(overflow_out), .carry_out_out(co_reg));
-//	
-//	// Instantiates instruction fetch
-//	instruction_fetch IF (.UncondBr(UncondBr), .BrTaken(BrTaken), .BrReg(BrReg), .BrRegAddr(BrRegAddr),
-//		.reset(reset), .clk(clk), .instruction(instruction), .unbranchedAddr(unbranchedAddr));
-//		
-//	// Instantiates control unit
-//	control CTL (.instruction(instruction), .negative(neg_reg), .zero(zero_reg), .overflow(ov_reg),
-//		.carry_out(co_reg), .ALUOp(ALUOp), .Reg2Loc(Reg2Loc), .ALUSrc(ALUSrc), .MemToReg(MemToReg),
-//		.RegWrite(RegWrite), .MemWrite(MemWrite), .MemRead(MemRead), .BrTaken(BrTaken), .Imm12(Imm12),
-//		.UncondBr(UncondBr), .SetFlags(SetFlags), .BrLink(BrLink), .BrReg(BrReg), .ALUzero(zero)) ;
-//		
-//	// Instantiates main datapath
-//	datapath DP (.instruction(instruction), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .Mem2Reg(MemToReg), .BrLink(BrLink),
-//		.unbranchAddr(unbranchedAddr), .BrRegAddr(BrRegAddr), .Imm12(Imm12), .Db(Db),
-//		.Reg2Loc(Reg2Loc), .RegWrite(RegWrite), .MemWrite(MemWrite), .MemRead(MemRead), .clk(clk), .reset(reset), 
-//		.XferSize(4'd8), .negative(negative), .zero(zero), .overflow(overflow), .carry_out(carry_out));
-//	
-//endmodule
-
 module cpu (input logic clk, reset);
 	logic [31:0] instruction_IF;
 	logic [63:0] currentPC, PC_plus4_IF, newPC;
@@ -93,10 +16,13 @@ module cpu (input logic clk, reset);
 	logic [63:0] branchedAddr_EX;
 	logic [63:0] ForwardB_out;
 
-	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .B(branchedAddr_EX), .A(PC_plus4_IF), .sel(BrTaken_EX));
+	logic BrTaken_EX2;
+	mux2_1_Nbits #(.length(64)) BrTakenMux (.out(immBranchPC), .B(branchedAddr_EX), .A(PC_plus4_IF), .sel(BrTaken_EX2));
+	
+	
 	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(ForwardB_out), .sel(BrReg_EX));
 
-	or #0.05 fl (flush, BrTaken_EX, BrReg_EX);
+	or #0.05 fl (flush, BrTaken_EX, BrReg_EX, BrTaken_EX_final);
 
 	
 	//if/id reg
@@ -122,11 +48,14 @@ module cpu (input logic clk, reset);
 	logic forward_neg, forward_zero, forward_ov, forward_co;
 	logic negative_EX, zero_EX, overflow_EX, carry_out_EX;
 	logic [63:0] Db_ID;
-
+	logic isCBZ_ID, isCBZ_EX;
+	logic cbz_zero;
+	
 	control CTL (.instruction(instruction_ID), .negative(forward_neg), .zero(forward_zero), .overflow(forward_ov),
 		.carry_out(forward_co), .ALUOp(ALUOp_ID), .Reg2Loc(Reg2Loc_ID), .ALUSrc(ALUSrc_ID), .MemToReg(MemToReg_ID),
 		.RegWrite(RegWrite_ID), .MemWrite(MemWrite_ID), .MemRead(MemRead_ID), .BrTaken(BrTaken_ID), .Imm12(Imm12_ID),
-		.UncondBr(UncondBr_ID), .SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .BrReg(BrReg_ID), .ALUzero(zero_EX), .Db(Db_ID)) ; //raw zero for ALU comes from ex stage
+		.UncondBr(UncondBr_ID), .SetFlags(SetFlags_ID), .BrLink(BrLink_ID), .BrReg(BrReg_ID), .ALUzero(zero_EX), .Db(Db_ID),
+		.isCBZ(isCBZ_ID)); //raw zero for ALU comes from ex stage
 	
 	
 	//mux to choose if second register is from memory or from instruction
@@ -174,7 +103,8 @@ module cpu (input logic clk, reset);
 	.BrReg_out(BrReg_EX), .ALUOp_out(ALUOp_EX), .Da_out(Da_EX), .Db_out(Db_EX),
 	.Rn_out(Rn_EX), .Rm_out(Rm_EX), .Rd_out(Rd_EX),.imm9_out(imm9_EX), .imm12_out(imm12_EX), 
 	.PC_plus4_out(PC_plus4_EX), .UncondBr_out(UncondBr_EX), .BrTaken_out(BrTaken_EX), .condOffset_out(condOffset_EX), 
-	.brOffset_out(brOffset_EX), .Ab(Ab_ID), .Ab_out(Ab_EX), .currentPC(currentPC_ID), .currentPC_out(currentPC_EX));
+	.brOffset_out(brOffset_EX), .Ab(Ab_ID), .Ab_out(Ab_EX), .currentPC(currentPC_ID), .currentPC_out(currentPC_EX),
+	.isCBZ(isCBZ_ID), .isCBZ_out(isCBZ_EX));
 	
 	
 
@@ -201,6 +131,8 @@ module cpu (input logic clk, reset);
 	logic [63:0] ForwardA_out;
 	mux4_1_Nbits #(.length(64)) ForwardAMux (.out(ForwardA_out), .A(Da_EX), .B(ALUOut_MEM), .C(Dw_WB), .D(64'd0), .sel(ForwardA));
 	mux4_1_Nbits #(.length(64)) ForwardBMux (.out(ForwardB_out), .A(Db_EX), .B(ALUOut_MEM), .C(Dw_WB), .D(64'd0), .sel(ForwardB));
+	
+	mux2_1 CBZMux (.out(BrTaken_EX2), .i({zero_EX, BrTaken_EX}), .sel(isCBZ_EX));
 	
 	// ALUSrc Mux: selects ALUB input
 	logic [63:0] ALUB_EX; // second ALU input

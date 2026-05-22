@@ -21,7 +21,10 @@ module ID_EX_reg (
 	output logic [63:0] condOffset_out, brOffset_out,
 	
 	input logic [63:0] currentPC,
-	output logic [63:0] currentPC_out
+	output logic [63:0] currentPC_out,
+	
+	input logic isCBZ,
+	output logic isCBZ_out
 	
 );
 
@@ -37,6 +40,8 @@ module ID_EX_reg (
 	D_FF BrReg_DFF 	(.d(BrReg), 	.q(BrReg_out), 	.clk(clk), .reset(reset));
 	D_FF UncondBr_DFF (.d(UncondBr), .q(UncondBr_out), .clk(clk), .reset(reset));
 	D_FF BrTaken_DFF 	(.d(BrTaken), 	.q(BrTaken_out), 	.clk(clk), .reset(reset));
+	D_FF isCBZ_DFF 	(.d(isCBZ), 	.q(isCBZ_out), 	.clk(clk), .reset(reset));
+
 
 
 	
