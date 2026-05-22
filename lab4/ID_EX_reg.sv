@@ -19,7 +19,7 @@ module ID_EX_reg (
 	output logic [63:0] imm9_out, imm12_out,
 	output logic [63:0] PC_plus4_out, currentPC_out,
 	output logic UncondBr_out, BrTaken_out,
-	output logic [63:0] condOffset_out, brOffset_out,
+	output logic [63:0] condOffset_out, brOffset_out
 );
 
 	// Control unit signals
