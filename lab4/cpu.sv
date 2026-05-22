@@ -22,7 +22,7 @@ module cpu (input logic clk, reset);
 	
 	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(ForwardB_out), .sel(BrReg_EX));
 
-	or #0.05 fl (flush, BrTaken_EX, BrReg_EX, BrTaken_EX_final);
+	or #0.05 fl (flush, BrTaken_EX2, BrReg_EX, BrTaken_EX_final);
 
 	
 	//if/id reg
