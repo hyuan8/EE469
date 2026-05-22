@@ -27,7 +27,8 @@ module control(
 		output logic [2:0] ALUOp,
 		output logic Reg2Loc, ALUSrc, MemToReg,
 		output logic RegWrite, MemWrite, MemRead, BrTaken, UncondBr,
-		output logic BrLink, BrReg, Imm12, SetFlags
+		output logic BrLink, BrReg, Imm12, SetFlags,
+		output logic isCBZ
 	);  
 	
 	// ALU Operations
@@ -64,6 +65,7 @@ module control(
 			BrLink 	= 	1'b0;
 			Imm12 	= 	1'b0;
 			BrReg 	= 	1'b0;
+			isCBZ		= 	1'b0;
 		
 		casez (instruction[31:21])
 		
@@ -154,13 +156,15 @@ module control(
 				RegWrite = 	1'b0;
 				MemWrite = 	1'b0;
 				MemRead 	= 	1'b0;
-				BrTaken 	= 	(Db == 64'd0);
+//				BrTaken 	= 	(Db == 64'd0);
+				BrTaken	= 	1'b0;
 				UncondBr = 	1'b0;
 				SetFlags = 	1'b0;
 				ALUOp 	= 	3'b000; 
 				BrLink 	= 	1'b0;
 				Imm12 	= 	1'b0;
 				BrReg 	= 	1'b0;
+				isCBZ		= 	1'b1;
 			end
 			
 			B: begin
