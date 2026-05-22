@@ -82,7 +82,7 @@ module cpu (input logic clk, reset);
 	mux2_1_Nbits #(.length(64)) BrRegMux (.out(newPC), .A(immBranchPC), .B(ForwardB_out), .sel(BrReg_EX));
 
 	// Flush logic flushes IF/ID if a branch is taken
-	or #0.05 fl (flush, BrTaken_EX2, BrReg_EX, BrTaken_EX_final);
+	or #0.05 fl (flush, BrTaken_EX2, BrReg_EX);
 
 	
 	// IF/ID register
@@ -257,7 +257,7 @@ module cpu_testbench();
 	initial begin
 		reset = 1; repeat(8) @(posedge clk);
 		reset = 0; @(posedge clk);
-		for (i = 0; i < 60; i++) begin
+		for (i = 0; i < 900; i++) begin
 			@(posedge clk);
 		end
 		$stop;
