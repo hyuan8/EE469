@@ -106,7 +106,7 @@ module cpu (input logic clk, reset);
 	
 	// Sign extender for DAddr9, zero extender for ADDI 
 	sign_extender #(.length(9)) extender9 (.in(instruction_ID[20:12]), .out(imm9_ID));
-	zero_extender #(.length(12)) extender12 (.in(instruction_ID[21:10]), .out(imm12_ID));
+	sign_extender #(.length(12)) extender12 (.in(instruction_ID[21:10]), .out(imm12_ID));
 	
 	// Branch offset sign extenders
 	// condOffset: 64-bits for CBZ/CBNZ instructions
@@ -257,7 +257,7 @@ module cpu_testbench();
 	initial begin
 		reset = 1; repeat(8) @(posedge clk);
 		reset = 0; @(posedge clk);
-		for (i = 0; i < 60; i++) begin
+		for (i = 0; i < 800; i++) begin
 			@(posedge clk);
 		end
 		$stop;
