@@ -216,7 +216,7 @@ module cpu (input logic clk, reset);
 	
 	//ex/mem reg
 	logic MemWrite_MEM, MemRead_MEM, BrLink_MEM, BrReg_MEM, BrTaken_MEM;
-	logic [63:0] Db_MEM;
+	logic [63:0] Db_MEM, Dout_MEM;
 	logic [63:0] branchedAddr_MEM;
 	logic [63:0] BrRegAddr_MEM;
 	logic [63:0] PC_plus4_MEM;
@@ -263,11 +263,18 @@ module cpu (input logic clk, reset);
 		.negative(negative_MEM), .zero(zero_MEM), .overflow(overflow_MEM), .carry_out(carry_out_MEM), 
 		.negative_out(neg_reg), .zero_out(zero_reg), .overflow_out(ov_reg), .carry_out_out(co_reg));
 		
-	mux2_1 negMux 	(.out(forward_neg), 	.i({negative_EX, neg_reg}), 	.sel(SetFlags_EX));
-	mux2_1 zeroMux (.out(forward_zero), .i({zero_EX, zero_reg}), 		.sel(SetFlags_EX));
-	mux2_1 ovMux 	(.out(forward_ov), 	.i({overflow_EX, ov_reg}), 	.sel(SetFlags_EX));
-	mux2_1 coMux 	(.out(forward_co), 	.i({carry_out_EX, co_reg}), 	.sel(SetFlags_EX));
-		
+	logic mem_or_saved_neg, mem_or_saved_zero, mem_or_saved_ov, mem_or_saved_co;
+
+	mux2_1 negMemMux  (.out(mem_or_saved_neg),  .i({negative_MEM,  neg_reg}),   .sel(SetFlags_MEM));
+	mux2_1 zeroMemMux (.out(mem_or_saved_zero), .i({zero_MEM,      zero_reg}),  .sel(SetFlags_MEM));
+	mux2_1 ovMemMux   (.out(mem_or_saved_ov),   .i({overflow_MEM,  ov_reg}),    .sel(SetFlags_MEM));
+	mux2_1 coMemMux   (.out(mem_or_saved_co),   .i({carry_out_MEM, co_reg}),    .sel(SetFlags_MEM));
+
+	mux2_1 negExMux   (.out(forward_neg),       .i({negative_EX,  mem_or_saved_neg}),  .sel(SetFlags_EX));
+	mux2_1 zeroExMux  (.out(forward_zero),      .i({zero_EX,      mem_or_saved_zero}), .sel(SetFlags_EX));
+	mux2_1 ovExMux    (.out(forward_ov),        .i({overflow_EX,  mem_or_saved_ov}),   .sel(SetFlags_EX));
+	mux2_1 coExMux    (.out(forward_co),        .i({carry_out_EX, mem_or_saved_co}),   .sel(SetFlags_EX));
+			
 endmodule
 	
 
@@ -287,7 +294,7 @@ module cpu_testbench();
 	initial begin
 		reset = 1; repeat(8) @(posedge clk);
 		reset = 0; @(posedge clk);
-		for (i = 0; i < 50; i++) begin
+		for (i = 0; i < 100; i++) begin
 			@(posedge clk);
 		end
 		$stop;
