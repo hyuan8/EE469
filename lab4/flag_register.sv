@@ -1,3 +1,4 @@
+// Builds a flag register to hold flags for one clock cycle
 module flag_register (
 	input logic clk, reset, enable,
 	input logic negative, zero, overflow, carry_out,
