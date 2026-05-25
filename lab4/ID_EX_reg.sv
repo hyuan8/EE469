@@ -11,6 +11,7 @@ module ID_EX_reg (
 	input logic [63:0] imm9, imm12,
 	input logic [63:0] PC_plus4, currentPC,
 	input logic [63:0] condOffset, brOffset,
+	input logic flush,
 	output logic RegWrite_out, MemWrite_out, MemRead_out, MemToReg_out,
 	output logic ALUSrc_out, SetFlags_out, BrLink_out, Imm12_out, BrReg_out, isCBZ_out,
 	output logic [2:0] ALUOp_out,

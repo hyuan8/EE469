@@ -6,7 +6,7 @@ module cpu (input logic clk, reset);
 	logic [31:0] instruction_IF;
 	logic [63:0] currentPC, PC_plus4_IF, newPC;
 	logic [63:0] immBranchPC;
-	logic flush;
+	logic flush, flush_delayed;
 	
 	// ID stage signals
 	logic [31:0] instruction_ID;
@@ -83,7 +83,7 @@ module cpu (input logic clk, reset);
 
 	// Flush logic flushes IF/ID if a branch is taken
 	or #0.05 fl (flush, BrTaken_EX2, BrReg_EX);
-
+	D_FF flush_DFF (.q(flush_delayed), .d(flush), .reset(reset), .clk(clk));
 	
 	// IF/ID register
 	IF_ID_reg IF_ID (.clk(clk), .reset(reset), .flush(flush), 
@@ -119,7 +119,7 @@ module cpu (input logic clk, reset);
 			.ReadRegister1(Rn_ID), .ReadRegister2(Ab_ID), .WriteRegister(Rd_WB), .RegWrite(RegWrite_WB), .clk(clk));
 	
 	// ID/EX register
-	ID_EX_reg ID_EX (.clk(clk), .reset(reset), 
+	ID_EX_reg ID_EX (.clk(clk), .reset(reset), .flush(flush_delayed), 
 			.RegWrite(RegWrite_ID), .RegWrite_out(RegWrite_EX),
 			.MemWrite(MemWrite_ID), .MemWrite_out(MemWrite_EX),
 			.MemRead(MemRead_ID), .MemRead_out(MemRead_EX),
@@ -257,7 +257,7 @@ module cpu_testbench();
 	initial begin
 		reset = 1; repeat(8) @(posedge clk);
 		reset = 0; @(posedge clk);
-		for (i = 0; i < 800; i++) begin
+		for (i = 0; i < 50; i++) begin
 			@(posedge clk);
 		end
 		$stop;
