@@ -23,20 +23,23 @@ module ID_EX_reg (
 	output logic [63:0] condOffset_out, brOffset_out
 );
 
+	logic flushOrReset;
+	or #0.05 flushOr (flushOrReset, reset, flush);
+
 	// Control unit signals
-	D_FF RegWrite_DFF (.d(RegWrite), .q(RegWrite_out), .clk(clk), .reset(reset));
-	D_FF MemWrite_DFF (.d(MemWrite), .q(MemWrite_out), .clk(clk), .reset(reset));
-	D_FF MemRead_DFF 	(.d(MemRead), 	.q(MemRead_out), 	.clk(clk), .reset(reset));
-	D_FF MemToReg_DFF (.d(MemToReg), .q(MemToReg_out), .clk(clk), .reset(reset));
-	D_FF ALUSrc_DFF 	(.d(ALUSrc), 	.q(ALUSrc_out), 	.clk(clk), .reset(reset));
-	D_FF SetFlags_DFF (.d(SetFlags), .q(SetFlags_out), .clk(clk), .reset(reset));
-	D_FF BrLink_DFF 	(.d(BrLink), 	.q(BrLink_out), 	.clk(clk), .reset(reset));
-	D_FF Imm12_DFF 	(.d(Imm12), 	.q(Imm12_out), 	.clk(clk), .reset(reset));
-	D_FF BrReg_DFF 	(.d(BrReg), 	.q(BrReg_out), 	.clk(clk), .reset(reset));
-	D_FF UncondBr_DFF (.d(UncondBr), .q(UncondBr_out), .clk(clk), .reset(reset));
-	D_FF BrTaken_DFF 	(.d(BrTaken), 	.q(BrTaken_out), 	.clk(clk), .reset(reset));
-	D_FF isCBZ_DFF 	(.d(isCBZ), 	.q(isCBZ_out), 	.clk(clk), .reset(reset));
-	DFFs #(.N(3))	ALUOp_DFF	(.d(ALUOp), .q(ALUOp_out), .clk(clk), .reset(reset));
+	D_FF RegWrite_DFF (.d(RegWrite), .q(RegWrite_out), .clk(clk), .reset(flushOrReset));
+	D_FF MemWrite_DFF (.d(MemWrite), .q(MemWrite_out), .clk(clk), .reset(flushOrReset));
+	D_FF MemRead_DFF 	(.d(MemRead), 	.q(MemRead_out), 	.clk(clk), .reset(flushOrReset));
+	D_FF MemToReg_DFF (.d(MemToReg), .q(MemToReg_out), .clk(clk), .reset(flushOrReset));
+	D_FF ALUSrc_DFF 	(.d(ALUSrc), 	.q(ALUSrc_out), 	.clk(clk), .reset(flushOrReset));
+	D_FF SetFlags_DFF (.d(SetFlags), .q(SetFlags_out), .clk(clk), .reset(flushOrReset));
+	D_FF BrLink_DFF 	(.d(BrLink), 	.q(BrLink_out), 	.clk(clk), .reset(flushOrReset));
+	D_FF Imm12_DFF 	(.d(Imm12), 	.q(Imm12_out), 	.clk(clk), .reset(flushOrReset));
+	D_FF BrReg_DFF 	(.d(BrReg), 	.q(BrReg_out), 	.clk(clk), .reset(flushOrReset));
+	D_FF UncondBr_DFF (.d(UncondBr), .q(UncondBr_out), .clk(clk), .reset(flushOrReset));
+	D_FF BrTaken_DFF 	(.d(BrTaken), 	.q(BrTaken_out), 	.clk(clk), .reset(flushOrReset));
+	D_FF isCBZ_DFF 	(.d(isCBZ), 	.q(isCBZ_out), 	.clk(clk), .reset(flushOrReset));
+	DFFs #(.N(3))	ALUOp_DFF	(.d(ALUOp), .q(ALUOp_out), .clk(clk), .reset(flushOrReset));
 	
 	// Datapath values
 	DFFs #(.N(64)) Da_DFFs 	(.d(Da), .q(Da_out), .clk(clk), .reset(reset));

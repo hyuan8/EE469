@@ -119,7 +119,7 @@ module cpu (input logic clk, reset);
 			.ReadRegister1(Rn_ID), .ReadRegister2(Ab_ID), .WriteRegister(Rd_WB), .RegWrite(RegWrite_WB), .clk(clk));
 	
 	// ID/EX register
-	ID_EX_reg ID_EX (.clk(clk), .reset(reset), .flush(flush_delayed), 
+	ID_EX_reg ID_EX (.clk(clk), .reset(reset), .flush(flush), 
 			.RegWrite(RegWrite_ID), .RegWrite_out(RegWrite_EX),
 			.MemWrite(MemWrite_ID), .MemWrite_out(MemWrite_EX),
 			.MemRead(MemRead_ID), .MemRead_out(MemRead_EX),
