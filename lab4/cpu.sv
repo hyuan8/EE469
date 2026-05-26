@@ -6,7 +6,7 @@ module cpu (input logic clk, reset);
 	logic [31:0] instruction_IF;
 	logic [63:0] currentPC, PC_plus4_IF, newPC;
 	logic [63:0] immBranchPC;
-	logic flush, flush_delayed;
+	logic flush;
 	
 	// ID stage signals
 	logic [31:0] instruction_ID;
@@ -83,7 +83,6 @@ module cpu (input logic clk, reset);
 
 	// Flush logic flushes IF/ID if a branch is taken
 	or #0.05 fl (flush, BrTaken_EX2, BrReg_EX);
-	D_FF flush_DFF (.q(flush_delayed), .d(flush), .reset(reset), .clk(clk));
 	
 	// IF/ID register
 	IF_ID_reg IF_ID (.clk(clk), .reset(reset), .flush(flush), 
