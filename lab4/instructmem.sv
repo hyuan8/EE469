@@ -4,17 +4,14 @@
 //
 // To change the file that is loaded, edit the filename here:
 //`define BENCHMARK "benchmarks/test01_AddiB.arm"
-//`define BENCHMARK "benchmarks/test02_AddsSubs.arm"
+`define BENCHMARK "benchmarks/test02_AddsSubs.arm"
 //`define BENCHMARK "benchmarks/test03_CbzB.arm"
 //`define BENCHMARK "benchmarks/test04_LdurStur.arm"
 //`define BENCHMARK "benchmarks/test05_Blt.arm"
 //`define BENCHMARK "benchmarks/test06_BlBr.arm"
 //`define BENCHMARK "benchmarks/test10_forwarding.arm"
-`define BENCHMARK "benchmarks/test11_Sort.arm"
+//`define BENCHMARK "benchmarks/test11_Sort.arm"
 //`define BENCHMARK "benchmarks/test12_Fibonacci.arm"
-
-// LIST OF PASSED TESTS: 1
-// LIST OF FAILED TESTS: 2
 
 `timescale 1ns/10ps
 
