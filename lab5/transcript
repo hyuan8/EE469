@@ -1,0 +1,957 @@
+# Reading C:/intelFPGA_lite/17.0/modelsim_ase/tcl/vsim/pref.tcl
+do runlab.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 09:54:25 on May 28,2026
+# vlog -reportprogress 300 ./main_memory.svp 
+# 
+# Top level modules:
+# End time: 09:54:25 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 09:54:25 on May 28,2026
+# vlog -reportprogress 300 ./write_buffer.svp 
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# 
+# Top level modules:
+# End time: 09:54:25 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 20
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 09:54:26 on May 28,2026
+# vlog -reportprogress 300 ./cache.svp 
+# 
+# Top level modules:
+# End time: 09:54:26 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 09:54:26 on May 28,2026
+# vlog -reportprogress 300 ./DataMemory.svp 
+# 
+# Top level modules:
+# End time: 09:54:27 on May 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 09:54:27 on May 28,2026
+# vlog -reportprogress 300 ./lab5.sv 
+# -- Compiling module lab5
+# -- Compiling module lab5_testbench
+# 
+# Top level modules:
+# 	lab5_testbench
+# End time: 09:54:27 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs=""+acc"" -t 1ps -lib work lab5_testbench 
+# Start time: 09:54:28 on May 28,2026
+# Loading sv_std.std
+# Loading work.lab5_testbench
+# Loading work.lab5
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/MODEL_NUMBER'.
+# Executing ONERROR command at macro ./lab5_wave.do line 17
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/DMEM_ADDRESS_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 18
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/RANDOM_BITS'.
+# Executing ONERROR command at macro ./lab5_wave.do line 19
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/SCRAMBLE1'.
+# Executing ONERROR command at macro ./lab5_wave.do line 20
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/SCRAMBLE2'.
+# Executing ONERROR command at macro ./lab5_wave.do line 21
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_ADDRESS_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 22
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_ADDRESS_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 23
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_ADDRESS_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 24
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/MM_ADDRESS_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 25
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1out_WRITE_BUFFER'.
+# Executing ONERROR command at macro ./lab5_wave.do line 26
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_PRESENT'.
+# Executing ONERROR command at macro ./lab5_wave.do line 27
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2out_WRITE_BUFFER'.
+# Executing ONERROR command at macro ./lab5_wave.do line 28
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3out_WRITE_BUFFER'.
+# Executing ONERROR command at macro ./lab5_wave.do line 29
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_DATA_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 30
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_BLOCKSIZE'.
+# Executing ONERROR command at macro ./lab5_wave.do line 31
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_DATA_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 32
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_BLOCKSIZE'.
+# Executing ONERROR command at macro ./lab5_wave.do line 33
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_DATA_WIDTH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 34
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_BLOCKSIZE'.
+# Executing ONERROR command at macro ./lab5_wave.do line 35
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/MM_BLOCKSIZE'.
+# Executing ONERROR command at macro ./lab5_wave.do line 36
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_HIT_TIME'.
+# Executing ONERROR command at macro ./lab5_wave.do line 37
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_HIT_TIME'.
+# Executing ONERROR command at macro ./lab5_wave.do line 38
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_HIT_TIME'.
+# Executing ONERROR command at macro ./lab5_wave.do line 39
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/MM_DELAY'.
+# Executing ONERROR command at macro ./lab5_wave.do line 40
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_NUM_BLOCKS'.
+# Executing ONERROR command at macro ./lab5_wave.do line 41
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_NUM_BLOCKS'.
+# Executing ONERROR command at macro ./lab5_wave.do line 42
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_NUM_BLOCKS'.
+# Executing ONERROR command at macro ./lab5_wave.do line 43
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_ASSOC_TEMP'.
+# Executing ONERROR command at macro ./lab5_wave.do line 44
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_ASSOCIATIVITY'.
+# Executing ONERROR command at macro ./lab5_wave.do line 45
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_ASSOC_TEMP'.
+# Executing ONERROR command at macro ./lab5_wave.do line 46
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_ASSOCIATIVITY'.
+# Executing ONERROR command at macro ./lab5_wave.do line 47
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_ASSOC_TEMP'.
+# Executing ONERROR command at macro ./lab5_wave.do line 48
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_ASSOCIATIVITY'.
+# Executing ONERROR command at macro ./lab5_wave.do line 49
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_LRU'.
+# Executing ONERROR command at macro ./lab5_wave.do line 50
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_WRITE_THROUGH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 51
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L1_WRITE_ALLOCATE'.
+# Executing ONERROR command at macro ./lab5_wave.do line 52
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_LRU'.
+# Executing ONERROR command at macro ./lab5_wave.do line 53
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_WRITE_THROUGH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 54
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L2_WRITE_ALLOCATE'.
+# Executing ONERROR command at macro ./lab5_wave.do line 55
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_LRU'.
+# Executing ONERROR command at macro ./lab5_wave.do line 56
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_WRITE_THROUGH'.
+# Executing ONERROR command at macro ./lab5_wave.do line 57
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/L3_WRITE_ALLOCATE'.
+# Executing ONERROR command at macro ./lab5_wave.do line 58
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 59
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 60
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 61
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 62
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 63
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 64
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 65
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/clk'.
+# Executing ONERROR command at macro ./lab5_wave.do line 66
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/reset'.
+# Executing ONERROR command at macro ./lab5_wave.do line 67
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1_int_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 68
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1_int_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 69
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1_int_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 70
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1_int_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 71
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1_int_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 72
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1_int_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 73
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1_int_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 74
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1out_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 75
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1out_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 76
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1out_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 77
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1out_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 78
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1out_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 79
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1out_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 80
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l1out_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 81
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2_int_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 82
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2_int_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 83
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2_int_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 84
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2_int_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 85
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2_int_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 86
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2_int_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 87
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2_int_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 88
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2out_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 89
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2out_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 90
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2out_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 91
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2out_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 92
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2out_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 93
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2out_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 94
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l2out_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 95
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3in_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 96
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3in_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 97
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3in_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 98
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3in_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 99
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3in_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 100
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3in_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 101
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3in_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 102
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3_int_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 103
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3_int_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 104
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3_int_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 105
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3_int_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 106
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3_int_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 107
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3_int_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 108
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3_int_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 109
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3out_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 110
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3out_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 111
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3out_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 112
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3out_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 113
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3out_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 114
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3out_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 115
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/l3out_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 116
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/mm_address'.
+# Executing ONERROR command at macro ./lab5_wave.do line 117
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/mm_data_in'.
+# Executing ONERROR command at macro ./lab5_wave.do line 118
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/mm_bytemask'.
+# Executing ONERROR command at macro ./lab5_wave.do line 119
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/mm_write'.
+# Executing ONERROR command at macro ./lab5_wave.do line 120
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/mm_start_access'.
+# Executing ONERROR command at macro ./lab5_wave.do line 121
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/mm_access_done'.
+# Executing ONERROR command at macro ./lab5_wave.do line 122
+# ** Error: (vish-4014) No objects found matching '/lab5_testbench/dut/dmem/mm_data_out'.
+# Executing ONERROR command at macro ./lab5_wave.do line 123
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# 1127.00000 ns Read took         111 cycles
+# 2247.00000 ns Read took         111 cycles
+# 3367.00000 ns Read took         111 cycles
+# 4487.00000 ns Read took         111 cycles
+# 5607.00000 ns Read took         111 cycles
+# 6727.00000 ns Read took         111 cycles
+# 7847.00000 ns Read took         111 cycles
+# 8967.00000 ns Read took         111 cycles
+# 10087.00000 ns Read took         111 cycles
+# 11207.00000 ns Read took         111 cycles
+# 12327.00000 ns Read took         111 cycles
+# 13447.00000 ns Read took         111 cycles
+# 14567.00000 ns Read took         111 cycles
+# 15687.00000 ns Read took         111 cycles
+# 16807.00000 ns Read took         111 cycles
+# 17927.00000 ns Read took         111 cycles
+# 19047.00000 ns Read took         111 cycles
+# 20167.00000 ns Read took         111 cycles
+# 21287.00000 ns Read took         111 cycles
+# 22407.00000 ns Read took         111 cycles
+# 22587.00000 ns Write took          17 cycles
+# 22917.00000 ns Write took          32 cycles
+# 23547.00000 ns Write took          62 cycles
+# 24187.00000 ns Write took          63 cycles
+# 24827.00000 ns Write took          63 cycles
+# 65479.00000 ns Reading the first KB took between           4 and         111 cycles each
+# ** Note: $stop    : ./lab5.sv(269)
+#    Time: 65479 ns  Iteration: 0  Instance: /lab5_testbench
+# Break in Module lab5_testbench at ./lab5.sv line 269
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf {U:/EE 469/labs/lab5/lab5_wave.do}
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:15:12 on May 28,2026
+# vlog -reportprogress 300 ./main_memory.svp 
+# 
+# Top level modules:
+# End time: 10:15:12 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:15:12 on May 28,2026
+# vlog -reportprogress 300 ./write_buffer.svp 
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# 
+# Top level modules:
+# End time: 10:15:13 on May 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 20
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:15:13 on May 28,2026
+# vlog -reportprogress 300 ./cache.svp 
+# 
+# Top level modules:
+# End time: 10:15:13 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:15:13 on May 28,2026
+# vlog -reportprogress 300 ./DataMemory.svp 
+# 
+# Top level modules:
+# End time: 10:15:13 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:15:13 on May 28,2026
+# vlog -reportprogress 300 ./lab5.sv 
+# -- Compiling module lab5
+# -- Compiling module lab5_testbench
+# 
+# Top level modules:
+# 	lab5_testbench
+# End time: 10:15:14 on May 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# End time: 10:15:15 on May 28,2026, Elapsed time: 0:20:47
+# Errors: 321, Warnings: 20
+# vsim -voptargs=""+acc"" -t 1ps -lib work lab5_testbench 
+# Start time: 10:15:15 on May 28,2026
+# Loading sv_std.std
+# Loading work.lab5_testbench
+# Loading work.lab5
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# 1127.00000 ns Read took         111 cycles
+# 2247.00000 ns Read took         111 cycles
+# 3367.00000 ns Read took         111 cycles
+# 4487.00000 ns Read took         111 cycles
+# 5607.00000 ns Read took         111 cycles
+# 6727.00000 ns Read took         111 cycles
+# 7847.00000 ns Read took         111 cycles
+# 8967.00000 ns Read took         111 cycles
+# 10087.00000 ns Read took         111 cycles
+# 11207.00000 ns Read took         111 cycles
+# 12327.00000 ns Read took         111 cycles
+# 13447.00000 ns Read took         111 cycles
+# 14567.00000 ns Read took         111 cycles
+# 15687.00000 ns Read took         111 cycles
+# 16807.00000 ns Read took         111 cycles
+# 17927.00000 ns Read took         111 cycles
+# 19047.00000 ns Read took         111 cycles
+# 20167.00000 ns Read took         111 cycles
+# 21287.00000 ns Read took         111 cycles
+# 22407.00000 ns Read took         111 cycles
+# 22587.00000 ns Write took          17 cycles
+# 22917.00000 ns Write took          32 cycles
+# 23547.00000 ns Write took          62 cycles
+# 24187.00000 ns Write took          63 cycles
+# 24827.00000 ns Write took          63 cycles
+# 65479.00000 ns Reading the first KB took between           4 and         111 cycles each
+# ** Note: $stop    : ./lab5.sv(269)
+#    Time: 65479 ns  Iteration: 0  Instance: /lab5_testbench
+# Break in Module lab5_testbench at ./lab5.sv line 269
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:34:48 on May 28,2026
+# vlog -reportprogress 300 ./main_memory.svp 
+# 
+# Top level modules:
+# End time: 10:34:49 on May 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:34:49 on May 28,2026
+# vlog -reportprogress 300 ./write_buffer.svp 
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# 
+# Top level modules:
+# End time: 10:34:49 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 20
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:34:49 on May 28,2026
+# vlog -reportprogress 300 ./cache.svp 
+# 
+# Top level modules:
+# End time: 10:34:49 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:34:49 on May 28,2026
+# vlog -reportprogress 300 ./DataMemory.svp 
+# 
+# Top level modules:
+# End time: 10:34:50 on May 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:34:50 on May 28,2026
+# vlog -reportprogress 300 ./lab5.sv 
+# -- Compiling module lab5
+# -- Compiling module lab5_testbench
+# 
+# Top level modules:
+# 	lab5_testbench
+# End time: 10:34:50 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:34:51 on May 28,2026, Elapsed time: 0:19:36
+# Errors: 0, Warnings: 20
+# vsim -voptargs=""+acc"" -t 1ps -lib work lab5_testbench 
+# Start time: 10:34:51 on May 28,2026
+# Loading sv_std.std
+# Loading work.lab5_testbench
+# Loading work.lab5
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# 1127.00000 ns Read took         111 cycles
+# 2247.00000 ns Read took         111 cycles
+# 3367.00000 ns Read took         111 cycles
+# 4487.00000 ns Read took         111 cycles
+# 5607.00000 ns Read took         111 cycles
+# 6727.00000 ns Read took         111 cycles
+# 7847.00000 ns Read took         111 cycles
+# 8967.00000 ns Read took         111 cycles
+# 10087.00000 ns Read took         111 cycles
+# 11207.00000 ns Read took         111 cycles
+# 12327.00000 ns Read took         111 cycles
+# 13447.00000 ns Read took         111 cycles
+# 14567.00000 ns Read took         111 cycles
+# 15687.00000 ns Read took         111 cycles
+# 16807.00000 ns Read took         111 cycles
+# 17927.00000 ns Read took         111 cycles
+# 19047.00000 ns Read took         111 cycles
+# 20167.00000 ns Read took         111 cycles
+# 21287.00000 ns Read took         111 cycles
+# 22407.00000 ns Read took         111 cycles
+# 23527.00000 ns Read took         111 cycles
+# 24647.00000 ns Read took         111 cycles
+# 25767.00000 ns Read took         111 cycles
+# 26887.00000 ns Read took         111 cycles
+# 28007.00000 ns Read took         111 cycles
+# 29127.00000 ns Read took         111 cycles
+# 30247.00000 ns Read took         111 cycles
+# 31367.00000 ns Read took         111 cycles
+# 32487.00000 ns Read took         111 cycles
+# 33607.00000 ns Read took         111 cycles
+# 34727.00000 ns Read took         111 cycles
+# 35847.00000 ns Read took         111 cycles
+# 36967.00000 ns Read took         111 cycles
+# 38087.00000 ns Read took         111 cycles
+# 39207.00000 ns Read took         111 cycles
+# 40327.00000 ns Read took         111 cycles
+# 41447.00000 ns Read took         111 cycles
+# 42567.00000 ns Read took         111 cycles
+# 43687.00000 ns Read took         111 cycles
+# 44807.00000 ns Read took         111 cycles
+# 45927.00000 ns Read took         111 cycles
+# 47047.00000 ns Read took         111 cycles
+# 48167.00000 ns Read took         111 cycles
+# 49287.00000 ns Read took         111 cycles
+# 50407.00000 ns Read took         111 cycles
+# 51527.00000 ns Read took         111 cycles
+# 52647.00000 ns Read took         111 cycles
+# 53767.00000 ns Read took         111 cycles
+# 54887.00000 ns Read took         111 cycles
+# 56007.00000 ns Read took         111 cycles
+# 57127.00000 ns Read took         111 cycles
+# 58247.00000 ns Read took         111 cycles
+# 59367.00000 ns Read took         111 cycles
+# 60487.00000 ns Read took         111 cycles
+# 61607.00000 ns Read took         111 cycles
+# 62727.00000 ns Read took         111 cycles
+# 63847.00000 ns Read took         111 cycles
+# 64967.00000 ns Read took         111 cycles
+# 66087.00000 ns Read took         111 cycles
+# 67207.00000 ns Read took         111 cycles
+# 68327.00000 ns Read took         111 cycles
+# 69447.00000 ns Read took         111 cycles
+# 70567.00000 ns Read took         111 cycles
+# 71687.00000 ns Read took         111 cycles
+# 72807.00000 ns Read took         111 cycles
+# 73927.00000 ns Read took         111 cycles
+# 75047.00000 ns Read took         111 cycles
+# 76167.00000 ns Read took         111 cycles
+# 77287.00000 ns Read took         111 cycles
+# 78407.00000 ns Read took         111 cycles
+# 79527.00000 ns Read took         111 cycles
+# 80647.00000 ns Read took         111 cycles
+# 81767.00000 ns Read took         111 cycles
+# 82887.00000 ns Read took         111 cycles
+# 84007.00000 ns Read took         111 cycles
+# 85127.00000 ns Read took         111 cycles
+# 86247.00000 ns Read took         111 cycles
+# 87367.00000 ns Read took         111 cycles
+# 88487.00000 ns Read took         111 cycles
+# 89607.00000 ns Read took         111 cycles
+# 90727.00000 ns Read took         111 cycles
+# 91847.00000 ns Read took         111 cycles
+# 92967.00000 ns Read took         111 cycles
+# 94087.00000 ns Read took         111 cycles
+# 95207.00000 ns Read took         111 cycles
+# 96327.00000 ns Read took         111 cycles
+# 97447.00000 ns Read took         111 cycles
+# 98567.00000 ns Read took         111 cycles
+# 99687.00000 ns Read took         111 cycles
+# 100807.00000 ns Read took         111 cycles
+# 101927.00000 ns Read took         111 cycles
+# 103047.00000 ns Read took         111 cycles
+# 104167.00000 ns Read took         111 cycles
+# 105287.00000 ns Read took         111 cycles
+# 106407.00000 ns Read took         111 cycles
+# 107527.00000 ns Read took         111 cycles
+# 108647.00000 ns Read took         111 cycles
+# 109767.00000 ns Read took         111 cycles
+# 110887.00000 ns Read took         111 cycles
+# 112007.00000 ns Read took         111 cycles
+# 113127.00000 ns Read took         111 cycles
+# 114247.00000 ns Read took         111 cycles
+# 115367.00000 ns Read took         111 cycles
+# 116487.00000 ns Read took         111 cycles
+# 117607.00000 ns Read took         111 cycles
+# 118727.00000 ns Read took         111 cycles
+# 119847.00000 ns Read took         111 cycles
+# 120967.00000 ns Read took         111 cycles
+# 122087.00000 ns Read took         111 cycles
+# 123207.00000 ns Read took         111 cycles
+# 124327.00000 ns Read took         111 cycles
+# 125447.00000 ns Read took         111 cycles
+# 126567.00000 ns Read took         111 cycles
+# 127687.00000 ns Read took         111 cycles
+# 128807.00000 ns Read took         111 cycles
+# 129927.00000 ns Read took         111 cycles
+# 131047.00000 ns Read took         111 cycles
+# 132167.00000 ns Read took         111 cycles
+# 133287.00000 ns Read took         111 cycles
+# 134407.00000 ns Read took         111 cycles
+# 135527.00000 ns Read took         111 cycles
+# 136647.00000 ns Read took         111 cycles
+# 137767.00000 ns Read took         111 cycles
+# 138887.00000 ns Read took         111 cycles
+# 140007.00000 ns Read took         111 cycles
+# 141127.00000 ns Read took         111 cycles
+# 142247.00000 ns Read took         111 cycles
+# 143367.00000 ns Read took         111 cycles
+# 144487.00000 ns Read took         111 cycles
+# 145607.00000 ns Read took         111 cycles
+# 146727.00000 ns Read took         111 cycles
+# 147847.00000 ns Read took         111 cycles
+# 148967.00000 ns Read took         111 cycles
+# 150087.00000 ns Read took         111 cycles
+# 151207.00000 ns Read took         111 cycles
+# 152327.00000 ns Read took         111 cycles
+# 153447.00000 ns Read took         111 cycles
+# 154567.00000 ns Read took         111 cycles
+# 155687.00000 ns Read took         111 cycles
+# 156807.00000 ns Read took         111 cycles
+# 157927.00000 ns Read took         111 cycles
+# 159047.00000 ns Read took         111 cycles
+# 160167.00000 ns Read took         111 cycles
+# 161287.00000 ns Read took         111 cycles
+# 162407.00000 ns Read took         111 cycles
+# 163527.00000 ns Read took         111 cycles
+# 164647.00000 ns Read took         111 cycles
+# 165767.00000 ns Read took         111 cycles
+# 166887.00000 ns Read took         111 cycles
+# 168007.00000 ns Read took         111 cycles
+# 169127.00000 ns Read took         111 cycles
+# 170247.00000 ns Read took         111 cycles
+# 171367.00000 ns Read took         111 cycles
+# 172487.00000 ns Read took         111 cycles
+# 173607.00000 ns Read took         111 cycles
+# 174727.00000 ns Read took         111 cycles
+# 175847.00000 ns Read took         111 cycles
+# 176967.00000 ns Read took         111 cycles
+# 178087.00000 ns Read took         111 cycles
+# 179207.00000 ns Read took         111 cycles
+# 180327.00000 ns Read took         111 cycles
+# 181447.00000 ns Read took         111 cycles
+# 182567.00000 ns Read took         111 cycles
+# 183687.00000 ns Read took         111 cycles
+# 184807.00000 ns Read took         111 cycles
+# 185927.00000 ns Read took         111 cycles
+# 187047.00000 ns Read took         111 cycles
+# 188167.00000 ns Read took         111 cycles
+# 189287.00000 ns Read took         111 cycles
+# 190407.00000 ns Read took         111 cycles
+# 191527.00000 ns Read took         111 cycles
+# 192647.00000 ns Read took         111 cycles
+# 193767.00000 ns Read took         111 cycles
+# 194887.00000 ns Read took         111 cycles
+# 196007.00000 ns Read took         111 cycles
+# 197127.00000 ns Read took         111 cycles
+# 198247.00000 ns Read took         111 cycles
+# 199367.00000 ns Read took         111 cycles
+# 200487.00000 ns Read took         111 cycles
+# 201607.00000 ns Read took         111 cycles
+# 202727.00000 ns Read took         111 cycles
+# 203847.00000 ns Read took         111 cycles
+# 204967.00000 ns Read took         111 cycles
+# 206087.00000 ns Read took         111 cycles
+# 207207.00000 ns Read took         111 cycles
+# 208327.00000 ns Read took         111 cycles
+# 209447.00000 ns Read took         111 cycles
+# 210567.00000 ns Read took         111 cycles
+# 211687.00000 ns Read took         111 cycles
+# 212807.00000 ns Read took         111 cycles
+# 213927.00000 ns Read took         111 cycles
+# 215047.00000 ns Read took         111 cycles
+# 216167.00000 ns Read took         111 cycles
+# 217287.00000 ns Read took         111 cycles
+# 218407.00000 ns Read took         111 cycles
+# 219527.00000 ns Read took         111 cycles
+# 220647.00000 ns Read took         111 cycles
+# 221767.00000 ns Read took         111 cycles
+# 222887.00000 ns Read took         111 cycles
+# 224007.00000 ns Read took         111 cycles
+# ** Note: $stop    : ./lab5.sv(269)
+#    Time: 224007 ns  Iteration: 0  Instance: /lab5_testbench
+# Break in Module lab5_testbench at ./lab5.sv line 269
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:49:27 on May 28,2026
+# vlog -reportprogress 300 ./main_memory.svp 
+# 
+# Top level modules:
+# End time: 10:49:27 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:49:27 on May 28,2026
+# vlog -reportprogress 300 ./write_buffer.svp 
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# ** Warning: ./write_buffer.svp(32): (vlog-2583) [SVCHK] - Some checking for conflicts with always_comb and always_latch variables not yet supported. Run vopt to provide additional design-level checks.
+# 
+# Top level modules:
+# End time: 10:49:28 on May 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 20
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:49:28 on May 28,2026
+# vlog -reportprogress 300 ./cache.svp 
+# 
+# Top level modules:
+# End time: 10:49:28 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:49:28 on May 28,2026
+# vlog -reportprogress 300 ./DataMemory.svp 
+# 
+# Top level modules:
+# End time: 10:49:29 on May 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:49:29 on May 28,2026
+# vlog -reportprogress 300 ./lab5.sv 
+# -- Compiling module lab5
+# -- Compiling module lab5_testbench
+# 
+# Top level modules:
+# 	lab5_testbench
+# End time: 10:49:29 on May 28,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:49:30 on May 28,2026, Elapsed time: 0:14:39
+# Errors: 0, Warnings: 20
+# vsim -voptargs=""+acc"" -t 1ps -lib work lab5_testbench 
+# Start time: 10:49:30 on May 28,2026
+# Loading sv_std.std
+# Loading work.lab5_testbench
+# Loading work.lab5
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# 1127.00000 ns Read took         111 cycles
+# 1177.00000 ns Read took           4 cycles
+# 1227.00000 ns Read took           4 cycles
+# 1277.00000 ns Read took           4 cycles
+# 2397.00000 ns Read took         111 cycles
+# 2447.00000 ns Read took           4 cycles
+# 2497.00000 ns Read took           4 cycles
+# 2547.00000 ns Read took           4 cycles
+# 3667.00000 ns Read took         111 cycles
+# 3717.00000 ns Read took           4 cycles
+# 3767.00000 ns Read took           4 cycles
+# 3817.00000 ns Read took           4 cycles
+# 4937.00000 ns Read took         111 cycles
+# 4987.00000 ns Read took           4 cycles
+# 5037.00000 ns Read took           4 cycles
+# 5087.00000 ns Read took           4 cycles
+# 6207.00000 ns Read took         111 cycles
+# 6257.00000 ns Read took           4 cycles
+# 6307.00000 ns Read took           4 cycles
+# 6357.00000 ns Read took           4 cycles
+# 7477.00000 ns Read took         111 cycles
+# 7527.00000 ns Read took           4 cycles
+# 7577.00000 ns Read took           4 cycles
+# 7627.00000 ns Read took           4 cycles
+# 8747.00000 ns Read took         111 cycles
+# 8797.00000 ns Read took           4 cycles
+# 8847.00000 ns Read took           4 cycles
+# 8897.00000 ns Read took           4 cycles
+# 10017.00000 ns Read took         111 cycles
+# 10067.00000 ns Read took           4 cycles
+# 10117.00000 ns Read took           4 cycles
+# 10167.00000 ns Read took           4 cycles
+# 11287.00000 ns Read took         111 cycles
+# 11337.00000 ns Read took           4 cycles
+# 11387.00000 ns Read took           4 cycles
+# 11437.00000 ns Read took           4 cycles
+# 12557.00000 ns Read took         111 cycles
+# 12607.00000 ns Read took           4 cycles
+# 12657.00000 ns Read took           4 cycles
+# 12707.00000 ns Read took           4 cycles
+# 13827.00000 ns Read took         111 cycles
+# 13877.00000 ns Read took           4 cycles
+# 13927.00000 ns Read took           4 cycles
+# 13977.00000 ns Read took           4 cycles
+# 15097.00000 ns Read took         111 cycles
+# 15147.00000 ns Read took           4 cycles
+# 15197.00000 ns Read took           4 cycles
+# 15247.00000 ns Read took           4 cycles
+# 16367.00000 ns Read took         111 cycles
+# 16417.00000 ns Read took           4 cycles
+# 16467.00000 ns Read took           4 cycles
+# 16517.00000 ns Read took           4 cycles
+# 17637.00000 ns Read took         111 cycles
+# 17687.00000 ns Read took           4 cycles
+# 17737.00000 ns Read took           4 cycles
+# 17787.00000 ns Read took           4 cycles
+# 18907.00000 ns Read took         111 cycles
+# 18957.00000 ns Read took           4 cycles
+# 19007.00000 ns Read took           4 cycles
+# 19057.00000 ns Read took           4 cycles
+# 20177.00000 ns Read took         111 cycles
+# 20227.00000 ns Read took           4 cycles
+# 20277.00000 ns Read took           4 cycles
+# 20327.00000 ns Read took           4 cycles
+# 21447.00000 ns Read took         111 cycles
+# 21497.00000 ns Read took           4 cycles
+# 21547.00000 ns Read took           4 cycles
+# 21597.00000 ns Read took           4 cycles
+# 22717.00000 ns Read took         111 cycles
+# 22767.00000 ns Read took           4 cycles
+# 22817.00000 ns Read took           4 cycles
+# 22867.00000 ns Read took           4 cycles
+# 23987.00000 ns Read took         111 cycles
+# 24037.00000 ns Read took           4 cycles
+# 24087.00000 ns Read took           4 cycles
+# 24137.00000 ns Read took           4 cycles
+# 25257.00000 ns Read took         111 cycles
+# 25307.00000 ns Read took           4 cycles
+# 25357.00000 ns Read took           4 cycles
+# 25407.00000 ns Read took           4 cycles
+# 26527.00000 ns Read took         111 cycles
+# 26577.00000 ns Read took           4 cycles
+# 26627.00000 ns Read took           4 cycles
+# 26677.00000 ns Read took           4 cycles
+# 27797.00000 ns Read took         111 cycles
+# 27847.00000 ns Read took           4 cycles
+# 27897.00000 ns Read took           4 cycles
+# 27947.00000 ns Read took           4 cycles
+# 29067.00000 ns Read took         111 cycles
+# 29117.00000 ns Read took           4 cycles
+# 29167.00000 ns Read took           4 cycles
+# 29217.00000 ns Read took           4 cycles
+# 30337.00000 ns Read took         111 cycles
+# 30387.00000 ns Read took           4 cycles
+# 30437.00000 ns Read took           4 cycles
+# 30487.00000 ns Read took           4 cycles
+# 31607.00000 ns Read took         111 cycles
+# 31657.00000 ns Read took           4 cycles
+# 31707.00000 ns Read took           4 cycles
+# 31757.00000 ns Read took           4 cycles
+# 32877.00000 ns Read took         111 cycles
+# 32927.00000 ns Read took           4 cycles
+# 32977.00000 ns Read took           4 cycles
+# 33027.00000 ns Read took           4 cycles
+# 34147.00000 ns Read took         111 cycles
+# 34197.00000 ns Read took           4 cycles
+# 34247.00000 ns Read took           4 cycles
+# 34297.00000 ns Read took           4 cycles
+# 35417.00000 ns Read took         111 cycles
+# 35467.00000 ns Read took           4 cycles
+# 35517.00000 ns Read took           4 cycles
+# 35567.00000 ns Read took           4 cycles
+# 36687.00000 ns Read took         111 cycles
+# 36737.00000 ns Read took           4 cycles
+# 36787.00000 ns Read took           4 cycles
+# 36837.00000 ns Read took           4 cycles
+# 37957.00000 ns Read took         111 cycles
+# 38007.00000 ns Read took           4 cycles
+# 38057.00000 ns Read took           4 cycles
+# 38107.00000 ns Read took           4 cycles
+# 39227.00000 ns Read took         111 cycles
+# 39277.00000 ns Read took           4 cycles
+# 39327.00000 ns Read took           4 cycles
+# 39377.00000 ns Read took           4 cycles
+# 40497.00000 ns Read took         111 cycles
+# 40547.00000 ns Read took           4 cycles
+# 40597.00000 ns Read took           4 cycles
+# 40647.00000 ns Read took           4 cycles
+# 41767.00000 ns Read took         111 cycles
+# 41817.00000 ns Read took           4 cycles
+# 41867.00000 ns Read took           4 cycles
+# 41917.00000 ns Read took           4 cycles
+# 43037.00000 ns Read took         111 cycles
+# 43087.00000 ns Read took           4 cycles
+# 43137.00000 ns Read took           4 cycles
+# 43187.00000 ns Read took           4 cycles
+# 44307.00000 ns Read took         111 cycles
+# 44357.00000 ns Read took           4 cycles
+# 44407.00000 ns Read took           4 cycles
+# 44457.00000 ns Read took           4 cycles
+# 45577.00000 ns Read took         111 cycles
+# 45627.00000 ns Read took           4 cycles
+# 45677.00000 ns Read took           4 cycles
+# 45727.00000 ns Read took           4 cycles
+# 46847.00000 ns Read took         111 cycles
+# 46897.00000 ns Read took           4 cycles
+# 46947.00000 ns Read took           4 cycles
+# 46997.00000 ns Read took           4 cycles
+# 48117.00000 ns Read took         111 cycles
+# 48167.00000 ns Read took           4 cycles
+# 48217.00000 ns Read took           4 cycles
+# 48267.00000 ns Read took           4 cycles
+# 49387.00000 ns Read took         111 cycles
+# 49437.00000 ns Read took           4 cycles
+# 49487.00000 ns Read took           4 cycles
+# 49537.00000 ns Read took           4 cycles
+# 50657.00000 ns Read took         111 cycles
+# 50707.00000 ns Read took           4 cycles
+# 50757.00000 ns Read took           4 cycles
+# 50807.00000 ns Read took           4 cycles
+# 51927.00000 ns Read took         111 cycles
+# 51977.00000 ns Read took           4 cycles
+# 52027.00000 ns Read took           4 cycles
+# 52077.00000 ns Read took           4 cycles
+# 53197.00000 ns Read took         111 cycles
+# 53247.00000 ns Read took           4 cycles
+# 53297.00000 ns Read took           4 cycles
+# 53347.00000 ns Read took           4 cycles
+# 54467.00000 ns Read took         111 cycles
+# 54517.00000 ns Read took           4 cycles
+# 54567.00000 ns Read took           4 cycles
+# 54617.00000 ns Read took           4 cycles
+# 55737.00000 ns Read took         111 cycles
+# 55787.00000 ns Read took           4 cycles
+# 55837.00000 ns Read took           4 cycles
+# 55887.00000 ns Read took           4 cycles
+# 57007.00000 ns Read took         111 cycles
+# 57057.00000 ns Read took           4 cycles
+# 57107.00000 ns Read took           4 cycles
+# 57157.00000 ns Read took           4 cycles
+# 58277.00000 ns Read took         111 cycles
+# 58327.00000 ns Read took           4 cycles
+# 58377.00000 ns Read took           4 cycles
+# 58427.00000 ns Read took           4 cycles
+# 59547.00000 ns Read took         111 cycles
+# 59597.00000 ns Read took           4 cycles
+# 59647.00000 ns Read took           4 cycles
+# 59697.00000 ns Read took           4 cycles
+# 60817.00000 ns Read took         111 cycles
+# 60867.00000 ns Read took           4 cycles
+# 60917.00000 ns Read took           4 cycles
+# 60967.00000 ns Read took           4 cycles
+# 62087.00000 ns Read took         111 cycles
+# 62137.00000 ns Read took           4 cycles
+# 62187.00000 ns Read took           4 cycles
+# 62237.00000 ns Read took           4 cycles
+# 63357.00000 ns Read took         111 cycles
+# 63407.00000 ns Read took           4 cycles
+# 63457.00000 ns Read took           4 cycles
+# 63507.00000 ns Read took           4 cycles
+# ** Note: $stop    : ./lab5.sv(269)
+#    Time: 63507 ns  Iteration: 0  Instance: /lab5_testbench
+# Break in Module lab5_testbench at ./lab5.sv line 269

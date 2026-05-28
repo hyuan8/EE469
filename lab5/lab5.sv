@@ -25,7 +25,7 @@
 // Line to set up the timing of simulation: says units to use are ns, and smallest resolution is 10ps.
 `timescale 1ns/10ps
 
-module lab5 #(parameter [22:0] MODEL_NUMBER = 1350364, parameter DMEM_ADDRESS_WIDTH = 20) (
+module lab5 #(parameter [22:0] MODEL_NUMBER = 2367133, parameter DMEM_ADDRESS_WIDTH = 20) (
 	// Commands:
 	//   (Comes from processor).
 	input		logic [DMEM_ADDRESS_WIDTH-1:0]	address,			// The byte address.  Must be word-aligned if byte_access != 1.
@@ -51,7 +51,7 @@ endmodule
 // Test the data memory, and figure out the settings.
 
 module lab5_testbench ();
-	localparam USERID = 1470460;  // Set to your student ID #
+	localparam USERID = 2367133;  // Set to your student ID #
 	localparam ADDRESS_WIDTH = 20;
 	localparam DATA_WIDTH = 8;
 	
@@ -245,28 +245,59 @@ module lab5_testbench ();
 		resetMem();				// Initialize the memory.
 		
 		// Do 20 random reads.
-		for (i=0; i<20; i++) begin
-			addr = $random()*8; // *8 to doubleword-align the access.
+		for (i=0; i<200; i++) begin
+			addr = i*8; // *8 to doubleword-align the access.
 			readMem(addr, dummy_data, delay);
 			$display("%t Read took %d cycles", $time, delay);
 		end
 		
-		// Do 5 random double-word writes of random data.
-		for (i=0; i<5; i++) begin
-			addr = $random()*8; // *8 to doubleword-align the access.
-			dummy_data = $random();
-			writeMem(addr, dummy_data, 8'hFF, delay);
-			$display("%t Write took %d cycles", $time, delay);
-		end
-		
-		// Reset the memory.
-		resetMem();
-		
-		// Read all of the first KB
-		readStride(0, 8, 1024/8, minval, maxval);
-		$display("%t Reading the first KB took between %d and %d cycles each", $time, minval, maxval);
+//		// Do 5 random double-word writes of random data.
+//		for (i=0; i<5; i++) begin
+//			addr = $random()*8; // *8 to doubleword-align the access.
+//			dummy_data = $random();
+//			writeMem(addr, dummy_data, 8'hFF, delay);
+//			$display("%t Write took %d cycles", $time, delay);
+//		end
+//		
+//		// Reset the memory.
+//		resetMem();
+//		
+//		// Read all of the first KB
+//		readStride(0, 8, 1024/8, minval, maxval);
+//		$display("%t Reading the first KB took between %d and %d cycles each", $time, minval, maxval);
 
 		$stop();
 	end
 	
 endmodule
+
+// Store first testbench here
+
+//initial begin
+//	dummy_data <= '0;
+//	resetMem();				// Initialize the memory.
+//	
+//	// Do 20 random reads.
+//	for (i=0; i<20; i++) begin
+//		addr = $random()*8; // *8 to doubleword-align the access.
+//		readMem(addr, dummy_data, delay);
+//		$display("%t Read took %d cycles", $time, delay);
+//	end
+//	
+//	// Do 5 random double-word writes of random data.
+//	for (i=0; i<5; i++) begin
+//		addr = $random()*8; // *8 to doubleword-align the access.
+//		dummy_data = $random();
+//		writeMem(addr, dummy_data, 8'hFF, delay);
+//		$display("%t Write took %d cycles", $time, delay);
+//	end
+//	
+//	// Reset the memory.
+//	resetMem();
+//	
+//	// Read all of the first KB
+//	readStride(0, 8, 1024/8, minval, maxval);
+//	$display("%t Reading the first KB took between %d and %d cycles each", $time, minval, maxval);
+//
+//	$stop();
+//end
