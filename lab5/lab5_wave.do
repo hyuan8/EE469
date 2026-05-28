@@ -14,8 +14,18 @@ add wave -noupdate /lab5_testbench/data_out
 add wave -noupdate /lab5_testbench/clk
 add wave -noupdate /lab5_testbench/reset
 add wave -noupdate /lab5_testbench/cycles
+add wave -noupdate -divider readMem
+add wave -noupdate /lab5_testbench/readMem/delay
+add wave -noupdate -divider readStride
+add wave -noupdate /lab5_testbench/readStride/min_delay
+add wave -noupdate /lab5_testbench/readStride/max_delay
+add wave -noupdate -divider writeMem
+add wave -noupdate /lab5_testbench/writeMem/delay
+add wave -noupdate -divider writeStride
+add wave -noupdate /lab5_testbench/writeStride/min_delay
+add wave -noupdate /lab5_testbench/writeStride/max_delay
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {64912263 ps} 0}
+WaveRestoreCursors {{Cursor 1} {579920381 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -31,4 +41,4 @@ configure wave -griddelta 4
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {64619045 ps} {65524261 ps}
+WaveRestoreZoom {579579045 ps} {580484261 ps}
